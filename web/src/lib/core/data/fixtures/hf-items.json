@@ -1,0 +1,23 @@
+{
+	"source": "fixture",
+	"note": "Seeded mock data for offline tests and evals; not fetched from Hugging Face. Only the multi-app-agent Space is a real public artifact.",
+	"username": "WolfDavid",
+	"items": [
+		{
+			"id": "WolfDavid/multi-app-agent",
+			"kind": "space",
+			"likes": 1,
+			"tags": ["static", "agents", "evals"],
+			"last_modified": "2026-09-13T16:05:00Z",
+			"url": "https://huggingface.co/spaces/WolfDavid/multi-app-agent"
+		},
+		{
+			"id": "WolfDavid/food-demand-forecast-small",
+			"kind": "model",
+			"likes": 2,
+			"tags": ["tabular-regression", "time-series"],
+			"last_modified": "2026-06-10T08:00:00Z",
+			"url": "mock://hf/WolfDavid/food-demand-forecast-small"
+		}
+	]
+}

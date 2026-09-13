@@ -1,0 +1,39 @@
+{
+	"source": "fixture",
+	"note": "Seeded mock data for offline tests and evals; not fetched from GitHub. Live data arrives in Phase 10. Only multi-app-agent is a real public repo.",
+	"username": "wolfwdavid",
+	"repos": [
+		{
+			"name": "multi-app-agent",
+			"description": "Transfer application sprint agent across Notion, Calendar, Gmail and Docs with approval gate and evals",
+			"stars": 3,
+			"languages": ["TypeScript", "Svelte"],
+			"pushed_at": "2026-09-13T16:00:00Z",
+			"url": "https://github.com/wolfwdavid/multi-app-agent"
+		},
+		{
+			"name": "food-bank-demand-dashboard",
+			"description": "Weekly demand dashboard for a local food bank volunteer project",
+			"stars": 5,
+			"languages": ["Python", "Jupyter Notebook"],
+			"pushed_at": "2026-06-02T19:30:00Z",
+			"url": "mock://github/wolfwdavid/food-bank-demand-dashboard"
+		},
+		{
+			"name": "ds-club-study-notebooks",
+			"description": "Kaggle-style study session notebooks for the community college Data Science Club",
+			"stars": 2,
+			"languages": ["Jupyter Notebook"],
+			"pushed_at": "2026-04-18T01:10:00Z",
+			"url": "mock://github/wolfwdavid/ds-club-study-notebooks"
+		},
+		{
+			"name": "dotfiles",
+			"description": null,
+			"stars": 0,
+			"languages": ["Shell"],
+			"pushed_at": "2025-11-01T12:00:00Z",
+			"url": "mock://github/wolfwdavid/dotfiles"
+		}
+	]
+}
