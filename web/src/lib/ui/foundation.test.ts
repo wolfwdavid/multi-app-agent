@@ -272,7 +272,15 @@ describe('profile-form', () => {
 		expect(opts).toHaveLength(total);
 		const fictionalIds = DATASET.schools.filter((s) => s.is_fictional).map((s) => s.school_id);
 		for (const o of opts) expect(o.isFictional).toBe(fictionalIds.includes(o.schoolId));
+	});
+});
+
+describe('dataset', () => {
+	it('validates the seeded dataset and both demo profiles', () => {
+		expect(DATASET.cycle).toBe('Fall 2027');
+		expect(DATASET.schools.some((s) => s.is_fictional)).toBe(true);
 		expect(DEMO_PROFILES.map((p) => p.id)).toEqual(['demo', 'demo-quarter']);
+		expect(DEMO_PROFILES[0].profile.units.system).toBe('semester');
 		expect(DEMO_PROFILES[1].profile.units.system).toBe('quarter');
 	});
 });
