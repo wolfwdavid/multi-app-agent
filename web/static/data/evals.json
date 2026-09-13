@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-13T19:44:08.255Z",
-  "commitSha": "ffb47f3",
+  "generatedAt": "2026-09-13T20:16:22.756Z",
+  "commitSha": "0f7d07b",
   "n": 10,
   "seed": 1337,
   "model": "fake-scripted",
@@ -15,8 +15,8 @@
       "config": "verifier-on",
       "n": 10,
       "seed": 1337,
-      "generatedAt": "2026-09-13T19:44:08.255Z",
-      "commitSha": "ffb47f3"
+      "generatedAt": "2026-09-13T20:16:22.756Z",
+      "commitSha": "0f7d07b"
     },
     {
       "id": "fake-verifier-off",
@@ -26,8 +26,8 @@
       "config": "verifier-off",
       "n": 10,
       "seed": 1337,
-      "generatedAt": "2026-09-13T19:44:08.255Z",
-      "commitSha": "ffb47f3"
+      "generatedAt": "2026-09-13T20:16:22.756Z",
+      "commitSha": "0f7d07b"
     }
   ],
   "scenarios": [
@@ -546,8 +546,8 @@
     },
     {
       "id": "rate-limit-burst",
-      "name": "429 burst",
-      "description": "Notion rate-limits the first two calls and Calendar rate-limits 25% of calls. At a 3-attempt cap some runs exhaust retries; those fail the goal and should surface as integration_failure. The rate is fixed and not tuned.",
+      "name": "429 burst (recoverable)",
+      "description": "Notion rate-limits its first two upsert attempts and Calendar rate-limits createEvent attempts 1, 2, 5, 9 and 10. No single write ever gets three 429s in a row, so the 3-attempt retry cap always recovers: every write must land and the report must be ok.",
       "tags": [
         "fault",
         "adversarial"
@@ -556,58 +556,118 @@
       "results": {
         "fake": {
           "runs": 10,
-          "passed": 5,
-          "passRate": 0.5,
-          "passK": false,
+          "passed": 10,
+          "passRate": 1,
+          "passK": true,
           "passHatK": [
             {
               "k": 1,
-              "value": 0.5
+              "value": 1
             },
             {
               "k": 3,
-              "value": 0.0833
+              "value": 1
             },
             {
               "k": 5,
-              "value": 0.004
+              "value": 1
             },
             {
               "k": 10,
-              "value": 0
+              "value": 1
             }
           ],
-          "failures": {
-            "integration_failure": 5
-          },
+          "failures": {},
           "silentFailures": 0
         },
         "fake-verifier-off": {
           "runs": 10,
-          "passed": 5,
-          "passRate": 0.5,
-          "passK": false,
+          "passed": 10,
+          "passRate": 1,
+          "passK": true,
           "passHatK": [
             {
               "k": 1,
-              "value": 0.5
+              "value": 1
             },
             {
               "k": 3,
-              "value": 0.0833
+              "value": 1
             },
             {
               "k": 5,
-              "value": 0.004
+              "value": 1
             },
             {
               "k": 10,
-              "value": 0
+              "value": 1
             }
           ],
-          "failures": {
-            "integration_failure": 5
-          },
+          "failures": {},
+          "silentFailures": 0
+        }
+      }
+    },
+    {
+      "id": "rate-limit-storm",
+      "name": "429 storm (retries can run out)",
+      "description": "Calendar rate-limits 25% of createEvent attempts at random (seeded). At the 3-attempt cap a write is abandoned with probability 1/64, so roughly one run in five loses a calendar event. The run passes when every write lands and the report is ok, or when the report is not ok and names the failed write. The rate is fixed and not tuned.",
+      "tags": [
+        "fault",
+        "adversarial"
+      ],
+      "adversarial": true,
+      "results": {
+        "fake": {
+          "runs": 10,
+          "passed": 10,
+          "passRate": 1,
+          "passK": true,
+          "passHatK": [
+            {
+              "k": 1,
+              "value": 1
+            },
+            {
+              "k": 3,
+              "value": 1
+            },
+            {
+              "k": 5,
+              "value": 1
+            },
+            {
+              "k": 10,
+              "value": 1
+            }
+          ],
+          "failures": {},
+          "silentFailures": 0
+        },
+        "fake-verifier-off": {
+          "runs": 10,
+          "passed": 10,
+          "passRate": 1,
+          "passK": true,
+          "passHatK": [
+            {
+              "k": 1,
+              "value": 1
+            },
+            {
+              "k": 3,
+              "value": 1
+            },
+            {
+              "k": 5,
+              "value": 1
+            },
+            {
+              "k": 10,
+              "value": 1
+            }
+          ],
+          "failures": {},
           "silentFailures": 0
         }
       }
@@ -1462,32 +1522,34 @@
   ],
   "totals": {
     "fake": {
-      "runs": 220,
-      "passed": 185,
-      "passRate": 0.8409,
-      "passK": 0.8182,
+      "runs": 230,
+      "passed": 200,
+      "passRate": 0.8696,
+      "passK": 0.8696,
       "silentFailures": 10
     },
     "fake-verifier-off": {
-      "runs": 220,
-      "passed": 165,
-      "passRate": 0.75,
-      "passK": 0.7273,
+      "runs": 230,
+      "passed": 180,
+      "passRate": 0.7826,
+      "passK": 0.7826,
       "silentFailures": 30
     }
   },
   "failureTotals": {
     "fake": {
-      "integration_failure": 5,
       "instruction_violation": 10,
       "hallucination": 10,
       "communication_failure": 10
     },
     "fake-verifier-off": {
       "communication_failure": 30,
-      "integration_failure": 5,
       "instruction_violation": 10,
       "hallucination": 10
     }
+  },
+  "silentFailure": {
+    "file": "data/silent-failure-run.json",
+    "scenarioId": "lying-success"
   }
 }
