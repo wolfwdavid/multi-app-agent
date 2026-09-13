@@ -127,7 +127,7 @@ export async function probeRealConnectors(env: Env, deps: RealDeps = {}): Promis
 
 	const github = live('github', async () => {
 		const repos = await createRealGitHub(env, deps).listRepos(ghUser);
-		return `${repos.length} public repos (${ghUser})`;
+		return `${repos.length} most recently pushed public repos (${ghUser})`;
 	});
 	const hf = live('hf', async () => {
 		const items = await createRealHF(env, deps).listModelsAndSpaces(hfUser);
