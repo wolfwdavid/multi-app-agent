@@ -10,6 +10,7 @@ import {
 	probeRealConnectors,
 	type ProbeResult
 } from '../src/lib/core/connectors/real/index.ts';
+import { readObsidianVault } from '../src/lib/core/connectors/real/obsidian.ts';
 
 try {
 	process.loadEnvFile('.env');
@@ -27,6 +28,22 @@ const line = (r: ProbeResult) =>
 
 const results = await probeRealConnectors(env, { timeoutMs: 10000 });
 for (const r of results) console.log(line(r));
+
+// Optional local vault: tag names and counts only, never note bodies. Does not affect the exit code.
+const vaultPath = env.OBSIDIAN_VAULT_PATH?.trim();
+if (vaultPath) {
+	try {
+		const vault = await readObsidianVault(vaultPath);
+		const distinct = new Set(vault.notes.flatMap((n) => n.tags));
+		console.log(
+			`[ok]   obsidian  ${vault.notes.length} notes, ${distinct.size} distinct tags (${vault.skipped.length} skipped)`
+		);
+	} catch (e) {
+		console.log(`[FAIL] obsidian  ${e instanceof Error ? e.message : String(e)}`);
+	}
+} else {
+	console.log('[skip] obsidian  OBSIDIAN_VAULT_PATH not set');
+}
 
 const byApp = (app: string) => results.find((r) => r.app === app);
 const github = byApp('github');
