@@ -63,6 +63,11 @@ One end-to-end application sprint (profile + target school → gap analysis → 
 - **Market evidence:** agent adoption is failing on reliability (Gartner: >40% of agentic projects canceled by 2027; LangChain survey: quality is #1 blocker, only 52% run offline evals).
 - **Existing code (scaffold only, created this session — no codebase map needed):** repo https://github.com/wolfwdavid/multi-app-agent; `web/` SvelteKit (Svelte 5 runes, TS, Tailwind v4, adapter-static, vitest) deployed via GitHub Actions to https://wolfwdavid.github.io/multi-app-agent/; HF static Space https://huggingface.co/spaces/WolfDavid/multi-app-agent; placeholder `app.py`, `docs/index.html`, `BRIEF.md` template.
 - **Environment:** Windows 11, Node 24, Python 3.11, gh CLI (wolfwdavid), hf CLI (WolfDavid), Vercel CLI logged in, Ollama installed with qwen3.5:4b, llama3.2:3b, qwen2.5-coder:7b. No hosted LLM API keys set yet.
+- **Local LLM measurements (2026-09-13, OpenAI-compatible tool calls, temp 0):**
+  - qwen3.5:4b with thinking on: correct call, 36–45 s.
+  - llama3.2:3b: correct call, ~15 s, but did not normalize school names ("UC Berkeley transfer").
+  - qwen3.5:4b via native `/api/chat` with `think:false` plus a format system prompt: correct and normalized ("University of California, Berkeley"), ~10 s warm.
+  - Implications: the live demo uses qwen3.5:4b with think off. N-run evals use the hosted fallback. A deterministic scripted policy is the no-key baseline. Always normalize and validate tool arguments (zod) regardless of model.
 
 ## Constraints
 
