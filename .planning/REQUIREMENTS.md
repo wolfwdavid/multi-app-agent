@@ -15,21 +15,21 @@
 
 - [x] **GAP-01**: User sees a deterministic per-school gap report: GPA vs program minimum/competitive, units vs required (with semester↔quarter conversion), each prereq marked `met` / `missing` / `unknown-equivalency`, essays and recs needed, days to deadline
 - [x] **GAP-02**: User sees feasibility warnings (e.g. missing prereqs vs terms remaining before deadline, GPA below a program-specific minimum, school has no transfer program)
-- [ ] **GAP-03**: Gap report includes LLM-phrased next actions that never change the deterministic findings
+- [x] **GAP-03**: Gap report includes LLM-phrased next actions that never change the deterministic findings
 
 ### Essay Coaching
 
-- [ ] **ESSAY-01**: Agent reads the student's essay draft from a specified Google Doc (only that doc)
-- [ ] **ESSAY-02**: Agent writes a critique Doc scored against the school's actual transfer prompt (why transfer, why this school, academic trajectory, evidence, word count vs limit) as questions/comments — never rewritten prose
-- [ ] **ESSAY-03**: Coaching depth adapts to the school's AI policy (`grammar_only` / `feedback_ok` / `brainstorm_ok`) with a visible policy note
-- [ ] **ESSAY-04**: Every claim in the critique and outreach drafts references evidence from the profile or portfolio; unsupported claims are rejected by a validator
+- [x] **ESSAY-01**: Agent reads the student's essay draft from a specified Google Doc (only that doc)
+- [x] **ESSAY-02**: Agent writes a critique Doc scored against the school's actual transfer prompt (why transfer, why this school, academic trajectory, evidence, word count vs limit) as questions/comments — never rewritten prose
+- [x] **ESSAY-03**: Coaching depth adapts to the school's AI policy (`grammar_only` / `feedback_ok` / `brainstorm_ok`) with a visible policy note
+- [x] **ESSAY-04**: Every claim in the critique and outreach drafts references evidence from the profile or portfolio; unsupported claims are rejected by a validator
 
 ### Portfolio Evidence
 
 - [x] **PORT-01**: Agent pulls public GitHub repos (name, description, stars, languages, recent activity) for a given username
 - [x] **PORT-02**: Agent pulls public Hugging Face models and Spaces for a given username
 - [x] **PORT-03**: Agent reads tags/frontmatter from a local Obsidian vault folder (optional source)
-- [ ] **PORT-04**: Critique surfaces "evidence you're not using yet" mapped to the school's prompt
+- [x] **PORT-04**: Critique surfaces "evidence you're not using yet" mapped to the school's prompt
 
 ### App Actions
 
@@ -45,7 +45,7 @@
 - [x] **AGENT-01**: Agent runs a multi-step loop (plan → approved actions → execute → verify) with schema-validated tool calls, argument repair retries, and a hard step cap
 - [x] **AGENT-02**: Agent works with an OpenAI-compatible LLM: local Ollama (qwen3.5:4b, think off) and a hosted fallback configured by env
 - [x] **AGENT-03**: User sees a dry-run plan (app, operation, payload) and approves all or individual actions before any external write
-- [ ] **AGENT-04**: Content from docs/emails is treated as data; instructions embedded in it (prompt injection) cause no out-of-plan tool calls and are flagged
+- [x] **AGENT-04**: Content from docs/emails is treated as data; instructions embedded in it (prompt injection) cause no out-of-plan tool calls and are flagged
 - [x] **AGENT-05**: After execution, agent reads back each target app and marks each artifact verified/failed based on actual final state
 - [x] **AGENT-06**: Every run emits a structured step trace (tool, args, result, latency, verification) with PII redacted in exported artifacts
 
@@ -108,15 +108,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DATA-03 | Phase 7 | Pending |
 | GAP-01 | Phase 3 | Complete |
 | GAP-02 | Phase 3 | Complete |
-| GAP-03 | Phase 5 | Pending |
-| ESSAY-01 | Phase 5 | Pending |
-| ESSAY-02 | Phase 5 | Pending |
-| ESSAY-03 | Phase 5 | Pending |
-| ESSAY-04 | Phase 5 | Pending |
+| GAP-03 | Phase 5 | Complete |
+| ESSAY-01 | Phase 5 | Complete |
+| ESSAY-02 | Phase 5 | Complete |
+| ESSAY-03 | Phase 5 | Complete |
+| ESSAY-04 | Phase 5 | Complete |
 | PORT-01 | Phase 10 | Complete (live-verified) |
 | PORT-02 | Phase 10 | Complete (live-verified) |
 | PORT-03 | Phase 10 | Complete (fixture vault) |
-| PORT-04 | Phase 5 | Pending |
+| PORT-04 | Phase 5 | Complete |
 | APPS-01 | Phase 4 | Complete |
 | APPS-02 | Phase 4 | Complete |
 | APPS-03 | Phase 4 | Complete |
@@ -126,7 +126,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AGENT-01 | Phase 4 | Complete |
 | AGENT-02 | Phase 8 | Complete |
 | AGENT-03 | Phase 4 | Complete |
-| AGENT-04 | Phase 5 | Pending |
+| AGENT-04 | Phase 5 | Complete |
 | AGENT-05 | Phase 4 | Complete |
 | AGENT-06 | Phase 4 | Complete |
 | EVAL-01 | Phase 6 | Pending |
