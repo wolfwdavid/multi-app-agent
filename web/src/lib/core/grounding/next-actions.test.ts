@@ -114,7 +114,7 @@ describe('phase5FakeResponders', () => {
 		expect(Object.keys(phase5FakeResponders)).toEqual(['essay_critique', 'next_actions']);
 		const llm = createFakeLLM({ ...phase5FakeResponders });
 		const seed = defaultWorldSeed();
-		const catalog = buildEvidenceCatalog(demo, { repos: seed.github.repos['wolfwdavid'], hfItems: seed.hf.items['WolfDavid'] });
+		const catalog = buildEvidenceCatalog(demo, { repos: seed.github?.repos?.['wolfwdavid'] ?? [], hfItems: seed.hf?.items?.['WolfDavid'] ?? [] });
 		const essay = EssayDocFixture.parse(essayRaw).body;
 		const berkeley = reports.find((r) => r.programId === 'uc-berkeley-data-science-ba')!;
 		const input = buildCritiqueSlotInput({ report: berkeley, essay: selectTargetEssay(berkeley)!, text: essay, docId: 'doc-essay-demo', catalog });

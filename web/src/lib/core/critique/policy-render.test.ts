@@ -16,7 +16,7 @@ const demo = Profile.parse(demoRaw);
 const schools = SchoolsDataset.parse(schoolsRaw);
 const reports = analyzeGaps(demo, schools, { today: '2026-09-13' });
 const seed = defaultWorldSeed();
-const catalog = buildEvidenceCatalog(demo, { repos: seed.github.repos['wolfwdavid'], hfItems: seed.hf.items['WolfDavid'] });
+const catalog = buildEvidenceCatalog(demo, { repos: seed.github?.repos?.['wolfwdavid'] ?? [], hfItems: seed.hf?.items?.['WolfDavid'] ?? [] });
 const essay = EssayDocFixture.parse(essayRaw).body;
 const report = (id: string) => reports.find((r) => r.programId === id)!;
 
