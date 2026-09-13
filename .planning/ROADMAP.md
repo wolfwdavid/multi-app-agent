@@ -251,7 +251,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 11-01: scripts/mcp.ts over registry (@modelcontextprotocol/sdk 1.x, stdio) + VS Code config (absolute node path, quoted spaces) + smoke call
+- [ ] 11-01-PLAN.md — Wave 1: core/mcp agent tools (gap_analysis, critique_essay, plan_sprint, run_sprint w/ planToken + approvedIds, mock default) on @modelcontextprotocol/server v2 + in-memory JSON-RPC test + scripts/mcp.ts (serveStdio, stderr-only logs) + spawned stdio handshake test + .vscode/mcp.json + README snippet
 
 ### Phase 12: Brief, README & Demo
 **Goal**: The submission is complete. Judges can read how the system works and how we know it works, run it themselves, and watch a 2-minute demo showing a caught failure and an idempotent re-run.
