@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 04-03-PLAN.md
-last_updated: "2026-09-13T19:07:09.181Z"
+stopped_at: Completed 06-01-PLAN.md
+last_updated: "2026-09-13T19:41:58.062Z"
 progress:
   total_phases: 12
   completed_phases: 8
   total_plans: 26
-  completed_plans: 17
+  completed_plans: 18
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-09-13)
 
 **Core value:** One end-to-end application sprint (profile + target school → gap analysis → essay critique Doc → Notion tracker + Calendar deadlines → Gmail draft) runs reliably across real apps, and we can prove it works with measured evals.
-**Current focus:** Phase 4 — Sprint Pipeline on Mocks
+**Current focus:** Phase 06 — eval-harness-real-pass-rates
 
 ## Current Position
 
-Phase: 06
-Plan: Not started
+Phase: 06 (eval-harness-real-pass-rates) — EXECUTING
+Plan: 2 of 2
 
 ## Time Checkpoints (ET, hard deadline 7:00 PM)
 
@@ -69,6 +69,7 @@ Plan: Not started
 | Phase 05 P01 | 13min | 3 tasks | 14 files |
 | Phase 08 P02 | 11min | 2 tasks | 4 files |
 | Phase 11 P01 | 5min | 2 tasks | 8 files |
+| Phase 06 P01 | 12min | 3 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -126,6 +127,8 @@ Recent decisions affecting current work:
 - [Phase 11]: 11-01: MCP exposes only 4 agent-level tools (gap_analysis, critique_essay, plan_sprint, run_sprint); app write tools are never standalone MCP tools and writes go solely through executeSprint -> authorizeExecution
 - [Phase 11]: 11-01: run_sprint resolves planId from a per-process session filled by plan_sprint; PolicyError surfaces as isError 'REJECTED <code>: <message>'; stdio server is mock unless TRANSFERPILOT_MCP_MODE=real
 - [Phase 11]: 11-01: critique_essay uses the FakeLLM critique slot (PHASE5-SWAP, source placeholder) until Phase 5 exports a critique entry point
+- [Phase 06]: 06-01: Oracle injection-leak check scans agent outputs only (written rows/events/drafts, gmail.sent, keyed docs), never gmail.inbox
+- [Phase 06]: 06-01: Classifier puts communication_failure before integration/skipped; report-ok over missing state is the silent failure
 
 ### Pending Todos
 
@@ -142,6 +145,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-09-13T18:43:40.490Z
-Stopped at: Completed 04-03-PLAN.md
+Last session: 2026-09-13T19:41:58.056Z
+Stopped at: Completed 06-01-PLAN.md
 Resume file: None
