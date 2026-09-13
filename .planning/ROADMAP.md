@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Contracts, Seed Data & Build Smoke** - zod domain contracts, sourced schools dataset, demo profile/fixtures, both deploy builds green (35 min) (completed 2026-09-13)
 - [ ] **Phase 2: Stateful Mock App Twins** - credential-free twins of Gmail/Calendar/Docs/Notion/GitHub/HF behind shared ports, with findByKey and fault injection (30 min, parallel with Phase 3)
-- [ ] **Phase 3: Deterministic Gap Analysis** - per-school gap report and feasibility warnings in pure TypeScript (25 min, parallel with Phase 2)
+- [x] **Phase 3: Deterministic Gap Analysis** - per-school gap report and feasibility warnings in pure TypeScript (25 min, parallel with Phase 2) (completed 2026-09-13)
 - [ ] **Phase 4: Sprint Pipeline on Mocks** - terminal vertical slice: plan, approve, execute with idempotency and retry, read-back verify, redacted trace (45 min)
 - [ ] **Phase 5: Essay Critique, Evidence Grounding & Injection Guard** - policy-aware critique Doc, claim-evidence validator, injection flagged and contained, LLM-phrased actions (30 min)
 - [ ] **Phase 6: Eval Harness & Real Pass Rates** - 8+ adversarial scenarios x N runs, state oracle, Lemma taxonomy, evals.json (40 min)
@@ -279,7 +279,7 @@ Phases execute in numeric order, with parallel waves: 1 → (2 ‖ 3) → 4 → 
 |-------|----------------|--------|-----------|
 | 1. Contracts, Seed Data & Build Smoke | 0/3 | Complete    | 2026-09-13 |
 | 2. Stateful Mock App Twins | 0/2 | Not started | - |
-| 3. Deterministic Gap Analysis | 0/1 | Not started | - |
+| 3. Deterministic Gap Analysis | 0/1 | Complete    | 2026-09-13 |
 | 4. Sprint Pipeline on Mocks | 0/3 | Not started | - |
 | 5. Essay Critique, Evidence Grounding & Injection Guard | 0/2 | Not started | - |
 | 6. Eval Harness & Real Pass Rates | 0/3 | Not started | - |
