@@ -1,3 +1,54 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+@theme inline {
+	--color-bg: var(--tp-bg);
+	--color-surface: var(--tp-surface);
+	--color-border: var(--tp-border);
+	--color-fg: var(--tp-fg);
+	--color-fg-muted: var(--tp-fg-muted);
+	--color-accent: var(--tp-accent);
+	--color-accent-hover: var(--tp-accent-hover);
+	--color-accent-fg: var(--tp-accent-fg);
+	--color-danger: var(--tp-danger);
+	--color-ok-fg: var(--tp-ok-fg);       --color-ok-bg: var(--tp-ok-bg);       --color-ok-border: var(--tp-ok-border);
+	--color-warn-fg: var(--tp-warn-fg);   --color-warn-bg: var(--tp-warn-bg);   --color-warn-border: var(--tp-warn-border);
+	--color-info-fg: var(--tp-info-fg);   --color-info-bg: var(--tp-info-bg);   --color-info-border: var(--tp-info-border);
+	--color-block-fg: var(--tp-block-fg); --color-block-bg: var(--tp-block-bg); --color-block-border: var(--tp-block-border);
+	--color-fail-fg: var(--tp-fail-fg);   --color-fail-bg: var(--tp-fail-bg);   --color-fail-border: var(--tp-fail-border);
+	--color-idle-fg: var(--tp-idle-fg);   --color-idle-bg: var(--tp-idle-bg);   --color-idle-border: var(--tp-idle-border);
+}
+
+:root {
+	color-scheme: light dark;
+	--tp-bg: #ffffff; --tp-surface: #f8fafc; --tp-border: #e2e8f0;
+	--tp-fg: #0f172a; --tp-fg-muted: #475569;
+	--tp-accent: #4f46e5; --tp-accent-hover: #4338ca; --tp-accent-fg: #ffffff; --tp-danger: #b91c1c;
+	--tp-ok-fg: #065f46; --tp-ok-bg: #ecfdf5; --tp-ok-border: #a7f3d0;
+	--tp-warn-fg: #92400e; --tp-warn-bg: #fffbeb; --tp-warn-border: #fde68a;
+	--tp-info-fg: #075985; --tp-info-bg: #f0f9ff; --tp-info-border: #bae6fd;
+	--tp-block-fg: #5b21b6; --tp-block-bg: #f5f3ff; --tp-block-border: #ddd6fe;
+	--tp-fail-fg: #991b1b; --tp-fail-bg: #fef2f2; --tp-fail-border: #fecaca;
+	--tp-idle-fg: #334155; --tp-idle-bg: #f1f5f9; --tp-idle-border: #cbd5e1;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--tp-bg: #020617; --tp-surface: #0f172a; --tp-border: #1e293b;
+		--tp-fg: #f1f5f9; --tp-fg-muted: #94a3b8;
+		--tp-accent: #818cf8; --tp-accent-hover: #a5b4fc; --tp-accent-fg: #020617; --tp-danger: #f87171;
+		--tp-ok-fg: #6ee7b7; --tp-ok-bg: #022c22; --tp-ok-border: #065f46;
+		--tp-warn-fg: #fcd34d; --tp-warn-bg: #451a03; --tp-warn-border: #92400e;
+		--tp-info-fg: #7dd3fc; --tp-info-bg: #082f49; --tp-info-border: #075985;
+		--tp-block-fg: #c4b5fd; --tp-block-bg: #2e1065; --tp-block-border: #5b21b6;
+		--tp-fail-fg: #fca5a5; --tp-fail-bg: #450a0a; --tp-fail-border: #991b1b;
+		--tp-idle-fg: #cbd5e1; --tp-idle-bg: #1e293b; --tp-idle-border: #475569;
+	}
+}
+
+@layer base {
+	html { background: var(--tp-bg); color: var(--tp-fg); }
+	:focus-visible { outline: 2px solid var(--tp-accent); outline-offset: 2px; }
+	input, select, textarea { background-color: var(--tp-bg); color: var(--tp-fg); border-color: var(--tp-border); }
+}
