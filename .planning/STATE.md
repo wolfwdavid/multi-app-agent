@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 04-01-PLAN.md
-last_updated: "2026-09-13T18:20:32.542Z"
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-09-13T18:29:36.836Z"
 progress:
   total_phases: 12
   completed_phases: 3
-  total_plans: 19
-  completed_plans: 8
+  total_plans: 24
+  completed_plans: 9
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-09-13)
 ## Current Position
 
 Phase: 4 (Sprint Pipeline on Mocks) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 
 ## Time Checkpoints (ET, hard deadline 7:00 PM)
 
@@ -61,6 +61,8 @@ Plan: 2 of 3
 | Phase 02 P02 | 7min | 3 tasks | 9 files |
 | Phase 04 P01 | 12min | 3 tasks | 13 files |
 | Phase 10 P01 | 10min | 3 tasks | 21 files |
+| Phase 04 P02 | 8min | 3 tasks | 7 files |
+| Phase 10 P02 | 10min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -93,6 +95,12 @@ Recent decisions affecting current work:
 - [Phase 10]: Routes import core via extensionless $lib paths; core keeps relative .ts imports
 - [Phase 10]: Google constants live in import-free real/google/flags.ts; SDK module reachable only via dynamic import()
 - [Phase 10]: Static build from Git Bash needs MSYS_NO_PATHCONV=1 BASE_PATH=/multi-app-agent
+- [Phase 04]: 04-02: findByKey runs before every write, before every retry (beforeRetry after sleep) and after exhausted retries; ghost writes recover as created with detail recovered_after_error
+- [Phase 04]: 04-02: RunReport grades from read-back only; lying success = mismatch (read_back_missing) counted in counts.failed; status ok/partial/failed from observed state plus halts
+- [Phase 04]: 04-02: StepCapError/LoopDetectedError are non-retryable and propagate out of retry loops to halt the run; unapproved actions emit action.skipped with no action.execute span
+- [Phase 10]: 10-02: Notion SDK retries disabled (retry: false); the Phase 4 executor owns retries with a findByKey re-check, so a ghost-write create never duplicates rows
+- [Phase 10]: 10-02: Tracker title property must be named Name; a misnamed title is a 'missing' issue that --apply fixes by renaming, while wrong_type issues are never auto-changed
+- [Phase 10]: 10-02: Rows are read back from the Notion page response; select values outside the tracker enum fail with validation instead of being coerced
 
 ### Pending Todos
 
@@ -109,6 +117,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-09-13T18:16:04.186Z
-Stopped at: Completed 04-01-PLAN.md
+Last session: 2026-09-13T18:28:02.354Z
+Stopped at: Completed 04-02-PLAN.md
 Resume file: None

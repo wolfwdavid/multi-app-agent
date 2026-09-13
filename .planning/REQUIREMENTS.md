@@ -38,7 +38,7 @@
 - [x] **APPS-03**: Agent creates Gmail **drafts** (admissions rep question, professor rec request, CC advisor prereq check) — no send capability exists; drafts dedupe by tagged subject
 - [x] **APPS-04**: Every connector has a stateful mock and a real implementation behind one interface, switchable by config; mock mode fully works without credentials
 - [ ] **APPS-05**: Real mode works for Notion and at least one Google app when credentials are provided in env
-- [ ] **APPS-06**: Connector calls retry with backoff on 429/5xx and surface integration failures instead of silently continuing
+- [x] **APPS-06**: Connector calls retry with backoff on 429/5xx and surface integration failures instead of silently continuing
 
 ### Agent Core & Safety
 
@@ -46,7 +46,7 @@
 - [ ] **AGENT-02**: Agent works with an OpenAI-compatible LLM: local Ollama (qwen3.5:4b, think off) and a hosted fallback configured by env
 - [x] **AGENT-03**: User sees a dry-run plan (app, operation, payload) and approves all or individual actions before any external write
 - [ ] **AGENT-04**: Content from docs/emails is treated as data; instructions embedded in it (prompt injection) cause no out-of-plan tool calls and are flagged
-- [ ] **AGENT-05**: After execution, agent reads back each target app and marks each artifact verified/failed based on actual final state
+- [x] **AGENT-05**: After execution, agent reads back each target app and marks each artifact verified/failed based on actual final state
 - [ ] **AGENT-06**: Every run emits a structured step trace (tool, args, result, latency, verification) with PII redacted in exported artifacts
 
 ### Evaluation
@@ -122,12 +122,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | APPS-03 | Phase 4 | Complete |
 | APPS-04 | Phase 2 | Complete |
 | APPS-05 | Phase 10 | Pending |
-| APPS-06 | Phase 4 | Pending |
+| APPS-06 | Phase 4 | Complete |
 | AGENT-01 | Phase 4 | Complete |
 | AGENT-02 | Phase 8 | Pending |
 | AGENT-03 | Phase 4 | Complete |
 | AGENT-04 | Phase 5 | Pending |
-| AGENT-05 | Phase 4 | Pending |
+| AGENT-05 | Phase 4 | Complete |
 | AGENT-06 | Phase 4 | Pending |
 | EVAL-01 | Phase 6 | Pending |
 | EVAL-02 | Phase 6 | Pending |
