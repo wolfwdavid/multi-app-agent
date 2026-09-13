@@ -62,7 +62,7 @@
 - [ ] **UI-01**: SvelteKit UI flow: profile → gap report → plan approval → live step trace → verified artifacts
 - [ ] **UI-02**: Eval dashboard page shows pass rates, failure taxonomy breakdown, and a replayable trace of a caught silent failure
 - [ ] **API-01**: REST API endpoints to start a sprint, approve a plan, stream trace events, and fetch eval results
-- [ ] **MCP-01**: Custom MCP server exposes `gap_analysis`, `critique_essay`, `plan_sprint`, and `run_sprint` tools reusing the same tool registry, usable from VS Code
+- [x] **MCP-01**: Custom MCP server exposes `gap_analysis`, `critique_essay`, `plan_sprint`, and `run_sprint` tools reusing the same tool registry, usable from VS Code
 
 ### Ship
 
@@ -137,7 +137,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | UI-01 | Phase 7 | Pending |
 | UI-02 | Phase 7 | Pending |
 | API-01 | Phase 9 | Pending |
-| MCP-01 | Phase 11 | Pending |
+| MCP-01 | Phase 11 | Complete |
 | SHIP-01 | Phase 9 | Pending |
 | SHIP-02 | Phase 12 | Pending |
 | SHIP-03 | Phase 12 | Pending |

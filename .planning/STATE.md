@@ -4,12 +4,12 @@ milestone: v1.0
 milestone_name: milestone
 status: unknown
 stopped_at: Completed 04-03-PLAN.md
-last_updated: "2026-09-13T18:50:23.673Z"
+last_updated: "2026-09-13T18:52:02.941Z"
 progress:
   total_phases: 12
-  completed_phases: 6
+  completed_phases: 7
   total_plans: 26
-  completed_plans: 15
+  completed_plans: 16
 ---
 
 # Project State
@@ -68,6 +68,7 @@ Plan: Not started
 | Phase 04 P03 | 15min | 3 tasks | 11 files |
 | Phase 05 P01 | 13min | 3 tasks | 14 files |
 | Phase 08 P02 | 11min | 2 tasks | 4 files |
+| Phase 11 P01 | 5min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -122,6 +123,9 @@ Recent decisions affecting current work:
 - [Phase 08]: 08-02: resolveLlmConfig(env) auto-detects Ollama when LLM_BASE_URL is unset or on port 11434, else hosted; LLM_PROVIDER or --llm overrides; hosted requires LLM_BASE_URL + LLM_API_KEY + LLM_MODEL
 - [Phase 08]: 08-02: Ollama routes critique/claims/evidence/grounding slots to qwen2.5-coder:7b and all other slots to qwen3.5:4b (think:false); hosted uses LLM_MODEL for every slot
 - [Phase 08]: 08-02: Live hero sprint on real Ollama (qwen3.5:4b+qwen2.5-coder:7b): 23 actions, 7 slot calls, 0 repairs, report ok 23/23 verified, 0 think tags in artifacts, 156 s
+- [Phase 11]: 11-01: MCP exposes only 4 agent-level tools (gap_analysis, critique_essay, plan_sprint, run_sprint); app write tools are never standalone MCP tools and writes go solely through executeSprint -> authorizeExecution
+- [Phase 11]: 11-01: run_sprint resolves planId from a per-process session filled by plan_sprint; PolicyError surfaces as isError 'REJECTED <code>: <message>'; stdio server is mock unless TRANSFERPILOT_MCP_MODE=real
+- [Phase 11]: 11-01: critique_essay uses the FakeLLM critique slot (PHASE5-SWAP, source placeholder) until Phase 5 exports a critique entry point
 
 ### Pending Todos
 

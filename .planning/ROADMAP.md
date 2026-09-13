@@ -22,7 +22,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 8: Real LLM Slots** - Ollama qwen3.5:4b (think off) and hosted fallback via env, LLM-backed eval column (20 min)
 - [ ] **Phase 9: Live Backend on Vercel & REST API** - plan/execute/SSE/evals endpoints, server-enforced approval, live mock-mode URL (25 min)
 - [ ] **Phase 10: Real External Apps** - live GitHub/HF evidence, real Notion, one real Google app, optional Obsidian (25 min, CUT CANDIDATE, parallel with Phase 11)
-- [ ] **Phase 11: MCP Server** - stdio MCP server generated from the tool registry, usable from VS Code (15 min, CUT CANDIDATE, parallel with Phase 10)
+- [x] **Phase 11: MCP Server** - stdio MCP server generated from the tool registry, usable from VS Code (15 min, CUT CANDIDATE, parallel with Phase 10) (completed 2026-09-13)
 - [ ] **Phase 12: Brief, README & Demo** - BRIEF.md with final numbers, README, 2-minute demo script and recording, submission (45 min incl. slack)
 
 ## Time Budget & Checkpoints
@@ -251,7 +251,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 11-01-PLAN.md — Wave 1: core/mcp agent tools (gap_analysis, critique_essay, plan_sprint, run_sprint w/ planToken + approvedIds, mock default) on @modelcontextprotocol/server v2 + in-memory JSON-RPC test + scripts/mcp.ts (serveStdio, stderr-only logs) + spawned stdio handshake test + .vscode/mcp.json + README snippet
+- [x] 11-01-PLAN.md — Wave 1: core/mcp agent tools (gap_analysis, critique_essay, plan_sprint, run_sprint w/ planToken + approvedIds, mock default) on @modelcontextprotocol/server v2 + in-memory JSON-RPC test + scripts/mcp.ts (serveStdio, stderr-only logs) + spawned stdio handshake test + .vscode/mcp.json + README snippet
 
 ### Phase 12: Brief, README & Demo
 **Goal**: The submission is complete. Judges can read how the system works and how we know it works, run it themselves, and watch a 2-minute demo showing a caught failure and an idempotent re-run.
@@ -287,5 +287,5 @@ Phases execute in numeric order, with parallel waves: 1 → (2 ‖ 3) → 4 → 
 | 8. Real LLM Slots | 0/1 | Not started | - |
 | 9. Live Backend on Vercel & REST API | 0/2 | Not started | - |
 | 10. Real External Apps | 2/3 | In Progress|  |
-| 11. MCP Server | 0/1 | Not started | - |
+| 11. MCP Server | 1/1 | Complete   | 2026-09-13 |
 | 12. Brief, README & Demo | 0/2 | Not started | - |
