@@ -50,5 +50,10 @@
 @layer base {
 	html { background: var(--tp-bg); color: var(--tp-fg); }
 	:focus-visible { outline: 2px solid var(--tp-accent); outline-offset: 2px; }
-	input, select, textarea { background-color: var(--tp-bg); color: var(--tp-fg); border-color: var(--tp-border); }
+	/* @tailwindcss/forms emits its white-background rules after this layer with equal specificity, so the `html`
+	   prefix is needed for the tokens to win. :where() keeps the plugin's :focus and :checked states on top. */
+	html :is(input:where(:not([type='checkbox'], [type='radio'])), select, textarea) {
+		background-color: var(--tp-bg); color: var(--tp-fg); border-color: var(--tp-border);
+	}
+	html input:where([type='checkbox'], [type='radio']) { background-color: var(--tp-bg); }
 }

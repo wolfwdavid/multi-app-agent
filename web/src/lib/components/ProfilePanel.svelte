@@ -119,7 +119,7 @@
 	{/each}
 {/snippet}
 
-<div class="space-y-4 pt-4">
+<div class="space-y-4 pt-2">
 	<div role="status" class="text-sm text-danger">
 		{#if !parsed.ok}
 			{#if parsed.jsonError}
@@ -265,17 +265,19 @@
 		<fieldset class="space-y-1" aria-describedby={errs.targets ? 'pf-targets-error' : undefined}>
 			<legend class="text-sm">Target programs</legend>
 			{#each options as opt (opt.programId)}
-				<label class="min-h-11 flex flex-wrap items-center gap-2 text-sm">
+				<label class="min-h-11 py-2 flex items-start gap-2 text-sm">
 					<input
 						type="checkbox"
 						aria-invalid={errs.targets ? 'true' : undefined}
-						class={['size-5 rounded text-accent', errs.targets ? 'border-danger' : 'border-border']}
+						class={['size-5 shrink-0 mt-0.5 rounded text-accent', errs.targets ? 'border-danger' : 'border-fg-muted']}
 						checked={selectedTargets.has(opt.programId)}
 						disabled={!editable}
 						onchange={() => editable && (profileText = toggleTarget(profileText, opt, DATASET))}
 					/>
-					<span>{opt.label}</span>
-					{#if opt.isFictional}<StatusChip chip={fictionalChip()} />{/if}
+					<span class="min-w-0 flex-1 space-y-1">
+						<span class="block">{opt.label}</span>
+						{#if opt.isFictional}<StatusChip chip={fictionalChip()} />{/if}
+					</span>
 				</label>
 			{/each}
 			{@render errorText('pf-targets', 'targets')}

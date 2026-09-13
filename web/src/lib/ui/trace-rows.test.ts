@@ -51,7 +51,7 @@ describe('toTraceRows (recorded sprint)', () => {
 		expect(rb[0].status).toBe('ok');
 		expect(rb[2].actionId).toBe('g1');
 		expect(rb[2].status).toBe('failed');
-		expect(rb[2].labelOverride).toBe('Not found on read-back');
+		expect(rb[2].labelOverride).toBe('Not found');
 		expect(rb[2].found).toBe(false);
 		expect(rb[2].artifactStatus).toBe('mismatch');
 	});
@@ -110,7 +110,7 @@ describe('row helpers', () => {
 
 	it('announces rows and the run', () => {
 		expect(rowAnnouncement(rows[2])).toBe('Step 3, Gmail gmail.createDraft: Retried ×3');
-		expect(rowAnnouncement(rows[5])).toBe('Step 6, Gmail readback: Not found on read-back');
+		expect(rowAnnouncement(rows[5])).toBe('Step 6, Gmail readback: Not found');
 		expect(runAnnouncement(sample.report)).toBe('Run finished: 1 verified, 1 deduped, 1 failed.');
 	});
 

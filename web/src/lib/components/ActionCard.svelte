@@ -2,7 +2,7 @@
 	import type { Action } from '$lib/core/schemas';
 	import { APP_LABELS } from '$lib/ui/config';
 	import { DATASET } from '$lib/ui/dataset';
-	import { targetOptions } from '$lib/ui/profile-form';
+	import { actionTargetLabel, targetOptions } from '$lib/ui/profile-form';
 	import StatusChip from '$lib/components/StatusChip.svelte';
 
 	let {
@@ -23,17 +23,7 @@
 
 	const TARGETS = targetOptions(DATASET);
 
-	const target = $derived.by(() => {
-		if (action.programId) {
-			const t = TARGETS.find((o) => o.programId === action.programId);
-			if (t) return t.label;
-		}
-		if (action.schoolId) {
-			const t = TARGETS.find((o) => o.schoolId === action.schoolId);
-			if (t) return t.label.split(' — ')[0];
-		}
-		return '';
-	});
+	const target = $derived(actionTargetLabel(action, TARGETS));
 
 	const recipients = $derived.by(() => {
 		const to = action.payload.to;
@@ -62,9 +52,10 @@
 				{/if}
 			</span>
 			<span id={describedById} class="block text-sm text-fg-muted break-words">
-				{APP_LABELS[action.app]} · <span class="font-mono">{action.tool}</span>{#if target}
-					· {target}{/if} · key <span class="font-mono">{action.idempotencyKey}</span>{#if action.dependsOn.length > 0}
-					· after {action.dependsOn.join(', ')}{/if}
+				<!-- Svelte trims leading whitespace inside {#if}, so separators are string expressions. -->
+				{APP_LABELS[action.app]} · <span class="font-mono">{action.tool}</span>{#if target}{` · ${target}`}{/if}{' · key '}<span
+					class="font-mono">{action.idempotencyKey}</span
+				>{#if action.dependsOn.length > 0}{` · after ${action.dependsOn.join(', ')}`}{/if}
 			</span>
 			{#if action.app === 'gmail'}
 				<span class="block text-sm">Draft to {recipients || 'no recipient'} · never sent</span>

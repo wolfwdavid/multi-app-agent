@@ -29,6 +29,7 @@ import {
 	setField,
 	toggleTarget,
 	targetOptions,
+	actionTargetLabel,
 	fieldIssues,
 	unmappedIssues,
 	FIELD_PATHS
@@ -197,6 +198,19 @@ describe('provenance', () => {
 		expect(parseRequirementId('p#min_gpa')).toEqual({ programId: 'p', kind: 'scalar', id: 'min_gpa' });
 		expect(parseRequirementId('p#deadline:x#y')).toEqual({ programId: 'p', kind: 'deadline', id: 'x#y' });
 		expect(parseRequirementId('garbage')).toBeNull();
+	});
+});
+
+describe('actionTargetLabel', () => {
+	it('prefers the program label, falls back to the school name, else empty', () => {
+		const opts = [
+			{ schoolId: 's1', programId: 'p1', label: 'School One — Program A', isFictional: false },
+			{ schoolId: 's1', programId: 'p2', label: 'School One — Program B', isFictional: false }
+		];
+		expect(actionTargetLabel({ programId: 'p2', schoolId: 's1' }, opts)).toBe('School One — Program B');
+		expect(actionTargetLabel({ schoolId: 's1' }, opts)).toBe('School One');
+		expect(actionTargetLabel({ programId: 'nope' }, opts)).toBe('');
+		expect(actionTargetLabel({}, opts)).toBe('');
 	});
 });
 

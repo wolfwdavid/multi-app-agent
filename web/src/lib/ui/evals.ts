@@ -143,6 +143,46 @@ export function adversarialCount(evals: EvalsFile): number | null {
 	return evals.scenarios.filter((s) => s.adversarial === true || (s.tags ?? []).includes('adversarial')).length;
 }
 
+const KNOWN_WEAKNESS = 'known-weakness';
+
+const numField = (o: object | undefined, key: string): number | null => {
+	const v = (o as Record<string, unknown> | undefined)?.[key];
+	return typeof v === 'number' ? v : null;
+};
+
+/** Scenarios tagged known-weakness that do not fully pass for a model. */
+export function knownWeaknessFailing(evals: EvalsFile, modelId: string): number {
+	return evals.scenarios.filter(
+		(s) => (s.tags ?? []).includes(KNOWN_WEAKNESS) && s.results[modelId] !== undefined && s.results[modelId].passRate < 1
+	).length;
+}
+
+export interface SilentFailureStats {
+	/** Runs whose report claimed state the World does not hold, for the primary model. */
+	uncaught: number;
+	scenarios: number;
+	knownWeaknessScenarios: number;
+	/** Another scripted config (e.g. verifier off) for contrast, when the file carries one. */
+	comparison: { label: string; uncaught: number } | null;
+}
+
+/** Null when the file predates per-model silentFailures totals. */
+export function silentFailureStats(evals: EvalsFile): SilentFailureStats | null {
+	const p = primaryModel(evals);
+	const uncaught = numField(evals.totals[p.id], 'silentFailures');
+	if (uncaught === null) return null;
+	const hit = evals.scenarios.filter((s) => (numField(s.results[p.id], 'silentFailures') ?? 0) > 0);
+	const other = evals.models.find(
+		(m) => m.id !== p.id && m.kind === 'scripted' && numField(evals.totals[m.id], 'silentFailures') !== null
+	);
+	return {
+		uncaught,
+		scenarios: hit.length,
+		knownWeaknessScenarios: hit.filter((s) => (s.tags ?? []).includes(KNOWN_WEAKNESS)).length,
+		comparison: other ? { label: other.label, uncaught: numField(evals.totals[other.id], 'silentFailures')! } : null
+	};
+}
+
 export function silentFailurePath(evals: EvalsFile): string {
 	return evals.silentFailure?.file ?? DATA_PATHS.silentFailure;
 }

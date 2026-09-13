@@ -107,10 +107,15 @@
 						{#if report.units.converted}
 							{n1(report.units.studentCompleted)} + {n1(report.units.studentInProgress)}
 							{report.units.studentSystem} units → {n1(report.units.projectedInRequiredSystem)}
-							{report.units.requiredSystem} units (converted) of {orNotPublished(report.units.requiredMin)} required
+							{report.units.requiredSystem} units (converted){report.units.requiredMin === null
+								? ' · no minimum published'
+								: ` of ${report.units.requiredMin} required`}
+						{:else if report.units.requiredMin === null}
+							{n1(report.units.studentCompleted)} completed + {n1(report.units.studentInProgress)} in progress · no minimum
+							published
 						{:else}
 							{n1(report.units.studentCompleted)} completed + {n1(report.units.studentInProgress)} in progress of
-							{orNotPublished(report.units.requiredMin)}
+							{report.units.requiredMin}
 							{report.units.requiredSystem} units
 						{/if}
 					</span>

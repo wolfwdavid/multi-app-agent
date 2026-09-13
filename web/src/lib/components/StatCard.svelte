@@ -7,8 +7,9 @@
 		value,
 		sub,
 		sub2,
+		sub3,
 		chip
-	}: { label: string; value: string; sub: string; sub2?: string; chip?: ChipSpec } = $props();
+	}: { label: string; value: string; sub: string; sub2?: string; sub3?: string; chip?: ChipSpec } = $props();
 </script>
 
 <div class="rounded-lg border border-border bg-surface p-4 space-y-1">
@@ -19,4 +20,5 @@
 	</div>
 	<p class="text-sm text-fg-muted">{sub}</p>
 	{#if sub2}<p class="text-sm text-fg-muted">{sub2}</p>{/if}
+	{#if sub3}<p class="text-sm text-fg-muted">{sub3}</p>{/if}
 </div>

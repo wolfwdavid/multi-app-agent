@@ -3,6 +3,8 @@
 	import { APP_LABELS, PLAN_APP_ORDER } from '$lib/ui/config';
 	import { TONE_CLASSES, artifactChip, countTone, runStatusChip } from '$lib/ui/status';
 	import { truncate } from '$lib/ui/format';
+	import { DATASET } from '$lib/ui/dataset';
+	import { actionTargetLabel, targetOptions } from '$lib/ui/profile-form';
 	import StatusChip from '$lib/components/StatusChip.svelte';
 
 	let {
@@ -13,7 +15,10 @@
 	}: { report: RunReport; plan: Plan; onRerun?: () => void; rerunning?: boolean } = $props();
 
 	const banner = $derived(runStatusChip(report.status));
+	const TARGETS = targetOptions(DATASET);
 	const summaries = $derived(new Map(plan.actions.map((a) => [a.id, a.summary])));
+	// Same-summary artifacts (e.g. two prerequisite drafts to one advisor) differ only by program, so show it.
+	const targets = $derived(new Map(plan.actions.map((a) => [a.id, actionTargetLabel(a, TARGETS)])));
 
 	const groups = $derived.by(() => {
 		const order: AppName[] = [...PLAN_APP_ORDER];
@@ -71,10 +76,13 @@
 								target="_blank"
 								rel="noopener noreferrer"
 								class="text-sm text-fg underline underline-offset-2"
-								>Open<span aria-hidden="true"> ↗</span><span class="sr-only"> (opens in new tab)</span></a
+								>Open<span aria-hidden="true">&nbsp;↗</span><span class="sr-only"> (opens in new tab)</span></a
 							>
 						{/if}
 						<span class="text-sm text-fg-muted tabular-nums">{a.attempts} {a.attempts === 1 ? 'attempt' : 'attempts'}</span>
+						{#if targets.get(a.actionId)}<p class="basis-full text-sm text-fg-muted break-words">
+								{targets.get(a.actionId)}
+							</p>{/if}
 						{#if a.detail}<p class="basis-full text-sm text-fg-muted break-words">{a.detail}</p>{/if}
 					</li>
 				{/each}

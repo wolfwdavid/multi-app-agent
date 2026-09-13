@@ -179,6 +179,22 @@ export function targetOptions(ds: SchoolsDataset): TargetOption[] {
 	);
 }
 
+/** "{school} — {program}" for a planned action's program, else the school name, else ''. */
+export function actionTargetLabel(
+	action: { programId?: string; schoolId?: string },
+	options: TargetOption[]
+): string {
+	if (action.programId) {
+		const t = options.find((o) => o.programId === action.programId);
+		if (t) return t.label;
+	}
+	if (action.schoolId) {
+		const t = options.find((o) => o.schoolId === action.schoolId);
+		if (t) return t.label.split(' — ')[0];
+	}
+	return '';
+}
+
 /** Add { school_id, program_id, term: ds.cycle } when absent, remove it when present. */
 export function toggleTarget(
 	text: string,

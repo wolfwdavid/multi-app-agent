@@ -25,11 +25,11 @@
 				rel="noopener noreferrer"
 				class="text-fg underline underline-offset-2"
 				aria-label="Verify {label} on the official page (opens in new tab)"
-				>Verify<span aria-hidden="true"> ↗</span></a
+				>Verify<span aria-hidden="true">&nbsp;↗</span></a
 			>
 		{:else}
 			<a href={src.source_url} target="_blank" rel="noopener noreferrer" class="text-fg underline underline-offset-2"
-				>Verify on official page<span aria-hidden="true"> ↗</span><span class="sr-only"> (opens in new tab)</span></a
+				>Verify on official page<span aria-hidden="true">&nbsp;↗</span><span class="sr-only"> (opens in new tab)</span></a
 			>
 		{/if}
 		<span>· Retrieved {fmtDate(src.retrieved_at)}</span>

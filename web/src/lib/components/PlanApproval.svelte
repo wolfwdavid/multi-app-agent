@@ -150,7 +150,7 @@
 	{/if}
 
 	<div
-		class="sticky bottom-0 bg-surface border-t border-border py-4 flex flex-wrap items-center justify-between gap-4"
+		class="sticky bottom-0 z-10 bg-bg border-t border-border px-4 py-4 shadow-[0_-8px_16px_-12px_rgb(0_0_0/0.4)] flex flex-wrap items-center justify-between gap-4"
 	>
 		<p class="text-sm text-fg-muted">{mode === 'live' ? 'Drafts only · mock apps' : 'Replaying the recorded run'}</p>
 		<div class="flex flex-col items-end gap-1">

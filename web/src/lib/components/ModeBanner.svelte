@@ -21,7 +21,7 @@
 		the recording are redacted.
 		{#if LIVE_URL}
 			<a href={LIVE_URL} target="_blank" rel="noopener noreferrer" class="underline underline-offset-2"
-				>Open the live version<span aria-hidden="true"> ↗</span><span class="sr-only"> (opens in new tab)</span></a
+				>Open the live version<span aria-hidden="true">&nbsp;↗</span><span class="sr-only"> (opens in new tab)</span></a
 			>
 		{/if}
 	</p>

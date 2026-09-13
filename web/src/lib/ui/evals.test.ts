@@ -14,6 +14,8 @@ import {
 	scenarioAllPassed,
 	adversarialCount,
 	silentFailurePath,
+	silentFailureStats,
+	knownWeaknessFailing,
 	type EvalsFile
 } from './evals.ts';
 
@@ -106,6 +108,41 @@ describe('taxonomy', () => {
 		expect(silentFailurePath(parsed())).toBe('data/silent-failure-run.json');
 		const { silentFailure: _drop, ...rest } = sampleEvals();
 		expect(silentFailurePath(parsed(rest))).toBe('data/silent-failure-run.json');
+	});
+});
+
+describe('silent-failure stats', () => {
+	it('is null when totals carry no silentFailures', () => {
+		expect(silentFailureStats(parsed())).toBeNull();
+	});
+
+	it('counts uncaught silent failures, known-weakness scenarios and a scripted comparison config', () => {
+		const raw = sampleEvals();
+		const e = parsed({
+			...raw,
+			models: [...raw.models, { id: 'off', label: 'Verifier off', kind: 'scripted' }],
+			scenarios: raw.scenarios.map((s, i) =>
+				i === 1
+					? { ...s, tags: ['adversarial', 'known-weakness'], results: { fake: { ...s.results.fake, silentFailures: 3 } } }
+					: s
+			),
+			totals: { ...raw.totals, fake: { ...raw.totals.fake, silentFailures: 3 }, off: { runs: 30, passed: 20, passRate: 0.67, passK: 0.3, silentFailures: 9 } }
+		});
+		expect(silentFailureStats(e)).toEqual({
+			uncaught: 3,
+			scenarios: 1,
+			knownWeaknessScenarios: 1,
+			comparison: { label: 'Verifier off', uncaught: 9 }
+		});
+		expect(knownWeaknessFailing(e, 'fake')).toBe(1);
+		expect(knownWeaknessFailing(parsed(), 'fake')).toBe(0);
+	});
+
+	it('reads the committed evals.json silent-failure totals', () => {
+		const r = parseEvalsFile(JSON.parse(readFileSync(EVALS_PATH, 'utf8')));
+		if (!r.ok) throw new Error(r.message);
+		const sf = silentFailureStats(r.data);
+		if (sf) expect(sf.uncaught).toBeGreaterThanOrEqual(0);
 	});
 });
 

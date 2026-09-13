@@ -188,6 +188,11 @@
 		{ href: '#results', label: '5 Verified', done: report !== null }
 	]);
 
+	function keepProfileOpenOnDesktop(e: Event) {
+		const d = e.currentTarget as HTMLDetailsElement;
+		if (!d.open && window.matchMedia('(min-width: 1024px)').matches) d.open = true;
+	}
+
 	const SECONDARY =
 		'bg-bg border border-border text-fg hover:bg-surface rounded-md px-4 min-h-11 disabled:cursor-not-allowed disabled:opacity-50';
 </script>
@@ -216,8 +221,12 @@
 <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6">
 	<aside class="lg:col-span-4 lg:sticky lg:top-4 lg:self-start lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto">
 		<section id="profile">
-			<details open class="rounded-lg border border-border bg-surface p-4 sm:p-6">
-				<summary class="min-h-11 cursor-pointer"><h2 class="inline text-xl font-semibold">1. Profile</h2></summary>
+			<!-- Collapsible below lg only; at lg the aside is a fixed panel (07-UI-SPEC layout grid). -->
+			<details open class="rounded-lg border border-border bg-surface p-4 sm:p-6" ontoggle={keepProfileOpenOnDesktop}>
+				<summary
+					class="min-h-11 cursor-pointer lg:cursor-default lg:list-none lg:pointer-events-none lg:[&::-webkit-details-marker]:hidden"
+					><h2 class="inline text-xl font-semibold">1. Profile</h2></summary
+				>
 				<ProfilePanel bind:profile bind:valid bind:pristine bind:targetsEmpty />
 			</details>
 		</section>

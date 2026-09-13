@@ -49,6 +49,8 @@
 		}
 	}
 
+	const mismatches = $derived(run.report.artifacts.filter((a) => a.status === 'mismatch').length);
+
 	const failureLabel = $derived(
 		run.oracle.failureClass ? FAILURE_LABELS[run.oracle.failureClass].label : 'unclassified'
 	);
@@ -91,6 +93,11 @@
 				<StatusChip chip={{ tone: 'fail', glyph: '≠', label: 'Not found' }} />
 				<p class="text-sm break-words">{run.oracle.found}</p>
 			</div>
+			{#if mismatches > 1}
+				<p class="sm:col-span-2 text-sm text-fg-muted">
+					Showing the first of {mismatches} artifacts that failed read-back. The others are marked Not found in the trace.
+				</p>
+			{/if}
 		</div>
 	{/if}
 

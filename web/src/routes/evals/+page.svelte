@@ -5,7 +5,9 @@
 	import { loadStatic, type LoadResult } from '$lib/ui/data';
 	import {
 		adversarialCount,
+		knownWeaknessFailing,
 		llmModel,
+		silentFailureStats,
 		parseEvalsFile,
 		parseSilentFailureRun,
 		primaryModel,
@@ -49,10 +51,12 @@
 
 	function rateChip(rate: number): ChipSpec {
 		const tone = rateTone(rate);
-		if (tone === 'ok') return { tone, glyph: '✓', label: '90% or more' };
-		if (tone === 'warn') return { tone, glyph: '!', label: '50–89%' };
+		if (tone === 'ok') return { tone, glyph: '✓', label: 'Meets 90% target' };
+		if (tone === 'warn') return { tone, glyph: '!', label: 'Below 90% target' };
 		return { tone, glyph: '✕', label: 'Below 50%' };
 	}
+
+	const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
 
 	const stats = $derived.by(() => {
 		if (!evals) return [];
@@ -61,35 +65,65 @@
 		const llm = llmModel(evals);
 		const lt = llm ? evals.totals[llm.id] : undefined;
 		const adv = adversarialCount(evals);
-		const caught =
+		const weak = knownWeaknessFailing(evals, p.id);
+		const replay =
 			sfState === null
-				? { value: '…', sub: 'Loading the lying-API replay' }
+				? 'Loading the lying-API replay'
 				: silentRun
-					? { value: silentRun.oracle.caught ? '1' : '0', sub: 'Lying-API run caught by read-back' }
-					: { value: '—', sub: 'Replay file missing from this build' };
+					? silentRun.oracle.caught
+						? 'Lying-API replay: caught by read-back'
+						: 'Lying-API replay: missed by read-back'
+					: 'Replay file missing from this build';
+		// Headline the uncaught count from the eval totals; the single replay is supporting evidence, not the number.
+		const sf = silentFailureStats(evals);
+		const silentCard = sf
+			? {
+					label: 'Uncaught silent failures',
+					value: String(sf.uncaught),
+					chip: undefined,
+					sub:
+						sf.uncaught === 0
+							? `None in ${pt?.runs ?? 0} runs · ${p.label}`
+							: sf.knownWeaknessScenarios === sf.scenarios
+								? `All in ${plural(sf.scenarios, 'known-weakness scenario')} · ${p.label}`
+								: `Across ${plural(sf.scenarios, 'scenario')} · ${p.label}`,
+					sub2: sf.comparison ? `${sf.comparison.label}: ${sf.comparison.uncaught}` : undefined,
+					sub3: replay
+				}
+			: {
+					label: 'Silent failures caught',
+					value: sfState === null ? '…' : silentRun ? (silentRun.oracle.caught ? '1' : '0') : '—',
+					chip: undefined,
+					sub: replay,
+					sub2: undefined,
+					sub3: undefined
+				};
 		return [
 			{
 				label: 'Pass rate',
 				value: pt ? fmtPct(pt.passRate) : '—',
 				chip: pt ? rateChip(pt.passRate) : undefined,
 				sub: pt ? `${pt.passed} of ${pt.runs} runs · ${p.label}` : `No totals for ${p.label}`,
-				sub2: llm && lt ? `${llm.label}: ${fmtPct(lt.passRate)}` : undefined
+				sub2: llm && lt ? `${llm.label}: ${fmtPct(lt.passRate)}` : undefined,
+				sub3: weak > 0 ? `Includes ${plural(weak, 'known-weakness scenario')} that fail` : undefined
 			},
 			{
 				label: 'pass^k',
 				value: pt ? fmtPct(pt.passK) : '—',
 				chip: undefined,
 				sub: `Scenarios where all ${evals.n} runs passed`,
-				sub2: llm && lt ? `${llm.label}: ${fmtPct(lt.passK)}` : undefined
+				sub2: llm && lt ? `${llm.label}: ${fmtPct(lt.passK)}` : undefined,
+				sub3: undefined
 			},
 			{
 				label: 'Scenarios',
 				value: String(evals.scenarios.length),
 				chip: undefined,
 				sub: adv !== null ? `Including ${adv} adversarial` : 'Seeded, adversarial suite',
-				sub2: undefined
+				sub2: undefined,
+				sub3: undefined
 			},
-			{ label: 'Silent failures caught', value: caught.value, chip: undefined, sub: caught.sub, sub2: undefined }
+			silentCard
 		];
 	});
 </script>
@@ -110,7 +144,7 @@
 	{/if}
 	<p class="text-sm">
 		<a href={BRIEF_URL} target="_blank" rel="noopener noreferrer" class="text-fg underline underline-offset-2"
-			>Read the reliability brief (BRIEF.md)<span aria-hidden="true"> ↗</span><span class="sr-only">
+			>Read the reliability brief (BRIEF.md)<span aria-hidden="true">&nbsp;↗</span><span class="sr-only">
 				(opens in new tab)</span
 			></a
 		>
@@ -135,7 +169,7 @@
 			body={`data/evals.json returned ${errorWhat}. The numbers are also in BRIEF.md.`}
 		>
 			<a href={BRIEF_URL} target="_blank" rel="noopener noreferrer" class="text-sm text-fg underline underline-offset-2"
-				>Read BRIEF.md<span aria-hidden="true"> ↗</span><span class="sr-only"> (opens in new tab)</span></a
+				>Read BRIEF.md<span aria-hidden="true">&nbsp;↗</span><span class="sr-only"> (opens in new tab)</span></a
 			>
 		</EmptyState>
 	{:else if evals && evals.scenarios.length === 0}
@@ -143,7 +177,7 @@
 	{:else if evals}
 		<div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
 			{#each stats as s (s.label)}
-				<StatCard label={s.label} value={s.value} sub={s.sub} sub2={s.sub2} chip={s.chip} />
+				<StatCard label={s.label} value={s.value} sub={s.sub} sub2={s.sub2} sub3={s.sub3} chip={s.chip} />
 			{/each}
 		</div>
 

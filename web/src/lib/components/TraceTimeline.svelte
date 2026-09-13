@@ -49,15 +49,23 @@
 <div class="space-y-2">
 	<div class="space-y-1">
 		<label for="trace-progress" class="text-sm tabular-nums">{done} of {total} steps</label>
-		<progress id="trace-progress" class="w-full h-2 accent-accent" max={Math.max(total, 1)} value={done}></progress>
+		<!-- A sized <progress> loses native appearance in Chromium, so the track and fill are styled with tokens. -->
+		<progress
+			id="trace-progress"
+			class="block w-full h-2 appearance-none overflow-hidden rounded-full bg-border [&::-webkit-progress-bar]:bg-border [&::-webkit-progress-value]:bg-accent [&::-moz-progress-bar]:bg-accent"
+			max={Math.max(total, 1)}
+			value={done}
+		></progress>
 	</div>
 
-	<div
-		class="hidden sm:grid grid-cols-[3rem_8rem_1fr_5rem_5rem_8rem] gap-2 text-sm font-semibold text-fg-muted pl-2"
-		aria-hidden="true"
-	>
-		<span>Step</span><span>App</span><span>Operation</span><span>Attempt</span><span>Latency</span><span>Status</span>
-	</div>
+	{#if rows.length > 0}
+		<div
+			class="hidden sm:grid grid-cols-[3rem_8rem_1fr_5rem_5rem_8rem] gap-2 text-sm font-semibold text-fg-muted pl-2"
+			aria-hidden="true"
+		>
+			<span>Step</span><span>App</span><span>Operation</span><span>Attempt</span><span>Latency</span><span>Status</span>
+		</div>
+	{/if}
 
 	<ol aria-label="Run trace steps" class="divide-y divide-border">
 		{#each rows as row, i (row.index)}
@@ -71,8 +79,8 @@
 					<span class="font-mono tabular-nums">#{row.index}</span>
 					<span class="truncate">{appLabel(row.app)}</span>
 					<span class="min-w-0 truncate" title={row.summary ?? row.tool}
-						><span class="font-mono">{row.tool}</span>{#if row.summary}
-							<span class="text-fg-muted">{row.summary}</span>{/if}</span
+						><span class="font-mono">{row.tool}</span>{#if row.summary}{' '}<span class="text-fg-muted">{row.summary}</span
+						>{/if}</span
 					>
 					<span class="tabular-nums">{attemptText(row)}</span>
 					<span class="tabular-nums">{latency(row)}</span>
@@ -82,8 +90,9 @@
 					<div class="flex flex-wrap items-center gap-2">
 						<span class="font-mono tabular-nums">#{row.index}</span>
 						<span class="min-w-0 flex-1 truncate" title={row.summary ?? row.tool}
-							><span class="font-mono">{row.tool}</span>{#if row.summary}
-								<span class="text-fg-muted">{row.summary}</span>{/if}</span
+							><span class="font-mono">{row.tool}</span>{#if row.summary}{' '}<span class="text-fg-muted"
+									>{row.summary}</span
+								>{/if}</span
 						>
 						<StatusChip chip={chipFor(row)} />
 					</div>

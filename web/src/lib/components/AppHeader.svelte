@@ -2,7 +2,7 @@
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
 	import type { AppMode } from '$lib/ui/mode';
-	import type { ChipSpec } from '$lib/ui/status';
+	import { TONE_CLASSES, type ChipSpec } from '$lib/ui/status';
 	import { REPO_URL } from '$lib/ui/config';
 	import StatusChip from './StatusChip.svelte';
 
@@ -22,10 +22,10 @@
 </script>
 
 <header class="bg-surface border-b border-border">
-	<div class="mx-auto max-w-6xl px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
-		<div class="flex items-center gap-4 min-w-0">
+	<div class="mx-auto max-w-6xl px-4 sm:px-6 h-14 flex items-center justify-between gap-2 sm:gap-4">
+		<div class="flex items-center gap-3 sm:gap-4 min-w-0">
 			<a href="{base}/" class="min-h-11 inline-flex items-center text-base font-semibold">TransferPilot</a>
-			<nav aria-label="Primary" class="flex items-center gap-4 text-sm">
+			<nav aria-label="Primary" class="flex items-center gap-3 sm:gap-4 text-sm whitespace-nowrap">
 				<a
 					href="{base}/"
 					class={['min-h-11 inline-flex items-center', sprintActive && 'border-b-2 border-accent']}
@@ -41,6 +41,13 @@
 				>
 			</nav>
 		</div>
-		<StatusChip chip={pill} />
+		<!-- Below sm the full pill does not fit beside the nav, so only its glyph shows (label stays for screen readers). -->
+		<span
+			class="sm:hidden shrink-0 inline-flex items-center rounded-md border px-2 py-1 text-sm font-semibold {TONE_CLASSES[
+				pill.tone
+			]}"
+			><span aria-hidden="true">{pill.glyph}</span><span class="sr-only">{pill.label}</span></span
+		>
+		<span class="hidden sm:inline-flex shrink-0 whitespace-nowrap"><StatusChip chip={pill} /></span>
 	</div>
 </header>
