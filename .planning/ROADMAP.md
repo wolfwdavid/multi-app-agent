@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Stateful Mock App Twins** - credential-free twins of Gmail/Calendar/Docs/Notion/GitHub/HF behind shared ports, with findByKey and fault injection (30 min, parallel with Phase 3) (completed 2026-09-13)
 - [x] **Phase 3: Deterministic Gap Analysis** - per-school gap report and feasibility warnings in pure TypeScript (25 min, parallel with Phase 2) (completed 2026-09-13)
 - [x] **Phase 4: Sprint Pipeline on Mocks** - terminal vertical slice: plan, approve, execute with idempotency and retry, read-back verify, redacted trace (45 min) (completed 2026-09-13)
-- [ ] **Phase 5: Essay Critique, Evidence Grounding & Injection Guard** - policy-aware critique Doc, claim-evidence validator, injection flagged and contained, LLM-phrased actions (30 min)
+- [x] **Phase 5: Essay Critique, Evidence Grounding & Injection Guard** - policy-aware critique Doc, claim-evidence validator, injection flagged and contained, LLM-phrased actions (30 min) (completed 2026-09-13)
 - [ ] **Phase 6: Eval Harness & Real Pass Rates** - 8+ adversarial scenarios x N runs, state oracle, Lemma taxonomy, evals.json (40 min)
 - [ ] **Phase 7: Sprint UI, Eval Dashboard & Static Showcase** - profile to verified artifacts UI, eval dashboard, deployed to Pages + HF with real numbers (45 min)
 - [x] **Phase 8: Real LLM Slots** - Ollama qwen3.5:4b (think off) and hosted fallback via env, LLM-backed eval column (20 min) (completed 2026-09-13)
@@ -147,8 +147,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — Wave 1: pure critique/grounding core: essay analysis (words/chars vs limit, prompt coverage), evidence catalog + evidence-you-are-not-using mapping, strict EssayCritique slot schema (no prose field), ai_policy restriction + policy note, critique Doc renderer, claim/quote/achievement/foreign-email validator, untrusted wrapper + injection detector, guarded LLM-phrased gap next actions, scripted FakeLLM responders
-- [ ] 05-02-PLAN.md — Wave 2: wire into the sprint: gatherPlanningContext (read essay doc by id only, inbox scan, portfolio evidence, injection flags), buildCritiqueDoc on the grounded slot, minimal planner/planSprint/PlanResult/FakeLLM edits, end-to-end containment tests (injected doc + email, hallucinating and injection-obeying LLM, missing/empty essay, next-actions immutability), re-recorded hero run
+- [x] 05-01-PLAN.md — Wave 1: pure critique/grounding core: essay analysis (words/chars vs limit, prompt coverage), evidence catalog + evidence-you-are-not-using mapping, strict EssayCritique slot schema (no prose field), ai_policy restriction + policy note, critique Doc renderer, claim/quote/achievement/foreign-email validator, untrusted wrapper + injection detector, guarded LLM-phrased gap next actions, scripted FakeLLM responders
+- [x] 05-02-PLAN.md — Wave 2: wire into the sprint: gatherPlanningContext (read essay doc by id only, inbox scan, portfolio evidence, injection flags), buildCritiqueDoc on the grounded slot, minimal planner/planSprint/PlanResult/FakeLLM edits, end-to-end containment tests (injected doc + email, hallucinating and injection-obeying LLM, missing/empty essay, next-actions immutability), re-recorded hero run
 
 ### Phase 6: Eval Harness & Real Pass Rates
 **Goal**: We can prove reliability. Eight or more seeded adversarial scenarios run N times against mocks, are graded by an independent final-state oracle, classified with Lemma's taxonomy, and written to a committed JSON artifact.
@@ -281,7 +281,7 @@ Phases execute in numeric order, with parallel waves: 1 → (2 ‖ 3) → 4 → 
 | 2. Stateful Mock App Twins | 0/2 | Complete    | 2026-09-13 |
 | 3. Deterministic Gap Analysis | 0/1 | Complete    | 2026-09-13 |
 | 4. Sprint Pipeline on Mocks | 0/3 | Complete    | 2026-09-13 |
-| 5. Essay Critique, Evidence Grounding & Injection Guard | 1/2 | In Progress | - |
+| 5. Essay Critique, Evidence Grounding & Injection Guard | 1/2 | Complete    | 2026-09-13 |
 | 6. Eval Harness & Real Pass Rates | 0/3 | Not started | - |
 | 7. Sprint UI, Eval Dashboard & Static Showcase | 0/3 | Not started | - |
 | 8. Real LLM Slots | 0/1 | Complete    | 2026-09-13 |
