@@ -15,6 +15,7 @@ One end-to-end application sprint (profile + target school → gap analysis → 
 - ✓ Program-level transfer requirements dataset (4 real schools + 1 fictional, 93 sourced fields with source_url/retrieved_at/confidence) — Validated in Phase 1: Contracts, Seed Data & Build Smoke
 - ✓ Framework-free core contracts (schemas, connector ports with draft-only Gmail, tool registry, tracer) + dual static/Vercel build — Validated in Phase 1
 - ✓ Deterministic per-school gap analysis + feasibility warnings with stable codes, every finding traced to requirement id + source URL (LLM-phrased actions still pending, GAP-03) — Validated in Phase 3: Deterministic Gap Analysis
+- ✓ Stateful mock app twins (Notion, Calendar, Docs, Gmail drafts-only, GitHub, HF) with per-run worlds, findByKey dedupe, realistic API validation, seeded fault injection (429/500/ghost-write/lying-success/latency), and a mock/real connector factory — Validated in Phase 2: Stateful Mock App Twins
 
 ### Active
 
