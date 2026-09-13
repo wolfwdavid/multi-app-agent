@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Contracts, Seed Data & Build Smoke** - zod domain contracts, sourced schools dataset, demo profile/fixtures, both deploy builds green (35 min) (completed 2026-09-13)
 - [x] **Phase 2: Stateful Mock App Twins** - credential-free twins of Gmail/Calendar/Docs/Notion/GitHub/HF behind shared ports, with findByKey and fault injection (30 min, parallel with Phase 3) (completed 2026-09-13)
 - [x] **Phase 3: Deterministic Gap Analysis** - per-school gap report and feasibility warnings in pure TypeScript (25 min, parallel with Phase 2) (completed 2026-09-13)
-- [ ] **Phase 4: Sprint Pipeline on Mocks** - terminal vertical slice: plan, approve, execute with idempotency and retry, read-back verify, redacted trace (45 min)
+- [x] **Phase 4: Sprint Pipeline on Mocks** - terminal vertical slice: plan, approve, execute with idempotency and retry, read-back verify, redacted trace (45 min) (completed 2026-09-13)
 - [ ] **Phase 5: Essay Critique, Evidence Grounding & Injection Guard** - policy-aware critique Doc, claim-evidence validator, injection flagged and contained, LLM-phrased actions (30 min)
 - [ ] **Phase 6: Eval Harness & Real Pass Rates** - 8+ adversarial scenarios x N runs, state oracle, Lemma taxonomy, evals.json (40 min)
 - [ ] **Phase 7: Sprint UI, Eval Dashboard & Static Showcase** - profile to verified artifacts UI, eval dashboard, deployed to Pages + HF with real numbers (45 min)
@@ -147,8 +147,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 05-01: essay read + critique slot (zod schema, prompt rubric, ai_policy modes, evidence-you're-not-using mapping) + critique Doc action with key
-- [ ] 05-02: claim-evidence validator (critique + drafts) + untrusted-content delimiting + injection flagging + recipient allowlist + LLM-phrased gap actions guard (parallel with 05-01)
+- [ ] 05-01-PLAN.md — Wave 1: pure critique/grounding core: essay analysis (words/chars vs limit, prompt coverage), evidence catalog + evidence-you-are-not-using mapping, strict EssayCritique slot schema (no prose field), ai_policy restriction + policy note, critique Doc renderer, claim/quote/achievement/foreign-email validator, untrusted wrapper + injection detector, guarded LLM-phrased gap next actions, scripted FakeLLM responders
+- [ ] 05-02-PLAN.md — Wave 2: wire into the sprint: gatherPlanningContext (read essay doc by id only, inbox scan, portfolio evidence, injection flags), buildCritiqueDoc on the grounded slot, minimal planner/planSprint/PlanResult/FakeLLM edits, end-to-end containment tests (injected doc + email, hallucinating and injection-obeying LLM, missing/empty essay, next-actions immutability), re-recorded hero run
 
 ### Phase 6: Eval Harness & Real Pass Rates
 **Goal**: We can prove reliability. Eight or more seeded adversarial scenarios run N times against mocks, are graded by an independent final-state oracle, classified with Lemma's taxonomy, and written to a committed JSON artifact.
@@ -162,12 +162,11 @@ Plans:
   3. Every failed run carries a primary Lemma taxonomy label (skipped work, out-of-scope work, instruction violation, integration failure, retry loop, hallucination, communication failure), and the report shows the breakdown.
   4. The deterministic scripted-policy baseline runs the full suite with no LLM key. The runner accepts `--llm ollama|hosted` so LLM-backed runs appear as separate columns.
   5. A markdown results table for BRIEF.md is generated from the same results file.
-**Plans**: 3 plans
+**Plans**: 2 plans
 
 Plans:
-- [ ] 06-01: scenario files (seed + faults + input + expectations) for 8+ cases incl. silent-failure config
-- [ ] 06-02: oracle (goal state, collateral diff, grounding, report honesty) + Lemma classifier (parallel with 06-01)
-- [ ] 06-03: N-run runner + pass^k + evals.json/trace artifacts + markdown table + scripted baseline run committed
+- [ ] 06-01-PLAN.md — 19 data-driven adversarial scenarios + seeded per-run World setup + verifier-on/off agent adapter + independent final-state oracle + Lemma taxonomy classifier (wave 1)
+- [ ] 06-02-PLAN.md — N-run runner with pass rate/pass^k + EvalsFile/SilentFailureRun contracts + scripts/eval.ts (no-key scripted baseline, --llm hook) + committed evals.json, silent-failure replay, BRIEF tables (wave 2)
 
 ### Phase 7: Sprint UI, Eval Dashboard & Static Showcase
 **Goal**: A judge can open the public GitHub Pages or HF site, walk through the sprint (profile, gap report, plan approval, step trace, verified artifacts), and see real eval numbers with a caught silent failure.
@@ -183,9 +182,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 07-01: sprint page (profile form, gap report with source links, approval cards, trace timeline, artifacts panel) + client api/static loader
-- [ ] 07-02: eval dashboard + trace replay page (parallel with 07-01)
-- [ ] 07-03: record hero trace, static build, deploy to Pages + HF Space, smoke-check both URLs
+- [ ] 07-01-PLAN.md — Wave 1: UI-SPEC tokens + shell (header, mode detection, replay banner, base/trailingSlash) + tested lib/ui modules (status, format, provenance, profile-form, data, mode) + profile panel with inline zod errors + gap report cards with verify link, retrieved date, confidence
+- [ ] 07-02-PLAN.md — Wave 2: tested adapters (trace-rows, pacer, ReplaySource, evals/silent-failure) + plan approval cards, paced trace timeline, verified artifacts panel + eval dashboard (stat cards, per-scenario table, 7-class taxonomy, caught silent-failure step-through)
+- [ ] 07-03-PLAN.md — Wave 3: zero-dependency static smoke tool + scripts/deploy-hf.sh (manual, local HF token) + Pages workflow check/smoke steps + publish checkpoint + live smoke of Pages and HF static Space
 
 ### Phase 8: Real LLM Slots
 **Goal**: The same pipeline runs on a real OpenAI-compatible LLM: local Ollama (qwen3.5:4b, think off) or a hosted fallback chosen by env. Every output is schema-validated, and LLM variance is measured separately from harness reliability.
@@ -198,10 +197,11 @@ Plans:
   2. Every LLM slot output passes zod or goes through a visible repair retry. Output that is still invalid fails the step with a classification and never reaches a connector, and think tags never appear in written artifacts.
   3. `evals.json` and the dashboard show an LLM-backed column (N=3-5, model named) alongside the scripted baseline.
   4. The health check (CLI or `/api/health`) reports which LLM is configured and whether it is reachable.
-**Plans**: 1 plan
+**Plans**: 2 plans
 
 Plans:
-- [ ] 08-01: llm/client.ts (Ollama native think:false + OpenAI-compatible hosted, JSON schema output, zod repair) + small-N LLM eval run + dashboard column
+- [x] 08-01-PLAN.md — Wave 1: llm/common.ts (LLMError kinds, messages+repair turn, think/fence strip, key redaction) + llm/ollama.ts (native /api/chat, format=zod JSON schema, think:false, temp 0, seed, keep_alive, num_ctx, timeout) + llm/openai-compat.ts (lazy openai SDK, strict json_schema → json_object fallback), offline tests
+- [x] 08-02-PLAN.md — Wave 2: llm/select.ts (resolveLlmConfig(env), per-slot routing coder:7b grounding / qwen3.5:4b phrasing / hosted LLM_MODEL, createLLM, probeLlm, --llm eval contract + llmRunMeta) + llm/index.ts + scripts/llm-smoke.ts live smoke (+ opt-in --sprint)
 
 ### Phase 9: Live Backend on Vercel & REST API
 **Goal**: Anyone can run a live mock-mode sprint at the Vercel URL. Approval is enforced on the server, the trace streams live, and all three deploy targets are up.
@@ -217,8 +217,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 09-01: /api/plan, /api/execute (SSE via fetch stream), /api/evals, /api/health with createRuntime from env
-- [ ] 09-02: wire UI live mode to API, Vercel env + maxDuration, deploy, curl approval-bypass checks, secret grep
+- [ ] 09-01-PLAN.md — Wave 1: lib/server glue (per-request mock World, real-mode key gate, LLM resolve) + POST /api/plan, POST /api/execute (NDJSON stream via fetch POST, pre-stream 403/409 policy rejection), GET /api/evals + Request-object handler tests + both builds
+- [ ] 09-02-PLAN.md — Wave 2: LiveSource wired into Phase 7 live mode, api-smoke.ts (approval-bypass checks), client secret scan, vercel-smoke.sh deploy (optional live verify; Deployment Protection left to user), LIVE_URL if public
 
 ### Phase 10: Real External Apps
 **Goal**: The agent works against real apps behind the same ports: live GitHub and HF portfolio evidence, a real Notion tracker, at least one real Google app, and optionally a local Obsidian vault.
@@ -267,8 +267,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 12-01: final eval run + redeploy static showcase + secret scan + BRIEF.md with real numbers
-- [ ] 12-02: README + 2-minute demo script + recording + submission (parallel with 12-01 after numbers are final)
+- [ ] 12-01-PLAN.md — Wave 1: verified facts (clean-clone test/check, eval reproduction at HEAD, smoke-real counts, URL codes, secret scan of repo/history/build) + BRIEF.md and README.md with every TODO replaced by real numbers or honest cut rows, committed locally
+- [ ] 12-02-PLAN.md — Wave 1 (parallel; push gated on the 12-01 commit): DEMO.md 2:00 shooting script + pre-flight, SUBMISSION.md, human recording checkpoint, then trailer strip + push + Pages/HF redeploy + public URL checks
 
 ## Progress
 
@@ -280,7 +280,7 @@ Phases execute in numeric order, with parallel waves: 1 → (2 ‖ 3) → 4 → 
 | 1. Contracts, Seed Data & Build Smoke | 0/3 | Complete    | 2026-09-13 |
 | 2. Stateful Mock App Twins | 0/2 | Complete    | 2026-09-13 |
 | 3. Deterministic Gap Analysis | 0/1 | Complete    | 2026-09-13 |
-| 4. Sprint Pipeline on Mocks | 0/3 | Not started | - |
+| 4. Sprint Pipeline on Mocks | 0/3 | Complete    | 2026-09-13 |
 | 5. Essay Critique, Evidence Grounding & Injection Guard | 1/2 | In Progress | - |
 | 6. Eval Harness & Real Pass Rates | 0/3 | Not started | - |
 | 7. Sprint UI, Eval Dashboard & Static Showcase | 0/3 | Not started | - |
