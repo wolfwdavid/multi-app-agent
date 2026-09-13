@@ -26,9 +26,9 @@
 
 ### Portfolio Evidence
 
-- [ ] **PORT-01**: Agent pulls public GitHub repos (name, description, stars, languages, recent activity) for a given username
-- [ ] **PORT-02**: Agent pulls public Hugging Face models and Spaces for a given username
-- [ ] **PORT-03**: Agent reads tags/frontmatter from a local Obsidian vault folder (optional source)
+- [x] **PORT-01**: Agent pulls public GitHub repos (name, description, stars, languages, recent activity) for a given username
+- [x] **PORT-02**: Agent pulls public Hugging Face models and Spaces for a given username
+- [x] **PORT-03**: Agent reads tags/frontmatter from a local Obsidian vault folder (optional source)
 - [ ] **PORT-04**: Critique surfaces "evidence you're not using yet" mapped to the school's prompt
 
 ### App Actions
@@ -43,7 +43,7 @@
 ### Agent Core & Safety
 
 - [x] **AGENT-01**: Agent runs a multi-step loop (plan → approved actions → execute → verify) with schema-validated tool calls, argument repair retries, and a hard step cap
-- [ ] **AGENT-02**: Agent works with an OpenAI-compatible LLM: local Ollama (qwen3.5:4b, think off) and a hosted fallback configured by env
+- [x] **AGENT-02**: Agent works with an OpenAI-compatible LLM: local Ollama (qwen3.5:4b, think off) and a hosted fallback configured by env
 - [x] **AGENT-03**: User sees a dry-run plan (app, operation, payload) and approves all or individual actions before any external write
 - [ ] **AGENT-04**: Content from docs/emails is treated as data; instructions embedded in it (prompt injection) cause no out-of-plan tool calls and are flagged
 - [x] **AGENT-05**: After execution, agent reads back each target app and marks each artifact verified/failed based on actual final state
@@ -104,7 +104,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | DATA-01 | Phase 1 | Complete |
-| DATA-02 | Phase 1 | Complete |
+| DATA-02 | Phase 1 | Complete (data); UI "verify on official page" link pending Phase 7 |
 | DATA-03 | Phase 7 | Pending |
 | GAP-01 | Phase 3 | Complete |
 | GAP-02 | Phase 3 | Complete |
@@ -113,9 +113,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ESSAY-02 | Phase 5 | Pending |
 | ESSAY-03 | Phase 5 | Pending |
 | ESSAY-04 | Phase 5 | Pending |
-| PORT-01 | Phase 10 | Pending |
-| PORT-02 | Phase 10 | Pending |
-| PORT-03 | Phase 10 | Pending |
+| PORT-01 | Phase 10 | Complete (live-verified) |
+| PORT-02 | Phase 10 | Complete (live-verified) |
+| PORT-03 | Phase 10 | Complete (fixture vault) |
 | PORT-04 | Phase 5 | Pending |
 | APPS-01 | Phase 4 | Complete |
 | APPS-02 | Phase 4 | Complete |
@@ -124,7 +124,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | APPS-05 | Phase 10 | Pending |
 | APPS-06 | Phase 4 | Complete |
 | AGENT-01 | Phase 4 | Complete |
-| AGENT-02 | Phase 8 | Pending |
+| AGENT-02 | Phase 8 | Complete |
 | AGENT-03 | Phase 4 | Complete |
 | AGENT-04 | Phase 5 | Pending |
 | AGENT-05 | Phase 4 | Complete |
