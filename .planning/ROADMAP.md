@@ -234,7 +234,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 10-01-PLAN.md — Wave 1: live GitHub + HF read ports (fetch, timeout, typed errors) + real/index.ts rewire with Notion/Google contract stubs + /api/health status/probes + smoke-real.ts + Obsidian vault reader (first cut)
+- [x] 10-01-PLAN.md — Wave 1: live GitHub + HF read ports (fetch, timeout, typed errors) + real/index.ts rewire with Notion/Google contract stubs + /api/health status/probes + smoke-real.ts + Obsidian vault reader (first cut)
 - [ ] 10-02-PLAN.md — Wave 2: real Notion on 2025-09-03 data sources (TP Key upsert, 350ms pacing, error mapping, schema probe) + notion-setup.ts (--apply, --roundtrip) (parallel with 10-03)
 - [ ] 10-03-PLAN.md — Wave 2: Google refresh-token auth + google-auth.ts loopback consent + real Calendar (base32hex ids) first, then Gmail drafts + Docs (cut if past time box) + google-smoke.ts
 
@@ -286,6 +286,6 @@ Phases execute in numeric order, with parallel waves: 1 → (2 ‖ 3) → 4 → 
 | 7. Sprint UI, Eval Dashboard & Static Showcase | 0/3 | Not started | - |
 | 8. Real LLM Slots | 0/1 | Not started | - |
 | 9. Live Backend on Vercel & REST API | 0/2 | Not started | - |
-| 10. Real External Apps | 0/3 | Not started | - |
+| 10. Real External Apps | 1/3 | In Progress|  |
 | 11. MCP Server | 0/1 | Not started | - |
 | 12. Brief, README & Demo | 0/2 | Not started | - |

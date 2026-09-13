@@ -4,12 +4,12 @@ milestone: v1.0
 milestone_name: milestone
 status: unknown
 stopped_at: Completed 04-01-PLAN.md
-last_updated: "2026-09-13T18:16:04.193Z"
+last_updated: "2026-09-13T18:20:32.542Z"
 progress:
   total_phases: 12
   completed_phases: 3
-  total_plans: 13
-  completed_plans: 7
+  total_plans: 19
+  completed_plans: 8
 ---
 
 # Project State
@@ -60,6 +60,7 @@ Plan: 2 of 3
 | Phase 03 P01 | 7min | 3 tasks | 12 files |
 | Phase 02 P02 | 7min | 3 tasks | 9 files |
 | Phase 04 P01 | 12min | 3 tasks | 13 files |
+| Phase 10 P01 | 10min | 3 tasks | 21 files |
 
 ## Accumulated Context
 
@@ -89,6 +90,9 @@ Recent decisions affecting current work:
 - [Phase 02]: 02-02: createConnectors({ mode }) is the single connector entry; real mode stubs reject not_configured until Phase 10; core never reads env (resolveConnectorMode(env) at entry points)
 - [Phase 04]: 04-01: Idempotency naturalKey is the term (plus contact id for drafts), never a date; keys stable across run days
 - [Phase 04]: 04-01: Plan token = HMAC-SHA256 over canonical JSON of {v:1, plan, recipientAllowlist}; authorizeExecution verifies the raw plan before any write
+- [Phase 10]: Routes import core via extensionless $lib paths; core keeps relative .ts imports
+- [Phase 10]: Google constants live in import-free real/google/flags.ts; SDK module reachable only via dynamic import()
+- [Phase 10]: Static build from Git Bash needs MSYS_NO_PATHCONV=1 BASE_PATH=/multi-app-agent
 
 ### Pending Todos
 
