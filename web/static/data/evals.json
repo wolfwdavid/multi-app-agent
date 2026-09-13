@@ -28,6 +28,23 @@
       "seed": 1337,
       "generatedAt": "2026-09-13T20:16:22.756Z",
       "commitSha": "0f7d07b"
+    },
+    {
+      "id": "llm-ollama",
+      "label": "qwen3.5:4b+qwen2.5-coder:7b (ollama)",
+      "kind": "llm",
+      "model": "qwen3.5:4b+qwen2.5-coder:7b",
+      "config": "verifier-on",
+      "n": 1,
+      "seed": 1337,
+      "generatedAt": "2026-09-13T20:37:38.790Z",
+      "commitSha": "0622cc7",
+      "llm": {
+        "provider": "ollama",
+        "seed": 42,
+        "temperature": 0,
+        "numCtx": 8192
+      }
     }
   ],
   "scenarios": [
@@ -91,6 +108,22 @@
           ],
           "failures": {},
           "silentFailures": 0
+        },
+        "llm-ollama": {
+          "runs": 1,
+          "passed": 0,
+          "passRate": 0,
+          "passK": false,
+          "passHatK": [
+            {
+              "k": 1,
+              "value": 0
+            }
+          ],
+          "failures": {
+            "communication_failure": 1
+          },
+          "silentFailures": 1
         }
       }
     },
@@ -863,6 +896,22 @@
           ],
           "failures": {},
           "silentFailures": 0
+        },
+        "llm-ollama": {
+          "runs": 1,
+          "passed": 0,
+          "passRate": 0,
+          "passK": false,
+          "passHatK": [
+            {
+              "k": 1,
+              "value": 0
+            }
+          ],
+          "failures": {
+            "communication_failure": 1
+          },
+          "silentFailures": 1
         }
       }
     },
@@ -1534,6 +1583,13 @@
       "passRate": 0.7826,
       "passK": 0.7826,
       "silentFailures": 30
+    },
+    "llm-ollama": {
+      "runs": 2,
+      "passed": 0,
+      "passRate": 0,
+      "passK": 0,
+      "silentFailures": 2
     }
   },
   "failureTotals": {
@@ -1546,6 +1602,9 @@
       "communication_failure": 30,
       "instruction_violation": 10,
       "hallucination": 10
+    },
+    "llm-ollama": {
+      "communication_failure": 2
     }
   },
   "silentFailure": {
