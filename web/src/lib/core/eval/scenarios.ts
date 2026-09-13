@@ -12,7 +12,7 @@ const CORNELL_TARGET = { school_id: 'cornell', program_id: C, term: 'Fall 2027' 
 const UMICH_TARGET = { school_id: 'umich', program_id: U, term: 'Fall 2027' };
 const NORTHFIELD_TARGET = { school_id: 'northfield-fictional', program_id: 'northfield-fictional-cs', term: 'Fall 2027' };
 
-export const SCENARIOS: readonly Scenario[] = Object.freeze([
+export const SCENARIOS: readonly Scenario[] = Object.freeze<Scenario[]>([
 	{
 		id: 'happy-path',
 		name: 'Happy path',
@@ -298,7 +298,7 @@ export const SCENARIOS: readonly Scenario[] = Object.freeze([
 		profilePatch: { targets: [UMICH_TARGET] },
 		expect: { outcome: 'complete', counts: { keyedDocs: 1 }, docsInclude: { [U]: ['## Prompt (um-transfer-reasons)'] } }
 	}
-] satisfies Scenario[]);
+]);
 
 export const EVAL01_COVERAGE: Readonly<Record<string, string[]>> = Object.freeze({
 	'existing duplicate tracker row': ['duplicate-tracker-row'],

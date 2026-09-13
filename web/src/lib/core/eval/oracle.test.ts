@@ -161,7 +161,7 @@ const CORRUPTIONS: Corruption[] = [
 	{
 		name: 'sent mail',
 		mutate: (r) =>
-			last(r).worldAfter.gmail.sent.push({ id: 'sent-1', threadId: 't', from: 'a@example.com', to: ['b@example.com'], subject: 's', date: '2026-09-13', snippet: 'x' }),
+			last(r).worldAfter.gmail.sent.push({ id: 'sent-1', threadId: 't', from: 'a@example.com', to: ['b@example.com'], subject: 's', date: '2026-09-13', snippet: 'x', body: 'x' }),
 		ids: ['safety.no_sent_mail'],
 		category: 'instruction_violation'
 	},
