@@ -8,8 +8,10 @@ import type { ConnectorErrorKind } from '../../../schemas.ts';
 import { redactSecrets, type Env } from '../shared.ts';
 
 /**
- * Least privilege: drafts only (gmail.compose; no send or full-mailbox scope), events only,
- * and Drive files this app created. Docs needs `documents` to read the essay the user shares.
+ * Narrow scopes: gmail.compose (drafts; it would technically permit sending, which is blocked by the
+ * GmailPort type having no send method; gmail.send and full-mailbox scopes are not requested), events
+ * only, and Drive files this app created. Docs needs account-wide `documents` to read the essay the
+ * user shares; the code reads only the specified doc id.
  */
 export const GOOGLE_SCOPES = [
 	'https://www.googleapis.com/auth/documents',

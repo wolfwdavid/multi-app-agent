@@ -1,6 +1,6 @@
 # TransferPilot
 
-An AI agent that turns a college transfer applicant's profile and target schools into verified action across their own apps — gap analysis, essay critique, a deadline tracker, calendar reminders, and drafted outreach — gated behind human approval, with evals that prove it works.
+An AI agent that turns a college transfer applicant's profile and target schools into verified action across mock twins of their apps — gap analysis, essay critique, a deadline tracker, calendar reminders, and drafted outreach — gated behind human approval, with evals that measure how reliably it works. Real Notion/Google connectors are built but credential-gated (not yet live-verified); GitHub and Hugging Face are live.
 
 | | |
 |---|---|
@@ -26,17 +26,17 @@ The showcase is a static site. It replays a recorded mock-mode sprint and render
 
 - Every plan is signed and requires explicit per-action approval before any write — see [BRIEF.md §2](BRIEF.md#2-architecture)
 - Idempotency keys are checked via `findByKey` before every write and every retry, so re-runs and "ghost writes" produce zero duplicates — [BRIEF.md §3](BRIEF.md#3-reliability-measures-mapped-to-lemmas-failure-taxonomy)
-- A verifier reads back each app's actual final state; the run report reflects reality, not the agent's self-report — [BRIEF.md §3](BRIEF.md#3-reliability-measures-mapped-to-lemmas-failure-taxonomy)
+- A verifier reads back each app's actual final state; the run report is graded from read-back of executed actions, not the executor's self-report. Known gap: dropped LLM slots don't yet lower its status (see [BRIEF.md §4](BRIEF.md#4-evaluation)) — [BRIEF.md §3](BRIEF.md#3-reliability-measures-mapped-to-lemmas-failure-taxonomy)
 - Seeded fault injection (429, 500, ghost-write, lying-success, latency) exercises retries and silent-failure detection before it ever hits a real API — [BRIEF.md §3](BRIEF.md#3-reliability-measures-mapped-to-lemmas-failure-taxonomy)
 - An eval harness runs an adversarial scenario suite N times against fresh mock worlds and reports pass rate and pass^k, graded by a state oracle independent of the agent's own report — [BRIEF.md §4](BRIEF.md#4-evaluation)
 
 ### Results at a glance
 
-From `web/static/data/evals.md` (23 scenarios, N=10, seed 1337):
+From `web/static/data/evals.json` / `evals.md` (23 scenarios, N=10, seed 1337):
 
-- FakeLLM (scripted policy): 87% of 230 runs over 23 scenarios, pass^k (all 10 passed) in 87% of them
-- FakeLLM, verifier off (before): 78% of 230 runs over 23 scenarios, pass^k (all 10 passed) in 78% of them
-- qwen3.5:4b+qwen2.5-coder:7b (ollama): 0% of 2 runs over 2 scenarios, pass^k (all 1 passed) in 0% of them
+- Scripted policy, verifier on: 200/230 runs passed (87%); all 10 runs passed in 20 of 23 scenarios (87%)
+- Scripted policy, verifier off (before): 180/230 runs passed (78%); all 10 runs passed in 18 of 23 scenarios (78%)
+- Real LLM (local Ollama, `qwen3.5:4b` + `qwen2.5-coder:7b`, N=1, 2 scenarios): 0/2 passed; both were silent failures found by the oracle (see [BRIEF.md §4](BRIEF.md#4-evaluation))
 
 Turning the verifier off makes `lying-success` and `changed-deadline-rerun` silent failures, and the verifier-on config catches both. Three known-weakness scenarios fail 0/10 on purpose. The small real-LLM column found a real silent failure: dropped LLM slots do not lower the report status. It is reported as measured in [BRIEF.md §4](BRIEF.md#4-evaluation) and §6.
 
@@ -81,6 +81,8 @@ demo/videos/             recorded terminal demos and the reel
 
 ## Quick start
 
+**No credentials and no `.env` needed.** Everything below (tests, check, dev server, sprint dry run, evals, MCP server) runs fully in mock mode out of the box.
+
 **Prerequisites:** Node 24, npm. Optional: [Ollama](https://ollama.com) running locally at `127.0.0.1:11434` with `qwen3.5:4b` and/or `qwen2.5-coder:7b` pulled, for the real-LLM path.
 
 ```bash
@@ -93,10 +95,10 @@ npm run dev
 
 Verified from a clean clone at 13f9856: `npm test` gave Test Files 52 passed (52); Tests 864 passed (864). `npm run check` gave svelte-check COMPLETED 894 FILES 0 ERRORS 0 WARNINGS 0 FILES_WITH_PROBLEMS.
 
-Environment setup:
+Optional environment setup (only for the real LLM or real connectors; run from `web/`):
 
 ```bash
-cp web/.env.example web/.env
+cp .env.example .env
 ```
 
 | Variable | Purpose |
@@ -125,7 +127,7 @@ Commands (run from `web/`):
 
 ```bash
 npm run record                                   # hero sprint on mocks + re-run (0 new writes); rewrites static/data/hero-run.json and static/traces/demo-sprint.jsonl
-npx tsx scripts/sprint.ts --profile demo --out <tmp>/plan.jsonl --json <tmp>/plan.json   # dry run: shows the signed plan, writes nothing to apps or the repo
+npx tsx scripts/sprint.ts --profile demo --out <tmp>/plan.jsonl   # dry run: shows the signed plan and writes only the trace; nothing goes to apps or the repo (--json <path> is written only when actions run with --auto-approve/--approve)
 npx tsx scripts/eval.ts --n 10                   # scripted baseline suite (23 scenarios, verifier on/off) -> static/data/evals.json + evals.md
 npx tsx scripts/eval.ts --n 10 --no-artifacts --out <tmp>/evals.json --md <tmp>/evals.md   # same run, leaves committed artifacts untouched
 npx tsx scripts/eval.ts --llm ollama --n 1 --scenarios happy-path,injection-essay-doc      # real-LLM column on local Ollama (slow on CPU)
@@ -175,8 +177,8 @@ Recorded evidence ([demo/videos](demo/videos/README.md)): approval-gate dry run,
 ## Ethics & data
 
 - Essay coaching is a critique, not a ghostwriter — output is questions and rubric comments, never rewritten prose, consistent with Common App's fraud policy on AI-generated content
-- Gmail integration is drafts-only; no `send` method exists in the connector and the send OAuth scope is never requested — nothing sends or submits without a human doing it themselves
-- Student data gets FERPA-grade handling: a single local profile, only the specified essay doc is read (never the whole Drive or inbox), and PII is redacted from exported traces
+- Gmail integration is drafts-only. Sending is blocked in code (the Gmail port has no `send` method, checked at compile time). The requested `gmail.compose` scope would technically allow sending; `gmail.send` and full mail access are not requested. Nothing sends or submits without a human doing it themselves
+- Student data gets FERPA-grade handling: a single local profile, code that reads only the specified essay doc (the Docs scope itself is account-wide `documents`; Drive uses `drive.file`; no inbox access in real mode), and PII redacted from exported traces
 - Every requirement in the seed dataset carries a `source_url`, a `retrieved_at` date, and a `confidence` level, and the UI links to the official page so students can verify it
 
 ## Hackathon

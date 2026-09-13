@@ -169,6 +169,21 @@ The authoritative copy, line by line, is `.planning/phases/12-brief-readme-demo/
 - README links `DEMO.md`, which 12-02 creates. The link stays broken until 12-02 lands.
 - `web/.vercel/output/static` exists locally from an old build. It is gitignored and scanned clean.
 
+## Fact-check corrections (5:30 PM ET)
+
+Each finding was checked against code, evals.json and curl before any edit:
+- Gmail scope: `gmail.compose` does permit sending. BRIEF §5, README Ethics, and the `gmail.ts`/`auth.ts` comments now say sending is blocked by the `GmailPort` type, not by the scope.
+- Docs scope: `documents` is account-wide. The text now says code reads only the essay doc id, Drive uses `drive.file`, and there is no inbox access in real mode (Gmail Read is marked mock only).
+- Verifier-on silent failures: W2 is the only source in the scripted column (10). The Ollama verifier-on column has 2 more.
+- rate-limit-storm: 10/10 = 9 complete runs + 1 honest partial (run 4). The oracle accepts any non-ok report.
+- §3 Communication failure and Instruction violation rows now list their known gaps: dropped `LLM_SLOT_FAILED` slots do not lower status (`verifier.ts`), W3 fails 0/10, W1 fails 0/10. README was softened to match.
+- §1 and the README tagline now say "mock twins of their apps" with credential-gated real connectors, and "measure how reliably it works".
+- ILR PDF link was 404; replaced with the 2026-02 URL used in schools.json (200 application/pdf).
+- Video 07 description: every adversarial scenario passes 10/10 except W1/W2. Video 03 is described as a separate run (partial, 22/1). Video 05 is described as reporting ok while 2 slots were dropped. The Ollama mechanism is marked as inferred from the code path.
+- Verification record: later commits up to 8096a9f; MSYS_NO_PATHCONV=1 prefix noted; showcase URLs rechecked 200 at 5:29 PM ET.
+- README: no-credentials line added, .env made optional and web-relative, `--json` dropped from the dry run (sprint.ts writes it only on execute), Results lines reworded (200/230, 180/230, 20/23 and 18/23 all-pass scenarios, 0/2 Ollama). An MIT LICENSE file was added.
+- Skipped: GAO link (403 bot protection from CLI on both the product page and the PDF; needs a browser check). Push finding already resolved: origin/main = 8096a9f contains e7a0757/fb67311. The BRIEF evals.md paste keeps its generator wording because it is labeled verbatim.
+
 ## Self-Check: PASSED
 
 - FOUND: BRIEF.md, README.md, .planning/phases/12-brief-readme-demo/12-01-FACTS.txt

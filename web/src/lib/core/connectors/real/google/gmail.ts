@@ -1,6 +1,7 @@
-// Real Google GmailPort: DRAFTS ONLY. There is no send method on the port type, and the OAuth
-// scope is gmail.compose (never gmail.send or full mail access), so sending is impossible by type
-// AND by scope. No SDK import: takes a structural GmailApi so tests inject fakes.
+// Real Google GmailPort: DRAFTS ONLY. Sending is blocked in code: the port type has no send method.
+// The OAuth scope is gmail.compose (never gmail.send or full mail access); note that gmail.compose
+// would technically permit sending, so the guarantee is the type, not the scope. No SDK import:
+// takes a structural GmailApi so tests inject fakes.
 //
 // Idempotency marker: the subject carries `[tp:<key>]` (APPS-03). Gmail drafts have no custom
 // metadata, so findByKey searches drafts for the key and confirms the marker in the subject; the
