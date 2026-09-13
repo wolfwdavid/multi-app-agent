@@ -103,13 +103,50 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (filled by roadmapper) | | |
+| DATA-01 | Phase 1 | Pending |
+| DATA-02 | Phase 1 | Pending |
+| DATA-03 | Phase 7 | Pending |
+| GAP-01 | Phase 3 | Pending |
+| GAP-02 | Phase 3 | Pending |
+| GAP-03 | Phase 5 | Pending |
+| ESSAY-01 | Phase 5 | Pending |
+| ESSAY-02 | Phase 5 | Pending |
+| ESSAY-03 | Phase 5 | Pending |
+| ESSAY-04 | Phase 5 | Pending |
+| PORT-01 | Phase 10 | Pending |
+| PORT-02 | Phase 10 | Pending |
+| PORT-03 | Phase 10 | Pending |
+| PORT-04 | Phase 5 | Pending |
+| APPS-01 | Phase 4 | Pending |
+| APPS-02 | Phase 4 | Pending |
+| APPS-03 | Phase 4 | Pending |
+| APPS-04 | Phase 2 | Pending |
+| APPS-05 | Phase 10 | Pending |
+| APPS-06 | Phase 4 | Pending |
+| AGENT-01 | Phase 4 | Pending |
+| AGENT-02 | Phase 8 | Pending |
+| AGENT-03 | Phase 4 | Pending |
+| AGENT-04 | Phase 5 | Pending |
+| AGENT-05 | Phase 4 | Pending |
+| AGENT-06 | Phase 4 | Pending |
+| EVAL-01 | Phase 6 | Pending |
+| EVAL-02 | Phase 6 | Pending |
+| EVAL-03 | Phase 6 | Pending |
+| EVAL-04 | Phase 6 | Pending |
+| EVAL-05 | Phase 6 | Pending |
+| UI-01 | Phase 7 | Pending |
+| UI-02 | Phase 7 | Pending |
+| API-01 | Phase 9 | Pending |
+| MCP-01 | Phase 11 | Pending |
+| SHIP-01 | Phase 9 | Pending |
+| SHIP-02 | Phase 12 | Pending |
+| SHIP-03 | Phase 12 | Pending |
 
 **Coverage:**
 - v1 requirements: 38 total
-- Mapped to phases: 0
-- Unmapped: 38 ⚠️
+- Mapped to phases: 38
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-09-13*
-*Last updated: 2026-09-13 after initial definition*
+*Last updated: 2026-09-13 after roadmap creation (traceability filled)*
