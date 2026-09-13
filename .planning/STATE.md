@@ -4,12 +4,12 @@ milestone: v1.0
 milestone_name: milestone
 status: unknown
 stopped_at: Completed 01-03-PLAN.md
-last_updated: "2026-09-13T17:34:44.889Z"
+last_updated: "2026-09-13T17:39:06.077Z"
 progress:
   total_phases: 12
   completed_phases: 1
   total_plans: 6
-  completed_plans: 3
+  completed_plans: 4
 ---
 
 # Project State
@@ -56,6 +56,7 @@ Plan: Not started
 | Phase 01 P02 | 3min | 2 tasks | 4 files |
 | Phase 01 P01 | 4.5min | 3 tasks | 11 files |
 | Phase 01 P03 | 4min | 2 tasks | 9 files |
+| Phase 02 P01 | 4min | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -76,6 +77,8 @@ Recent decisions affecting current work:
 - [Phase 01]: createRegistry accepts ToolDef<any, any>[] to avoid generic variance errors
 - [Phase 01]: Adversarial fixtures carry a marker substring enforced in-body by superRefine; evals detect leakage via markers transfer-help@evil.example and records@evil.example
 - [Phase 01]: Demo profile deliberately omits linear-algebra, data-structures, econ-1120 and leaves MATH 142 unmapped (unknown-equivalency for data-c8)
+- [Phase 02]: 02-01: Mock World keeps all state in a closure (createWorld); restore() preserves root state identity
+- [Phase 02]: 02-01: Calendar mock event id = idempotency key without dashes, duplicate create -> 409; Docs/Gmail mocks never dedupe server-side (findByKey guard required)
 
 ### Pending Todos
 

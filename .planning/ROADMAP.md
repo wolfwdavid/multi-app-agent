@@ -89,7 +89,7 @@ Parallel human tasks to start now (not blocking this phase): get a hosted OpenAI
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Wave 1: createWorld(seed) + snapshot/restore/reset/diff + API-shape validators + Notion/Calendar/Docs/Gmail twins with findByKey + GitHub/HF read-only twins
+- [x] 02-01-PLAN.md — Wave 1: createWorld(seed) + snapshot/restore/reset/diff + API-shape validators + Notion/Calendar/Docs/Gmail twins with findByKey + GitHub/HF read-only twins
 - [ ] 02-02-PLAN.md — Wave 2 (imports 02-01 twins): withFaults (429/500/ghost-write/lying-success/latency, seeded) + GitHub/HF fixtures + defaultWorldSeed + real not_configured stubs + createConnectors mode switch + integration tests
 
 ### Phase 3: Deterministic Gap Analysis
