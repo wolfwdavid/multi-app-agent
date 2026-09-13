@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 07-02-PLAN.md
-last_updated: "2026-09-13T20:37:38.405Z"
+stopped_at: Completed 07-03-PLAN.md
+last_updated: "2026-09-13T21:13:19.683Z"
 progress:
   total_phases: 12
-  completed_phases: 9
+  completed_phases: 10
   total_plans: 27
-  completed_plans: 22
+  completed_plans: 23
 ---
 
 # Project State
@@ -74,6 +74,7 @@ Plan: Not started
 | Phase 07 P01 | 15min | 3 tasks | 23 files |
 | Phase 07 P02 | 28min | 3 tasks | 19 files |
 | Phase 06 P03 | 23min | 6 tasks | 16 files |
+| Phase 07 P03 | 25min | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -146,6 +147,8 @@ Recent decisions affecting current work:
 - [Phase 07]: 07-02: evals.ts uses loose zod objects; Phase 6 files needed no field renaming
 - [Phase 07]: 07-02: Silent failures caught card shows a dash when the replay file is missing, never a claimed count
 - [Phase 07]: 07-02: Artifact Open link only for http(s) refs; mock:// refs show ids only
+- [Phase 07]: 07-03: HF deploy uses HfApi.upload_folder (hf upload create_repo space_sdk=gradio returns 402 on free accounts); hf upload kept as fallback
+- [Phase 07]: 07-03: HF static host serves no directory indexes (/evals/ 302s to huggingface.co); smoke-static --dir-index for HF, Pages/CI unchanged; showcase live ~5:04 PM ET
 
 ### Pending Todos
 
@@ -162,6 +165,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-09-13T20:28:30.082Z
-Stopped at: Completed 07-02-PLAN.md
+Last session: 2026-09-13T21:13:19.677Z
+Stopped at: Completed 07-03-PLAN.md
 Resume file: None

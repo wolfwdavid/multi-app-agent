@@ -185,7 +185,7 @@ Plans:
 Plans:
 - [x] 07-01-PLAN.md — Wave 1: UI-SPEC tokens + shell (header, mode detection, replay banner, base/trailingSlash) + tested lib/ui modules (status, format, provenance, profile-form, data, mode) + profile panel with inline zod errors + gap report cards with verify link, retrieved date, confidence
 - [x] 07-02-PLAN.md — Wave 2: tested adapters (trace-rows, pacer, ReplaySource, evals/silent-failure) + plan approval cards, paced trace timeline, verified artifacts panel + eval dashboard (stat cards, per-scenario table, 7-class taxonomy, caught silent-failure step-through)
-- [ ] 07-03-PLAN.md — Wave 3: zero-dependency static smoke tool + scripts/deploy-hf.sh (manual, local HF token) + Pages workflow check/smoke steps + publish checkpoint + live smoke of Pages and HF static Space
+- [x] 07-03-PLAN.md — Wave 3: zero-dependency static smoke tool + scripts/deploy-hf.sh (manual, local HF token) + Pages workflow check/smoke steps + publish checkpoint + live smoke of Pages and HF static Space
 
 ### Phase 8: Real LLM Slots
 **Goal**: The same pipeline runs on a real OpenAI-compatible LLM: local Ollama (qwen3.5:4b, think off) or a hosted fallback chosen by env. Every output is schema-validated, and LLM variance is measured separately from harness reliability.
