@@ -198,7 +198,8 @@ describe('createConnectors real mode', () => {
 				count++;
 			}
 		}
-		expect(count).toBe(16);
+		// notion 3 + calendar 3 + gmail 4 + docs 3 + github 1 + hf 1
+		expect(count).toBe(15);
 		await expect(c.notion.findByKey(K(1))).rejects.toThrow(/NOTION_TOKEN/);
 	});
 
