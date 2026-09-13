@@ -162,11 +162,12 @@ Plans:
   3. Every failed run carries a primary Lemma taxonomy label (skipped work, out-of-scope work, instruction violation, integration failure, retry loop, hallucination, communication failure), and the report shows the breakdown.
   4. The deterministic scripted-policy baseline runs the full suite with no LLM key. The runner accepts `--llm ollama|hosted` so LLM-backed runs appear as separate columns.
   5. A markdown results table for BRIEF.md is generated from the same results file.
-**Plans**: 2 plans
+**Plans**: 3 plans
 
 Plans:
 - [x] 06-01-PLAN.md — 19 data-driven adversarial scenarios + seeded per-run World setup + verifier-on/off agent adapter + independent final-state oracle + Lemma taxonomy classifier (wave 1)
 - [x] 06-02-PLAN.md — N-run runner with pass rate/pass^k + EvalsFile/SilentFailureRun contracts + scripts/eval.ts (no-key scripted baseline, --llm hook) + committed evals.json, silent-failure replay, BRIEF tables (wave 2)
+- [x] 06-03-PLAN.md — Gap closure: silent-failure replay artifacts + evals.md BRIEF tables + mergeEvalsFiles + real --llm ollama|hosted column via the Phase 8 selector + npm run eval/--md/--no-artifacts/-dirty provenance + rate-limit-burst/rate-limit-storm split + regenerated artifacts (gap closure)
 
 ### Phase 7: Sprint UI, Eval Dashboard & Static Showcase
 **Goal**: A judge can open the public GitHub Pages or HF site, walk through the sprint (profile, gap report, plan approval, step trace, verified artifacts), and see real eval numbers with a caught silent failure.
@@ -183,7 +184,7 @@ Plans:
 
 Plans:
 - [x] 07-01-PLAN.md — Wave 1: UI-SPEC tokens + shell (header, mode detection, replay banner, base/trailingSlash) + tested lib/ui modules (status, format, provenance, profile-form, data, mode) + profile panel with inline zod errors + gap report cards with verify link, retrieved date, confidence
-- [ ] 07-02-PLAN.md — Wave 2: tested adapters (trace-rows, pacer, ReplaySource, evals/silent-failure) + plan approval cards, paced trace timeline, verified artifacts panel + eval dashboard (stat cards, per-scenario table, 7-class taxonomy, caught silent-failure step-through)
+- [x] 07-02-PLAN.md — Wave 2: tested adapters (trace-rows, pacer, ReplaySource, evals/silent-failure) + plan approval cards, paced trace timeline, verified artifacts panel + eval dashboard (stat cards, per-scenario table, 7-class taxonomy, caught silent-failure step-through)
 - [ ] 07-03-PLAN.md — Wave 3: zero-dependency static smoke tool + scripts/deploy-hf.sh (manual, local HF token) + Pages workflow check/smoke steps + publish checkpoint + live smoke of Pages and HF static Space
 
 ### Phase 8: Real LLM Slots
@@ -282,7 +283,7 @@ Phases execute in numeric order, with parallel waves: 1 → (2 ‖ 3) → 4 → 
 | 3. Deterministic Gap Analysis | 0/1 | Complete    | 2026-09-13 |
 | 4. Sprint Pipeline on Mocks | 0/3 | Complete    | 2026-09-13 |
 | 5. Essay Critique, Evidence Grounding & Injection Guard | 1/2 | Complete    | 2026-09-13 |
-| 6. Eval Harness & Real Pass Rates | 0/3 | Not started | - |
+| 6. Eval Harness & Real Pass Rates | 3/3 | Complete    | 2026-09-13 |
 | 7. Sprint UI, Eval Dashboard & Static Showcase | 0/3 | Not started | - |
 | 8. Real LLM Slots | 0/1 | Complete    | 2026-09-13 |
 | 9. Live Backend on Vercel & REST API | 0/2 | Not started | - |

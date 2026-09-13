@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 07-01-PLAN.md
-last_updated: "2026-09-13T20:07:16.642Z"
+stopped_at: Completed 07-02-PLAN.md
+last_updated: "2026-09-13T20:28:30.090Z"
 progress:
   total_phases: 12
-  completed_phases: 8
+  completed_phases: 9
   total_plans: 27
-  completed_plans: 20
+  completed_plans: 22
 ---
 
 # Project State
@@ -23,8 +23,8 @@ See: .planning/PROJECT.md (updated 2026-09-13)
 
 ## Current Position
 
-Phase: 06 (eval-harness-real-pass-rates) — EXECUTING
-Plan: 2 of 2
+Phase: 06 (eval-harness-real-pass-rates) — READY FOR VERIFICATION (06-03 gap closure complete)
+Plan: 3 of 3
 
 ## Time Checkpoints (ET, hard deadline 7:00 PM)
 
@@ -72,6 +72,7 @@ Plan: 2 of 2
 | Phase 06 P01 | 12min | 3 tasks | 10 files |
 | Phase 06 P02 | 15min | 3 tasks | 7 files |
 | Phase 07 P01 | 15min | 3 tasks | 23 files |
+| Phase 07 P02 | 28min | 3 tasks | 19 files |
 
 ## Accumulated Context
 
@@ -137,6 +138,13 @@ Recent decisions affecting current work:
 - [Phase 07]: 07-01: Profile JSON text is the single source of truth; fields mirror raw JSON when syntactically valid and JSON errors locate line/column via a scanner fallback
 - [Phase 07]: 07-01: Replay mode is forced while LIVE_SOURCE_AVAILABLE=false; header active link uses page.route.id; base from $app/paths needed no resolve() switch
 - [Phase 07]: 07-01: Sprint page prerenders the demo gap report and recomputes it on hydration with the visitor's local date
+- [Phase 06]: 06-03: mergeEvalsFiles replaces per scenario and recomputes totals so LLM subsets accumulate; a fake refresh keeps recorded LLM columns
+- [Phase 06]: 06-03: rate-limit-burst is a deterministic survivable burst (10/10); the 25% probabilistic 429 rule moved to rate-limit-storm graded complete_or_honest
+- [Phase 06]: 06-03: Scripted baseline after split n10 seed1337: verifier-on 87% (200/230), verifier-off 78% (180/230); silent-failure replay committed (stepSpanId = verify.readback END event)
+- [Phase 07]: 07-02: SprintSource.rerun takes optional approvedIds so Run again replays the same approval set
+- [Phase 07]: 07-02: evals.ts uses loose zod objects; Phase 6 files needed no field renaming
+- [Phase 07]: 07-02: Silent failures caught card shows a dash when the replay file is missing, never a claimed count
+- [Phase 07]: 07-02: Artifact Open link only for http(s) refs; mock:// refs show ids only
 
 ### Pending Todos
 
@@ -153,6 +161,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-09-13T20:07:16.630Z
-Stopped at: Completed 07-01-PLAN.md
+Last session: 2026-09-13T20:28:30.082Z
+Stopped at: Completed 07-02-PLAN.md
 Resume file: None
