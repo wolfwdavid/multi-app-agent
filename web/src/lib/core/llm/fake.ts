@@ -1,5 +1,6 @@
 // Deterministic scripted LLM for tests, evals and the credential-free demo.
 import type { LLM, LLMRequest } from './types.ts';
+import { phase5FakeResponders } from '../critique/scripted.ts';
 
 export type FakeResponder = (req: LLMRequest) => unknown;
 
@@ -47,7 +48,7 @@ function draftSentence(d: DraftInput): string {
 	}
 }
 
-export const defaultFakeResponders: Readonly<Record<'critique' | 'draft', FakeResponder>> = Object.freeze({
+export const defaultFakeResponders: Readonly<Record<string, FakeResponder>> = Object.freeze({
 	critique: (req: LLMRequest) => {
 		const c = req.input as CritiqueInput;
 		const essays = c.essays.length ? c.essays : [{ essayId: 'general', prompt: null, wordLimit: null }];
@@ -69,7 +70,8 @@ export const defaultFakeResponders: Readonly<Record<'critique' | 'draft', FakeRe
 			subject: draftSubject(d),
 			body: `Hello ${d.contactName},\n\n${draftSentence(d)}${items}\n\nThank you,\n${d.studentName}`
 		};
-	}
+	},
+	...phase5FakeResponders
 });
 
 /**
