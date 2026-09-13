@@ -17,9 +17,15 @@ function deadlineDate(ds: ReturnType<typeof loadSchools>, programId: string, dea
 }
 
 describe('scenario registry', () => {
-	it('has 22 scenarios, >= 21 enabled, unique kebab ids, full coverage', () => {
-		expect(SCENARIOS.length).toBe(22);
-		expect(enabledScenarios().length).toBeGreaterThanOrEqual(21);
+	it('has 23 scenarios, >= 22 enabled, unique kebab ids, full coverage', () => {
+		expect(SCENARIOS.length).toBe(23);
+		expect(enabledScenarios().length).toBeGreaterThanOrEqual(22);
+		expect(EVAL01_COVERAGE['Notion/Calendar 429/500 incl. ghost-write']).toEqual([
+			'rate-limit-burst',
+			'rate-limit-storm',
+			'ghost-write-500',
+			'retries-exhausted'
+		]);
 		const ids = SCENARIOS.map((s) => s.id);
 		expect(new Set(ids).size).toBe(ids.length);
 		for (const id of ids) expect(id).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
@@ -66,6 +72,35 @@ describe('scenario registry', () => {
 		expect(buildLlmScript('hallucinating-draft')).toHaveProperty('draft');
 		expect(buildLlmScript('unsupported-claim-gpa-employer')).toHaveProperty('draft');
 		expect(buildLlmScript('default')).toEqual({});
+	});
+});
+
+describe('rate-limit split', () => {
+	it('rate-limit-burst is survivable by construction (runIndex 0..9, verifier-on)', async () => {
+		const s = getScenario('rate-limit-burst');
+		for (let i = 0; i < 10; i++) {
+			const run = await runAgent(await prepareRun(s, i, 1337), AGENT_CONFIGS['verifier-on']);
+			const p = run.passes[run.passes.length - 1]!;
+			expect(p.report?.status).toBe('ok');
+			expect(p.worldAfter.calendar.events.length).toBe(13);
+			expect(p.worldAfter.notion.rows.length).toBe(3);
+			const cal = p.report!.artifacts.filter((a) => a.app === 'calendar');
+			expect(Math.max(...cal.map((a) => a.attempts))).toBe(3);
+			expect(cal.filter((a) => a.attempts > 1).length).toBe(3);
+			expect(cal.some((a) => a.status === 'failed')).toBe(false);
+			const notion = p.report!.artifacts.filter((a) => a.app === 'notion');
+			expect(Math.max(...notion.map((a) => a.attempts))).toBe(3);
+		}
+	}, 15000);
+
+	it('rate-limit-storm keeps the probabilistic rule with an honesty-graded outcome', () => {
+		const s = getScenario('rate-limit-storm');
+		expect(s.tags).toEqual(['fault', 'adversarial']);
+		expect(s.expect.outcome).toBe('complete_or_honest');
+		expect(s.expect.counts).toEqual({ notionRows: 3, calendarEvents: 13, keyedDocs: 3, drafts: 4 });
+		const rules = s.faults?.calendar ?? [];
+		expect(rules).toEqual([{ method: 'createEvent', probability: 0.25, fault: { type: 'rate_limit', retryAfterMs: 50 } }]);
+		expect(rules.some((r) => 'calls' in r)).toBe(false);
 	});
 });
 
