@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.gradio/
+flagged/
+node_modules/
+.DS_Store

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multi-App Agent</title>
+<style>
+  :root { --bg:#f7f7fb; --fg:#15151f; --muted:#5b5b6e; --card:#fff; --line:#e3e3ec; --accent:#4f46e5; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0e0e14; --fg:#ececf4; --muted:#9a9ab0; --card:#17171f; --line:#2a2a36; --accent:#8b83ff; } }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:var(--bg); color:var(--fg); padding-inline:16px; }
+  main { max-width:760px; margin:0 auto; padding-block:64px; }
+  h1 { font-size:clamp(2rem,6vw,3rem); line-height:1.1; margin:0 0 12px; }
+  p.lede { color:var(--muted); font-size:1.15rem; margin:0 0 32px; }
+  .links { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:40px; }
+  .links a { padding:10px 18px; border-radius:8px; text-decoration:none; font-weight:600; border:1px solid var(--line); color:var(--fg); background:var(--card); }
+  .links a.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+  section { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px 24px; margin-bottom:16px; }
+  h2 { font-size:1.1rem; margin:0 0 8px; }
+  ul { margin:0; padding-left:20px; color:var(--muted); }
+  footer { color:var(--muted); font-size:.9rem; margin-top:40px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Multi-App Agent</h1>
+  <p class="lede">A multi-step AI agent that takes real actions across three or more external apps — with evaluations that show it works.</p>
+  <div class="links">
+    <a class="primary" href="https://huggingface.co/spaces/WolfDavid/multi-app-agent">Try the demo</a>
+    <a href="https://github.com/wolfwdavid/multi-app-agent">Source code</a>
+    <a href="https://github.com/wolfwdavid/multi-app-agent/blob/main/BRIEF.md">Reliability brief</a>
+  </div>
+  <section><h2>What it does</h2><ul><li>Coming soon.</li></ul></section>
+  <section><h2>Connected apps</h2><ul><li>App 1</li><li>App 2</li><li>App 3</li></ul></section>
+  <section><h2>How we know it works</h2><ul><li>Scenario evals, failure injection, and success-rate reporting.</li></ul></section>
+  <footer>Built for the <a href="https://multiappagenthackathon.com/">Multi-App AI Agent Hackathon</a> · Sept 13, 2026</footer>
+</main>
+</body>
+</html>
