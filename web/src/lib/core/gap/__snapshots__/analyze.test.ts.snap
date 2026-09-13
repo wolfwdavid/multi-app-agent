@@ -310,11 +310,11 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
     "schoolName": "University of California, Berkeley",
     "summary": {
       "blockers": 0,
-      "info": 0,
+      "info": 1,
       "met": 3,
       "missing": 4,
       "unknownEquivalency": 1,
-      "warnings": 0,
+      "warnings": 1,
     },
     "targetTerm": "Fall 2027",
     "units": {
@@ -332,7 +332,37 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
       "studentInProgress": 15,
       "studentSystem": "semester",
     },
-    "warnings": [],
+    "warnings": [
+      {
+        "code": "PREREQ_MISSING_TERMS_LEFT",
+        "confidence": "MEDIUM",
+        "message": "4 required course(s) missing (linear-algebra, data-structures, domain-emphasis, uc-7-course-pattern) with 2 term(s) remaining before transfer.",
+        "programId": "uc-berkeley-data-science-ba",
+        "relatedRequirementIds": [
+          "uc-berkeley-data-science-ba#course:linear-algebra",
+          "uc-berkeley-data-science-ba#course:data-structures",
+          "uc-berkeley-data-science-ba#course:domain-emphasis",
+          "uc-berkeley-data-science-ba#course:uc-7-course-pattern",
+        ],
+        "requirementId": "uc-berkeley-data-science-ba#course:linear-algebra",
+        "schoolId": "uc-berkeley",
+        "severity": "warning",
+        "sourceUrl": "https://cdss.berkeley.edu/dsus/academics/requirements-lower-division",
+      },
+      {
+        "code": "PREREQ_UNKNOWN_EQUIVALENCY",
+        "confidence": "MEDIUM",
+        "message": "1 course(s) need an equivalency check with an advisor or articulation office: data-c8 (possible: MATH 142).",
+        "programId": "uc-berkeley-data-science-ba",
+        "relatedRequirementIds": [
+          "uc-berkeley-data-science-ba#course:data-c8",
+        ],
+        "requirementId": "uc-berkeley-data-science-ba#course:data-c8",
+        "schoolId": "uc-berkeley",
+        "severity": "info",
+        "sourceUrl": "https://cdss.berkeley.edu/dsus/academics/requirements-lower-division",
+      },
+    ],
   },
   {
     "aiPolicy": {
@@ -505,11 +535,11 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
     "schoolName": "Cornell University",
     "summary": {
       "blockers": 0,
-      "info": 0,
+      "info": 2,
       "met": 2,
       "missing": 1,
       "unknownEquivalency": 1,
-      "warnings": 0,
+      "warnings": 2,
     },
     "targetTerm": "Fall 2027",
     "units": {
@@ -527,7 +557,56 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
       "studentInProgress": 15,
       "studentSystem": "semester",
     },
-    "warnings": [],
+    "warnings": [
+      {
+        "code": "GPA_BELOW_COMPETITIVE",
+        "confidence": "MEDIUM",
+        "message": "No minimum GPA is published; GPA 3.3 is below the program's competitive GPA of 3.5.",
+        "programId": "cornell-as-economics",
+        "relatedRequirementIds": [],
+        "requirementId": "cornell-as-economics#competitive_gpa",
+        "schoolId": "cornell",
+        "severity": "warning",
+        "sourceUrl": "https://as.cornell.edu/admissions/admissions-requirements-and-process",
+      },
+      {
+        "code": "PREREQ_MISSING_TERMS_LEFT",
+        "confidence": "HIGH",
+        "message": "1 required course(s) missing (econ-1120) with 2 term(s) remaining before transfer.",
+        "programId": "cornell-as-economics",
+        "relatedRequirementIds": [
+          "cornell-as-economics#course:econ-1120",
+        ],
+        "requirementId": "cornell-as-economics#course:econ-1120",
+        "schoolId": "cornell",
+        "severity": "warning",
+        "sourceUrl": "https://economics.cornell.edu/major",
+      },
+      {
+        "code": "PREREQ_UNKNOWN_EQUIVALENCY",
+        "confidence": "HIGH",
+        "message": "1 course(s) need an equivalency check with an advisor or articulation office: as-writing-intensive (possible: ENGL 122).",
+        "programId": "cornell-as-economics",
+        "relatedRequirementIds": [
+          "cornell-as-economics#course:as-writing-intensive",
+        ],
+        "requirementId": "cornell-as-economics#course:as-writing-intensive",
+        "schoolId": "cornell",
+        "severity": "info",
+        "sourceUrl": "https://economics.cornell.edu/major",
+      },
+      {
+        "code": "DATA_NOT_PUBLISHED",
+        "confidence": "LOW",
+        "message": "The prompt for essay as-college-supplement is not publicly available; check the application portal.",
+        "programId": "cornell-as-economics",
+        "relatedRequirementIds": [],
+        "requirementId": "cornell-as-economics#essay:as-college-supplement",
+        "schoolId": "cornell",
+        "severity": "info",
+        "sourceUrl": "https://admissions.cornell.edu/how-to-apply/transfer-applicants",
+      },
+    ],
   },
   {
     "aiPolicy": {
@@ -679,7 +758,7 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
     "schoolName": "University of Michigan - Ann Arbor",
     "summary": {
       "blockers": 0,
-      "info": 0,
+      "info": 2,
       "met": 0,
       "missing": 0,
       "unknownEquivalency": 0,
@@ -701,7 +780,30 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
       "studentInProgress": 15,
       "studentSystem": "semester",
     },
-    "warnings": [],
+    "warnings": [
+      {
+        "code": "DATA_NOT_PUBLISHED",
+        "confidence": "HIGH",
+        "message": "No minimum or competitive GPA is published for this program.",
+        "programId": "umich-lsa",
+        "relatedRequirementIds": [],
+        "requirementId": "umich-lsa#min_gpa",
+        "schoolId": "umich",
+        "severity": "info",
+        "sourceUrl": "https://admissions.umich.edu/apply/transfer-applicants/requirements-deadlines",
+      },
+      {
+        "code": "DATA_NOT_PUBLISHED",
+        "confidence": "HIGH",
+        "message": "No minimum unit requirement is published for this program.",
+        "programId": "umich-lsa",
+        "relatedRequirementIds": [],
+        "requirementId": "umich-lsa#units",
+        "schoolId": "umich",
+        "severity": "info",
+        "sourceUrl": "https://admissions.umich.edu/apply/transfer-applicants/requirements-deadlines",
+      },
+    ],
   },
   {
     "aiPolicy": {
@@ -763,7 +865,7 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
     "schoolId": "northfield-fictional",
     "schoolName": "Northfield Institute of Technology (FICTIONAL)",
     "summary": {
-      "blockers": 0,
+      "blockers": 1,
       "info": 0,
       "met": 0,
       "missing": 0,
@@ -786,7 +888,19 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
       "studentInProgress": 15,
       "studentSystem": "semester",
     },
-    "warnings": [],
+    "warnings": [
+      {
+        "code": "NO_TRANSFER_PROGRAM",
+        "confidence": "LOW",
+        "message": "Computer Science (FICTIONAL) does not accept transfer applicants.",
+        "programId": "northfield-fictional-cs",
+        "relatedRequirementIds": [],
+        "requirementId": "northfield-fictional-cs#has_transfer_program",
+        "schoolId": "northfield-fictional",
+        "severity": "blocker",
+        "sourceUrl": "about:fictional",
+      },
+    ],
   },
 ]
 `;
@@ -1101,11 +1215,11 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
     "schoolName": "University of California, Berkeley",
     "summary": {
       "blockers": 0,
-      "info": 0,
+      "info": 1,
       "met": 3,
       "missing": 4,
       "unknownEquivalency": 1,
-      "warnings": 0,
+      "warnings": 1,
     },
     "targetTerm": "Fall 2027",
     "units": {
@@ -1123,7 +1237,37 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
       "studentInProgress": 20,
       "studentSystem": "quarter",
     },
-    "warnings": [],
+    "warnings": [
+      {
+        "code": "PREREQ_MISSING_TERMS_LEFT",
+        "confidence": "MEDIUM",
+        "message": "4 required course(s) missing (linear-algebra, data-structures, domain-emphasis, uc-7-course-pattern) with 2 term(s) remaining before transfer.",
+        "programId": "uc-berkeley-data-science-ba",
+        "relatedRequirementIds": [
+          "uc-berkeley-data-science-ba#course:linear-algebra",
+          "uc-berkeley-data-science-ba#course:data-structures",
+          "uc-berkeley-data-science-ba#course:domain-emphasis",
+          "uc-berkeley-data-science-ba#course:uc-7-course-pattern",
+        ],
+        "requirementId": "uc-berkeley-data-science-ba#course:linear-algebra",
+        "schoolId": "uc-berkeley",
+        "severity": "warning",
+        "sourceUrl": "https://cdss.berkeley.edu/dsus/academics/requirements-lower-division",
+      },
+      {
+        "code": "PREREQ_UNKNOWN_EQUIVALENCY",
+        "confidence": "MEDIUM",
+        "message": "1 course(s) need an equivalency check with an advisor or articulation office: data-c8 (possible: MATH 10).",
+        "programId": "uc-berkeley-data-science-ba",
+        "relatedRequirementIds": [
+          "uc-berkeley-data-science-ba#course:data-c8",
+        ],
+        "requirementId": "uc-berkeley-data-science-ba#course:data-c8",
+        "schoolId": "uc-berkeley",
+        "severity": "info",
+        "sourceUrl": "https://cdss.berkeley.edu/dsus/academics/requirements-lower-division",
+      },
+    ],
   },
   {
     "aiPolicy": {
@@ -1296,11 +1440,11 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
     "schoolName": "Cornell University",
     "summary": {
       "blockers": 0,
-      "info": 0,
+      "info": 2,
       "met": 2,
       "missing": 1,
       "unknownEquivalency": 1,
-      "warnings": 0,
+      "warnings": 2,
     },
     "targetTerm": "Fall 2027",
     "units": {
@@ -1318,7 +1462,56 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
       "studentInProgress": 20,
       "studentSystem": "quarter",
     },
-    "warnings": [],
+    "warnings": [
+      {
+        "code": "GPA_BELOW_COMPETITIVE",
+        "confidence": "MEDIUM",
+        "message": "No minimum GPA is published; GPA 3.3 is below the program's competitive GPA of 3.5.",
+        "programId": "cornell-as-economics",
+        "relatedRequirementIds": [],
+        "requirementId": "cornell-as-economics#competitive_gpa",
+        "schoolId": "cornell",
+        "severity": "warning",
+        "sourceUrl": "https://as.cornell.edu/admissions/admissions-requirements-and-process",
+      },
+      {
+        "code": "PREREQ_MISSING_TERMS_LEFT",
+        "confidence": "HIGH",
+        "message": "1 required course(s) missing (econ-1120) with 2 term(s) remaining before transfer.",
+        "programId": "cornell-as-economics",
+        "relatedRequirementIds": [
+          "cornell-as-economics#course:econ-1120",
+        ],
+        "requirementId": "cornell-as-economics#course:econ-1120",
+        "schoolId": "cornell",
+        "severity": "warning",
+        "sourceUrl": "https://economics.cornell.edu/major",
+      },
+      {
+        "code": "PREREQ_UNKNOWN_EQUIVALENCY",
+        "confidence": "HIGH",
+        "message": "1 course(s) need an equivalency check with an advisor or articulation office: as-writing-intensive (possible: EWRT 1A).",
+        "programId": "cornell-as-economics",
+        "relatedRequirementIds": [
+          "cornell-as-economics#course:as-writing-intensive",
+        ],
+        "requirementId": "cornell-as-economics#course:as-writing-intensive",
+        "schoolId": "cornell",
+        "severity": "info",
+        "sourceUrl": "https://economics.cornell.edu/major",
+      },
+      {
+        "code": "DATA_NOT_PUBLISHED",
+        "confidence": "LOW",
+        "message": "The prompt for essay as-college-supplement is not publicly available; check the application portal.",
+        "programId": "cornell-as-economics",
+        "relatedRequirementIds": [],
+        "requirementId": "cornell-as-economics#essay:as-college-supplement",
+        "schoolId": "cornell",
+        "severity": "info",
+        "sourceUrl": "https://admissions.cornell.edu/how-to-apply/transfer-applicants",
+      },
+    ],
   },
   {
     "aiPolicy": {
@@ -1470,7 +1663,7 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
     "schoolName": "University of Michigan - Ann Arbor",
     "summary": {
       "blockers": 0,
-      "info": 0,
+      "info": 2,
       "met": 0,
       "missing": 0,
       "unknownEquivalency": 0,
@@ -1492,7 +1685,30 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
       "studentInProgress": 20,
       "studentSystem": "quarter",
     },
-    "warnings": [],
+    "warnings": [
+      {
+        "code": "DATA_NOT_PUBLISHED",
+        "confidence": "HIGH",
+        "message": "No minimum or competitive GPA is published for this program.",
+        "programId": "umich-lsa",
+        "relatedRequirementIds": [],
+        "requirementId": "umich-lsa#min_gpa",
+        "schoolId": "umich",
+        "severity": "info",
+        "sourceUrl": "https://admissions.umich.edu/apply/transfer-applicants/requirements-deadlines",
+      },
+      {
+        "code": "DATA_NOT_PUBLISHED",
+        "confidence": "HIGH",
+        "message": "No minimum unit requirement is published for this program.",
+        "programId": "umich-lsa",
+        "relatedRequirementIds": [],
+        "requirementId": "umich-lsa#units",
+        "schoolId": "umich",
+        "severity": "info",
+        "sourceUrl": "https://admissions.umich.edu/apply/transfer-applicants/requirements-deadlines",
+      },
+    ],
   },
   {
     "aiPolicy": {
@@ -1554,7 +1770,7 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
     "schoolId": "northfield-fictional",
     "schoolName": "Northfield Institute of Technology (FICTIONAL)",
     "summary": {
-      "blockers": 0,
+      "blockers": 1,
       "info": 0,
       "met": 0,
       "missing": 0,
@@ -1577,7 +1793,19 @@ exports[`analyzeGaps: determinism and purity > matches the committed snapshot (d
       "studentInProgress": 20,
       "studentSystem": "quarter",
     },
-    "warnings": [],
+    "warnings": [
+      {
+        "code": "NO_TRANSFER_PROGRAM",
+        "confidence": "LOW",
+        "message": "Computer Science (FICTIONAL) does not accept transfer applicants.",
+        "programId": "northfield-fictional-cs",
+        "relatedRequirementIds": [],
+        "requirementId": "northfield-fictional-cs#has_transfer_program",
+        "schoolId": "northfield-fictional",
+        "severity": "blocker",
+        "sourceUrl": "about:fictional",
+      },
+    ],
   },
 ]
 `;
