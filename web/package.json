@@ -13,7 +13,8 @@
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run",
 		"sprint": "tsx scripts/sprint.ts",
-		"record": "tsx scripts/sprint.ts --profile demo --auto-approve --rerun"
+		"record": "tsx scripts/sprint.ts --profile demo --auto-approve --rerun",
+		"eval": "tsx scripts/eval.ts"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.10",
