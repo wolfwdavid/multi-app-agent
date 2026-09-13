@@ -106,7 +106,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 03-01-PLAN.md: core/gap/** analyzeGaps (GPA with competitive fallback, semester/quarter units, met/missing/unknown-equivalency prereqs, essays/recs, next deadline) + stable-code feasibility warnings + table/snapshot/integrity tests
+- [x] 03-01-PLAN.md: core/gap/** analyzeGaps (GPA with competitive fallback, semester/quarter units, met/missing/unknown-equivalency prereqs, essays/recs, next deadline) + stable-code feasibility warnings + table/snapshot/integrity tests
 
 ### Phase 4: Sprint Pipeline on Mocks
 **Goal**: The hero sprint runs end-to-end in the terminal on mocks with a scripted FakeLLM. It plans, gates on approval, executes with idempotency and retries, verifies by reading back real state, and emits a trace. Re-runs create zero duplicates.

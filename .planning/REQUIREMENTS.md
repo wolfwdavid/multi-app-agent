@@ -13,8 +13,8 @@
 
 ### Gap Analysis
 
-- [ ] **GAP-01**: User sees a deterministic per-school gap report: GPA vs program minimum/competitive, units vs required (with semester↔quarter conversion), each prereq marked `met` / `missing` / `unknown-equivalency`, essays and recs needed, days to deadline
-- [ ] **GAP-02**: User sees feasibility warnings (e.g. missing prereqs vs terms remaining before deadline, GPA below a program-specific minimum, school has no transfer program)
+- [x] **GAP-01**: User sees a deterministic per-school gap report: GPA vs program minimum/competitive, units vs required (with semester↔quarter conversion), each prereq marked `met` / `missing` / `unknown-equivalency`, essays and recs needed, days to deadline
+- [x] **GAP-02**: User sees feasibility warnings (e.g. missing prereqs vs terms remaining before deadline, GPA below a program-specific minimum, school has no transfer program)
 - [ ] **GAP-03**: Gap report includes LLM-phrased next actions that never change the deterministic findings
 
 ### Essay Coaching
@@ -106,8 +106,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DATA-01 | Phase 1 | Complete |
 | DATA-02 | Phase 1 | Complete |
 | DATA-03 | Phase 7 | Pending |
-| GAP-01 | Phase 3 | Pending |
-| GAP-02 | Phase 3 | Pending |
+| GAP-01 | Phase 3 | Complete |
+| GAP-02 | Phase 3 | Complete |
 | GAP-03 | Phase 5 | Pending |
 | ESSAY-01 | Phase 5 | Pending |
 | ESSAY-02 | Phase 5 | Pending |

@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 01-03-PLAN.md
-last_updated: "2026-09-13T17:39:06.077Z"
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-09-13T17:40:25.705Z"
 progress:
   total_phases: 12
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 6
-  completed_plans: 4
+  completed_plans: 5
 ---
 
 # Project State
@@ -57,6 +57,7 @@ Plan: Not started
 | Phase 01 P01 | 4.5min | 3 tasks | 11 files |
 | Phase 01 P03 | 4min | 2 tasks | 9 files |
 | Phase 02 P01 | 4min | 2 tasks | 10 files |
+| Phase 03 P01 | 7min | 3 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -79,6 +80,9 @@ Recent decisions affecting current work:
 - [Phase 01]: Demo profile deliberately omits linear-algebra, data-structures, econ-1120 and leaves MATH 142 unmapped (unknown-equivalency for data-c8)
 - [Phase 02]: 02-01: Mock World keeps all state in a closure (createWorld); restore() preserves root state identity
 - [Phase 02]: 02-01: Calendar mock event id = idempotency key without dashes, duplicate create -> 409; Docs/Gmail mocks never dedupe server-side (findByKey guard required)
+- [Phase 03]: GPA status evaluates competitive_gpa even when min_gpa is null (Cornell fallback); below_minimum takes precedence
+- [Phase 03]: Prereqs are met only via explicit satisfies mappings; same-subject unmapped courses yield unknown-equivalency
+- [Phase 03]: WarningCode values are stable and emitted in enum order; NO_TRANSFER_PROGRAM short-circuits other warnings
 
 ### Pending Todos
 
@@ -95,6 +99,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-09-13T17:30:15.445Z
-Stopped at: Completed 01-03-PLAN.md
+Last session: 2026-09-13T17:40:25.697Z
+Stopped at: Completed 03-01-PLAN.md
 Resume file: None
