@@ -18,7 +18,8 @@ export interface SprintSource {
 		onEvent: (e: TraceEvent) => void,
 		signal?: AbortSignal
 	): Promise<RunReport>;
-	rerun?(): Promise<{ events: TraceEvent[]; report: RunReport }>;
+	/** Re-run the same plan. With `approvedIds`, only those actions (same approval as the first run). */
+	rerun?(approvedIds?: string[]): Promise<{ events: TraceEvent[]; report: RunReport }>;
 	estimateSteps?(approvedIds: string[]): number;
 }
 
@@ -89,7 +90,10 @@ export function createReplaySource(file: HeroRunFile, opts: { pace: () => Promis
 			await playEvents(events, onEvent, opts.pace, signal);
 			return report;
 		},
-		rerun: rerun ? async () => rerun : undefined,
+		rerun: rerun
+			? async (approvedIds) =>
+					approvedIds ? filterRecordedRun({ ...file, events: rerun.events, report: rerun.report }, approvedIds) : rerun
+			: undefined,
 		estimateSteps(approvedIds) {
 			return countRowSpans(filterRecordedRun(file, approvedIds).events);
 		}

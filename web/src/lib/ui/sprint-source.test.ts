@@ -72,6 +72,14 @@ describe('createReplaySource', () => {
 		expect(createReplaySource(noRerun, { pace: async () => {} }).rerun).toBeUndefined();
 	});
 
+	it('rerun with approved ids replays only those actions', async () => {
+		const src = createReplaySource(sampleHeroRun(), { pace: async () => {} });
+		const rr = await src.rerun!(['n1']);
+		expect(rr.events.some((e) => e.attrs.actionId === 'g1' || e.attrs.actionId === 'c1')).toBe(false);
+		expect(rr.report.counts).toEqual({ verified: 0, deduped: 1, failed: 0, skipped: 2 });
+		expect(rr.report.status).toBe('ok');
+	});
+
 	it('playEvents stops with ReplayCancelled when aborted mid-way', async () => {
 		const file = sampleHeroRun();
 		const controller = new AbortController();
