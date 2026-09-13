@@ -1,0 +1,6319 @@
+{
+  "recordedAt": "2026-09-13T18:38:37.067Z",
+  "commitSha": "63fbde1",
+  "profileId": "demo",
+  "plan": {
+    "planId": "plan-63478cfa9529",
+    "profileId": "demo",
+    "createdAt": "2026-09-13T18:38:36.977Z",
+    "actions": [
+      {
+        "id": "uc-berkeley-data-science-ba.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "effect": "write",
+        "schoolId": "uc-berkeley",
+        "programId": "uc-berkeley-data-science-ba",
+        "idempotencyKey": "tp1-7b7a827be6cba4bb",
+        "payload": {
+          "title": "Essay critique: University of California, Berkeley Data Science BA (College of Computing, Data Science, and Society) (Fall 2027)",
+          "body": "AI policy for University of California, Berkeley: feedback_ok. This is a placeholder critique; the rubric critique of your draft is generated in the essay step.\n\n## Essay uc-piq-required\n- Which paragraph of your draft answers this prompt most directly?\n- Is the draft within the 350-word limit?"
+        },
+        "dependsOn": [],
+        "summary": "Create critique doc for University of California, Berkeley"
+      },
+      {
+        "id": "uc-berkeley-data-science-ba.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "effect": "write",
+        "schoolId": "uc-berkeley",
+        "programId": "uc-berkeley-data-science-ba",
+        "idempotencyKey": "tp1-10ce46ea998e08c2",
+        "payload": {
+          "schoolId": "uc-berkeley",
+          "programId": "uc-berkeley-data-science-ba",
+          "title": "University of California, Berkeley: Data Science BA (College of Computing, Data Science, and Society)",
+          "deadline": "2026-11-30",
+          "requiredDocs": [
+            "Essay uc-piq-required (350 words)"
+          ],
+          "recsRequired": 0,
+          "essayStatus": "draft",
+          "gapCount": 5,
+          "status": "planning",
+          "notes": "PREREQ_MISSING_TERMS_LEFT: 4 required course(s) missing (linear-algebra, data-structures, domain-emphasis, uc-7-course-pattern) with 2 term(s) remaining before transfer.\nPREREQ_UNKNOWN_EQUIVALENCY: 1 course(s) need an equivalency check with an advisor or articulation office: data-c8 (possible: MATH 142)."
+        },
+        "dependsOn": [
+          "uc-berkeley-data-science-ba.critique_doc"
+        ],
+        "summary": "Upsert tracker row for University of California, Berkeley"
+      },
+      {
+        "id": "uc-berkeley-data-science-ba.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "effect": "write",
+        "schoolId": "uc-berkeley",
+        "programId": "uc-berkeley-data-science-ba",
+        "idempotencyKey": "tp1-6291ad50f840c62f",
+        "payload": {
+          "title": "University of California, Berkeley Data Science BA (College of Computing, Data Science, and Society): application deadline",
+          "date": "2026-11-30",
+          "description": "Source: https://admission.universityofcalifornia.edu/how-to-apply/applying-as-a-transfer/dates-and-deadlines.html"
+        },
+        "dependsOn": [],
+        "summary": "Add calendar event: University of California, Berkeley Data Science BA (College of Computing, Data Science, and Society): application deadline (2026-11-30)"
+      },
+      {
+        "id": "uc-berkeley-data-science-ba.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "effect": "write",
+        "schoolId": "uc-berkeley",
+        "programId": "uc-berkeley-data-science-ba",
+        "idempotencyKey": "tp1-7687f4ebbd0526e9",
+        "payload": {
+          "title": "T-30 reminder: University of California, Berkeley application due 2026-11-30",
+          "date": "2026-10-31",
+          "description": "Source: https://admission.universityofcalifornia.edu/how-to-apply/applying-as-a-transfer/dates-and-deadlines.html"
+        },
+        "dependsOn": [],
+        "summary": "Add calendar event: T-30 reminder: University of California, Berkeley application due 2026-11-30 (2026-10-31)"
+      },
+      {
+        "id": "uc-berkeley-data-science-ba.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "effect": "write",
+        "schoolId": "uc-berkeley",
+        "programId": "uc-berkeley-data-science-ba",
+        "idempotencyKey": "tp1-d9d6534e81f35f0a",
+        "payload": {
+          "title": "T-14 reminder: University of California, Berkeley application due 2026-11-30",
+          "date": "2026-11-16",
+          "description": "Source: https://admission.universityofcalifornia.edu/how-to-apply/applying-as-a-transfer/dates-and-deadlines.html"
+        },
+        "dependsOn": [],
+        "summary": "Add calendar event: T-14 reminder: University of California, Berkeley application due 2026-11-30 (2026-11-16)"
+      },
+      {
+        "id": "uc-berkeley-data-science-ba.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "effect": "write",
+        "schoolId": "uc-berkeley",
+        "programId": "uc-berkeley-data-science-ba",
+        "idempotencyKey": "tp1-26a11247feaf269d",
+        "payload": {
+          "title": "T-3 reminder: University of California, Berkeley application due 2026-11-30",
+          "date": "2026-11-27",
+          "description": "Source: https://admission.universityofcalifornia.edu/how-to-apply/applying-as-a-transfer/dates-and-deadlines.html"
+        },
+        "dependsOn": [],
+        "summary": "Add calendar event: T-3 reminder: University of California, Berkeley application due 2026-11-30 (2026-11-27)"
+      },
+      {
+        "id": "uc-berkeley-data-science-ba.draft_admissions_question",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "effect": "write",
+        "schoolId": "uc-berkeley",
+        "programId": "uc-berkeley-data-science-ba",
+        "idempotencyKey": "tp1-93ef6becac5251ac",
+        "payload": {
+          "to": [
+            "transfer-questions@example.edu"
+          ],
+          "subject": "[TransferPilot] Question about Data Science BA (College of Computing, Data Science, and Society) transfer requirements (Fall 2027)",
+          "body": "Hello Berkeley Transfer Admissions,\n\nI plan to apply to transfer into Data Science BA (College of Computing, Data Science, and Society) for Fall 2027 and have a question about how my coursework maps to your requirements.\n\n- Foundations of Data Science (Data C8)\n\nThank you,\n[redacted:name]"
+        },
+        "dependsOn": [],
+        "summary": "Draft admissions question to Berkeley Transfer Admissions"
+      },
+      {
+        "id": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "effect": "write",
+        "schoolId": "uc-berkeley",
+        "programId": "uc-berkeley-data-science-ba",
+        "idempotencyKey": "tp1-d821eae6328f0752",
+        "payload": {
+          "to": [
+            "ppatel@example.edu"
+          ],
+          "subject": "[TransferPilot] Prerequisite equivalency check for University of California, Berkeley Data Science BA (College of Computing, Data Science, and Society)",
+          "body": "Hello Priya Patel,\n\nCould you help me confirm which of my courses satisfy the University of California, Berkeley Data Science BA (College of Computing, Data Science, and Society) prerequisites?\n\n- Foundations of Data Science (Data C8) (unknown-equivalency)\n- Linear Algebra (Math 54 or equivalent) (missing)\n- Data Structures (CS 61B or 61BL) (missing)\n- Domain Emphasis lower-division course (missing)\n- UC 7-course pattern (missing)\n\nThank you,\n[redacted:name]"
+        },
+        "dependsOn": [],
+        "summary": "Draft prerequisite check to Priya Patel"
+      },
+      {
+        "id": "cornell-as-economics.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "effect": "write",
+        "schoolId": "cornell",
+        "programId": "cornell-as-economics",
+        "idempotencyKey": "tp1-3e41a7c7c33354fd",
+        "payload": {
+          "title": "Essay critique: Cornell University College of Arts & Sciences - Economics (Fall 2027)",
+          "body": "AI policy for Cornell University: grammar_only. This is a placeholder critique; the rubric critique of your draft is generated in the essay step.\n\n## Essay cornell-transfer-statement\n- Which paragraph of your draft answers this prompt most directly?\n- Is the draft within the 650-word limit?\n\n## Essay as-college-supplement\n- Which paragraph of your draft answers this prompt most directly?"
+        },
+        "dependsOn": [],
+        "summary": "Create critique doc for Cornell University"
+      },
+      {
+        "id": "cornell-as-economics.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "effect": "write",
+        "schoolId": "cornell",
+        "programId": "cornell-as-economics",
+        "idempotencyKey": "tp1-1e896275d9b01284",
+        "payload": {
+          "schoolId": "cornell",
+          "programId": "cornell-as-economics",
+          "title": "Cornell University: College of Arts & Sciences - Economics",
+          "deadline": "2027-03-15",
+          "requiredDocs": [
+            "Essay cornell-transfer-statement (650 words)",
+            "Essay as-college-supplement",
+            "Recommendation letters: 1"
+          ],
+          "recsRequired": 1,
+          "essayStatus": "draft",
+          "gapCount": 2,
+          "status": "planning",
+          "notes": "GPA_BELOW_COMPETITIVE: No minimum GPA is published; GPA [redacted:gpa] is below the program's competitive GPA of [redacted:gpa].\nPREREQ_MISSING_TERMS_LEFT: 1 required course(s) missing (econ-1120) with 2 term(s) remaining before transfer.\nPREREQ_UNKNOWN_EQUIVALENCY: 1 course(s) need an equivalency check with an advisor or articulation office: as-writing-intensive (possible: ENGL 122).\nDATA_NOT_PUBLISHED: The prompt for essay as-college-supplement is not publicly available; check the application portal."
+        },
+        "dependsOn": [
+          "cornell-as-economics.critique_doc"
+        ],
+        "summary": "Upsert tracker row for Cornell University"
+      },
+      {
+        "id": "cornell-as-economics.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "effect": "write",
+        "schoolId": "cornell",
+        "programId": "cornell-as-economics",
+        "idempotencyKey": "tp1-e3349b11e0b63b8a",
+        "payload": {
+          "title": "Cornell University College of Arts & Sciences - Economics: application deadline",
+          "date": "2027-03-15",
+          "description": "Source: https://admissions.cornell.edu/how-to-apply/transfer-applicants"
+        },
+        "dependsOn": [],
+        "summary": "Add calendar event: Cornell University College of Arts & Sciences - Economics: application deadline (2027-03-15)"
+      },
+      {
+        "id": "cornell-as-economics.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "effect": "write",
+        "schoolId": "cornell",
+        "programId": "cornell-as-economics",
+        "idempotencyKey": "tp1-2c7d64c4a47f9fb2",
+        "payload": {
+          "title": "T-30 reminder: Cornell University application due 2027-03-15",
+          "date": "2027-02-13",
+          "description": "Source: https://admissions.cornell.edu/how-to-apply/transfer-applicants"
+        },
+        "dependsOn": [],
+        "summary": "Add calendar event: T-30 reminder: Cornell University application due 2027-03-15 (2027-02-13)"
+      },
+      {
+        "id": "cornell-as-economics.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "effect": "write",
+        "schoolId": "cornell",
+        "programId": "cornell-as-economics",
+        "idempotencyKey": "tp1-1d02bcd3780ae5fc",
+        "payload": {
+          "title": "T-14 reminder: Cornell University application due 2027-03-15",
+          "date": "2027-03-01",
+          "description": "Source: https://admissions.cornell.edu/how-to-apply/transfer-applicants"
+        },
+        "dependsOn": [],
+        "summary": "Add calendar event: T-14 reminder: Cornell University application due 2027-03-15 (2027-03-01)"
+      },
+      {
+        "id": "cornell-as-economics.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "effect": "write",
+        "schoolId": "cornell",
+        "programId": "cornell-as-economics",
+        "idempotencyKey": "tp1-96a3c3a117204a9e",
+        "payload": {
+          "title": "T-3 reminder: Cornell University application due 2027-03-15",
+          "date": "2027-03-12",
+          "description": "Source: https://admissions.cornell.edu/how-to-apply/transfer-applicants"
+        },
+        "dependsOn": [],
+        "summary": "Add calendar event: T-3 reminder: Cornell University application due 2027-03-15 (2027-03-12)"
+      },
+      {
+        "id": "cornell-as-economics.event_rec_request",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "effect": "write",
+        "schoolId": "cornell",
+        "programId": "cornell-as-economics",
+        "idempotencyKey": "tp1-33e3c07690d5d180",
+        "payload": {
+          "title": "Request recommendation letters for Cornell University",
+          "date": "2027-02-01",
+          "description": "Source: https://admissions.cornell.edu/how-to-apply/transfer-applicants"
+        },
+        "dependsOn": [],
+        "summary": "Add calendar event: Request recommendation letters for Cornell University (2027-02-01)"
+      },
+      {
+        "id": "cornell-as-economics.draft_rec_request",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "effect": "write",
+        "schoolId": "cornell",
+        "programId": "cornell-as-economics",
+        "idempotencyKey": "tp1-6e90b4a6bba5a6d5",
+        "payload": {
+          "to": [
+            "lchen@example.edu"
+          ],
+          "subject": "[TransferPilot] Recommendation letter request for Cornell University (Fall 2027)",
+          "body": "Hello Dr. Lin Chen,\n\nI am applying to transfer to Cornell University for Fall 2027 and would be grateful if you could write a recommendation letter for me.\n\n- 1 letter(s) for College of Arts & Sciences - Economics\n- Application deadline 2027-03-15\n\nThank you,\n[redacted:name]"
+        },
+        "dependsOn": [],
+        "summary": "Draft recommendation request to Dr. Lin Chen"
+      },
+      {
+        "id": "cornell-as-economics.draft_advisor_prereq_check",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "effect": "write",
+        "schoolId": "cornell",
+        "programId": "cornell-as-economics",
+        "idempotencyKey": "tp1-cd4be9e7204cbbb1",
+        "payload": {
+          "to": [
+            "ppatel@example.edu"
+          ],
+          "subject": "[TransferPilot] Prerequisite equivalency check for Cornell University College of Arts & Sciences - Economics",
+          "body": "Hello Priya Patel,\n\nCould you help me confirm which of my courses satisfy the Cornell University College of Arts & Sciences - Economics prerequisites?\n\n- Introductory Macroeconomics (ECON 1120 or equivalent) (missing)\n- Writing-intensive composition course (unknown-equivalency)\n\nThank you,\n[redacted:name]"
+        },
+        "dependsOn": [],
+        "summary": "Draft prerequisite check to Priya Patel"
+      },
+      {
+        "id": "umich-lsa.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "effect": "write",
+        "schoolId": "umich",
+        "programId": "umich-lsa",
+        "idempotencyKey": "tp1-ee43b935c4c2c810",
+        "payload": {
+          "title": "Essay critique: University of Michigan - Ann Arbor College of Literature, Science, and the Arts (LSA) (Fall 2027)",
+          "body": "AI policy for University of Michigan - Ann Arbor: brainstorm_ok. This is a placeholder critique; the rubric critique of your draft is generated in the essay step.\n\n## Essay commonapp-personal-essay\n- Which paragraph of your draft answers this prompt most directly?\n- Is the draft within the 650-word limit?\n\n## Essay um-leaders-citizens\n- Which paragraph of your draft answers this prompt most directly?\n\n## Essay um-college-fit\n- Which paragraph of your draft answers this prompt most directly?\n\n## Essay um-transfer-reasons\n- Which paragraph of your draft answers this prompt most directly?"
+        },
+        "dependsOn": [],
+        "summary": "Create critique doc for University of Michigan - Ann Arbor"
+      },
+      {
+        "id": "umich-lsa.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "effect": "write",
+        "schoolId": "umich",
+        "programId": "umich-lsa",
+        "idempotencyKey": "tp1-3225e29d02cb3761",
+        "payload": {
+          "schoolId": "umich",
+          "programId": "umich-lsa",
+          "title": "University of Michigan - Ann Arbor: College of Literature, Science, and the Arts (LSA)",
+          "deadline": "2027-02-01",
+          "requiredDocs": [
+            "Essay commonapp-personal-essay (650 words)",
+            "Essay um-leaders-citizens",
+            "Essay um-college-fit",
+            "Essay um-transfer-reasons"
+          ],
+          "recsRequired": 0,
+          "essayStatus": "draft",
+          "gapCount": 0,
+          "status": "planning",
+          "notes": "DATA_NOT_PUBLISHED: No minimum or competitive GPA is published for this program.\nDATA_NOT_PUBLISHED: No minimum unit requirement is published for this program."
+        },
+        "dependsOn": [
+          "umich-lsa.critique_doc"
+        ],
+        "summary": "Upsert tracker row for University of Michigan - Ann Arbor"
+      },
+      {
+        "id": "umich-lsa.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "effect": "write",
+        "schoolId": "umich",
+        "programId": "umich-lsa",
+        "idempotencyKey": "tp1-745b6940e0be2bb1",
+        "payload": {
+          "title": "University of Michigan - Ann Arbor College of Literature, Science, and the Arts (LSA): application deadline",
+          "date": "2027-02-01",
+          "description": "Source: https://lsa.umich.edu/transfer/prospective-students/apply.html"
+        },
+        "dependsOn": [],
+        "summary": "Add calendar event: University of Michigan - Ann Arbor College of Literature, Science, and the Arts (LSA): application deadline (2027-02-01)"
+      },
+      {
+        "id": "umich-lsa.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "effect": "write",
+        "schoolId": "umich",
+        "programId": "umich-lsa",
+        "idempotencyKey": "tp1-cdda7cc25301cc00",
+        "payload": {
+          "title": "T-30 reminder: University of Michigan - Ann Arbor application due 2027-02-01",
+          "date": "2027-01-02",
+          "description": "Source: https://lsa.umich.edu/transfer/prospective-students/apply.html"
+        },
+        "dependsOn": [],
+        "summary": "Add calendar event: T-30 reminder: University of Michigan - Ann Arbor application due 2027-02-01 (2027-01-02)"
+      },
+      {
+        "id": "umich-lsa.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "effect": "write",
+        "schoolId": "umich",
+        "programId": "umich-lsa",
+        "idempotencyKey": "tp1-35af476fdd074060",
+        "payload": {
+          "title": "T-14 reminder: University of Michigan - Ann Arbor application due 2027-02-01",
+          "date": "2027-01-18",
+          "description": "Source: https://lsa.umich.edu/transfer/prospective-students/apply.html"
+        },
+        "dependsOn": [],
+        "summary": "Add calendar event: T-14 reminder: University of Michigan - Ann Arbor application due 2027-02-01 (2027-01-18)"
+      },
+      {
+        "id": "umich-lsa.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "effect": "write",
+        "schoolId": "umich",
+        "programId": "umich-lsa",
+        "idempotencyKey": "tp1-5b699bb5bbebce3c",
+        "payload": {
+          "title": "T-3 reminder: University of Michigan - Ann Arbor application due 2027-02-01",
+          "date": "2027-01-29",
+          "description": "Source: https://lsa.umich.edu/transfer/prospective-students/apply.html"
+        },
+        "dependsOn": [],
+        "summary": "Add calendar event: T-3 reminder: University of Michigan - Ann Arbor application due 2027-02-01 (2027-01-29)"
+      }
+    ],
+    "blockers": [
+      {
+        "code": "NO_TRANSFER_PROGRAM",
+        "message": "Computer Science (FICTIONAL) does not accept transfer applicants.",
+        "schoolId": "northfield-fictional",
+        "programId": "northfield-fictional-cs",
+        "requirementId": "northfield-fictional-cs#has_transfer_program"
+      }
+    ],
+    "flags": []
+  },
+  "preflight": {
+    "uc-berkeley-data-science-ba.critique_doc": "new",
+    "uc-berkeley-data-science-ba.tracker_row": "new",
+    "uc-berkeley-data-science-ba.event_deadline": "new",
+    "uc-berkeley-data-science-ba.event_t30": "new",
+    "uc-berkeley-data-science-ba.event_t14": "new",
+    "uc-berkeley-data-science-ba.event_t3": "new",
+    "uc-berkeley-data-science-ba.draft_admissions_question": "new",
+    "uc-berkeley-data-science-ba.draft_advisor_prereq_check": "new",
+    "cornell-as-economics.critique_doc": "new",
+    "cornell-as-economics.tracker_row": "new",
+    "cornell-as-economics.event_deadline": "new",
+    "cornell-as-economics.event_t30": "new",
+    "cornell-as-economics.event_t14": "new",
+    "cornell-as-economics.event_t3": "new",
+    "cornell-as-economics.event_rec_request": "new",
+    "cornell-as-economics.draft_rec_request": "new",
+    "cornell-as-economics.draft_advisor_prereq_check": "new",
+    "umich-lsa.critique_doc": "new",
+    "umich-lsa.tracker_row": "new",
+    "umich-lsa.event_deadline": "new",
+    "umich-lsa.event_t30": "new",
+    "umich-lsa.event_t14": "new",
+    "umich-lsa.event_t3": "new"
+  },
+  "events": [
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s11",
+      "name": "policy.authorized",
+      "kind": "event",
+      "ts": 1789324717019,
+      "attrs": {
+        "planId": "plan-63478cfa9529",
+        "approved": 23,
+        "skipped": 0,
+        "blocked": 0
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s12",
+      "name": "execute",
+      "kind": "start",
+      "ts": 1789324717019,
+      "attrs": {
+        "planId": "plan-63478cfa9529"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s13",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717020,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "key": "tp1-7b7a827be6cba4bb",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s14",
+      "parentSpanId": "s13",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717021,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.critique_doc",
+        "tool": "docs.createDoc",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.042300000000068394,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s15",
+      "parentSpanId": "s13",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717022,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.critique_doc",
+        "tool": "docs.createDoc",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-7b7a827be6cba4bb",
+          "title": "Essay critique: University of California, Berkeley Data Science BA (College of Computing, Data Science, and Society) (Fall 2027)",
+          "body": "AI policy for University of California, Berkeley: feedback_ok. This is a placeholder critique; the rubric critique of your draft is generated in the essay step.\n\n## Essay uc-piq-required\n- Which paragraph of your draft answers this prompt most directly?\n- Is the draft within the 350-word limit?"
+        },
+        "latencyMs": 0.1634000000000242,
+        "result": {
+          "ref": {
+            "id": "doc-0001",
+            "url": "mock://docs/doc-0001"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s13",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717022,
+      "durationMs": 2,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "key": "tp1-7b7a827be6cba4bb",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "doc-0001",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s16",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717022,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "key": "tp1-10ce46ea998e08c2",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s17",
+      "parentSpanId": "s16",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717023,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.tracker_row",
+        "tool": "notion.upsertTrackerRow",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.010800000000017462,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s18",
+      "parentSpanId": "s16",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717023,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.tracker_row",
+        "tool": "notion.upsertTrackerRow",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-10ce46ea998e08c2",
+          "schoolId": "uc-berkeley",
+          "programId": "uc-berkeley-data-science-ba",
+          "title": "University of California, Berkeley: Data Science BA (College of Computing, Data Science, and Society)",
+          "deadline": "2026-11-30",
+          "requiredDocs": [
+            "Essay uc-piq-required (350 words)"
+          ],
+          "recsRequired": 0,
+          "essayStatus": "draft",
+          "gapCount": 5,
+          "status": "planning",
+          "notes": "PREREQ_MISSING_TERMS_LEFT: 4 required course(s) missing (linear-algebra, data-structures, domain-emphasis, uc-7-course-pattern) with 2 term(s) remaining before transfer.\nPREREQ_UNKNOWN_EQUIVALENCY: 1 course(s) need an equivalency check with an advisor or articulation office: data-c8 (possible: MATH 142)."
+        },
+        "latencyMs": 0.3563000000000329,
+        "result": {
+          "ref": {
+            "id": "page-0001",
+            "url": "mock://notion/page-0001"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s16",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717023,
+      "durationMs": 1,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "key": "tp1-10ce46ea998e08c2",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "page-0001",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s19",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717023,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-6291ad50f840c62f",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s20",
+      "parentSpanId": "s19",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717024,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_deadline",
+        "tool": "calendar.createEvent",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.01999999999998181,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s21",
+      "parentSpanId": "s19",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717024,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_deadline",
+        "tool": "calendar.createEvent",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-6291ad50f840c62f",
+          "title": "University of California, Berkeley Data Science BA (College of Computing, Data Science, and Society): application deadline",
+          "date": "2026-11-30",
+          "description": "Source: https://admission.universityofcalifornia.edu/how-to-apply/applying-as-a-transfer/dates-and-deadlines.html"
+        },
+        "latencyMs": 0.20719999999994343,
+        "result": {
+          "ref": {
+            "id": "tp16291ad50f840c62f",
+            "url": "mock://calendar/tp16291ad50f840c62f"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s19",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717024,
+      "durationMs": 1,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-6291ad50f840c62f",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "tp16291ad50f840c62f",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s22",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717024,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-7687f4ebbd0526e9",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s23",
+      "parentSpanId": "s22",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717024,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t30",
+        "tool": "calendar.createEvent",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.02509999999995216,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s24",
+      "parentSpanId": "s22",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717025,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t30",
+        "tool": "calendar.createEvent",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-7687f4ebbd0526e9",
+          "title": "T-30 reminder: University of California, Berkeley application due 2026-11-30",
+          "date": "2026-10-31",
+          "description": "Source: https://admission.universityofcalifornia.edu/how-to-apply/applying-as-a-transfer/dates-and-deadlines.html"
+        },
+        "latencyMs": 0.056500000000028194,
+        "result": {
+          "ref": {
+            "id": "tp17687f4ebbd0526e9",
+            "url": "mock://calendar/tp17687f4ebbd0526e9"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s22",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717025,
+      "durationMs": 1,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-7687f4ebbd0526e9",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "tp17687f4ebbd0526e9",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s25",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717025,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-d9d6534e81f35f0a",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s26",
+      "parentSpanId": "s25",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717025,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t14",
+        "tool": "calendar.createEvent",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.005500000000097316,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s27",
+      "parentSpanId": "s25",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717025,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t14",
+        "tool": "calendar.createEvent",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-d9d6534e81f35f0a",
+          "title": "T-14 reminder: University of California, Berkeley application due 2026-11-30",
+          "date": "2026-11-16",
+          "description": "Source: https://admission.universityofcalifornia.edu/how-to-apply/applying-as-a-transfer/dates-and-deadlines.html"
+        },
+        "latencyMs": 0.03809999999998581,
+        "result": {
+          "ref": {
+            "id": "tp1d9d6534e81f35f0a",
+            "url": "mock://calendar/tp1d9d6534e81f35f0a"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s25",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717025,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-d9d6534e81f35f0a",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "tp1d9d6534e81f35f0a",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s28",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717025,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-26a11247feaf269d",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s29",
+      "parentSpanId": "s28",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717025,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t3",
+        "tool": "calendar.createEvent",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.004599999999982174,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s30",
+      "parentSpanId": "s28",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717025,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t3",
+        "tool": "calendar.createEvent",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-26a11247feaf269d",
+          "title": "T-3 reminder: University of California, Berkeley application due 2026-11-30",
+          "date": "2026-11-27",
+          "description": "Source: https://admission.universityofcalifornia.edu/how-to-apply/applying-as-a-transfer/dates-and-deadlines.html"
+        },
+        "latencyMs": 0.036899999999945976,
+        "result": {
+          "ref": {
+            "id": "tp126a11247feaf269d",
+            "url": "mock://calendar/tp126a11247feaf269d"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s28",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717025,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-26a11247feaf269d",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "tp126a11247feaf269d",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s31",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717025,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.draft_admissions_question",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-93ef6becac5251ac",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s32",
+      "parentSpanId": "s31",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717026,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.draft_admissions_question",
+        "tool": "gmail.createDraft",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.012400000000070577,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s33",
+      "parentSpanId": "s31",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717026,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.draft_admissions_question",
+        "tool": "gmail.createDraft",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-93ef6becac5251ac",
+          "to": [
+            "transfer-questions@example.edu"
+          ],
+          "subject": "[TransferPilot] Question about Data Science BA (College of Computing, Data Science, and Society) transfer requirements (Fall 2027)",
+          "body": "Hello Berkeley Transfer Admissions,\n\nI plan to apply to transfer into Data Science BA (College of Computing, Data Science, and Society) for Fall 2027 and have a question about how my coursework maps to your requirements.\n\n- Foundations of Data Science (Data C8)\n\nThank you,\n[redacted:name]"
+        },
+        "latencyMs": 0.23080000000004475,
+        "result": {
+          "ref": {
+            "id": "r-0001"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s31",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717026,
+      "durationMs": 1,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.draft_admissions_question",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-93ef6becac5251ac",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "r-0001",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s34",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717026,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-d821eae6328f0752",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s35",
+      "parentSpanId": "s34",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717026,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+        "tool": "gmail.createDraft",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.020499999999969987,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s36",
+      "parentSpanId": "s34",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717027,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+        "tool": "gmail.createDraft",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-d821eae6328f0752",
+          "to": [
+            "ppatel@example.edu"
+          ],
+          "subject": "[TransferPilot] Prerequisite equivalency check for University of California, Berkeley Data Science BA (College of Computing, Data Science, and Society)",
+          "body": "Hello Priya Patel,\n\nCould you help me confirm which of my courses satisfy the University of California, Berkeley Data Science BA (College of Computing, Data Science, and Society) prerequisites?\n\n- Foundations of Data Science (Data C8) (unknown-equivalency)\n- Linear Algebra (Math 54 or equivalent) (missing)\n- Data Structures (CS 61B or 61BL) (missing)\n- Domain Emphasis lower-division course (missing)\n- UC 7-course pattern (missing)\n\nThank you,\n[redacted:name]"
+        },
+        "latencyMs": 0.10049999999989723,
+        "result": {
+          "ref": {
+            "id": "r-0002"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s34",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717027,
+      "durationMs": 1,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-d821eae6328f0752",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "r-0002",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s37",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717027,
+      "attrs": {
+        "actionId": "cornell-as-economics.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "key": "tp1-3e41a7c7c33354fd",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s38",
+      "parentSpanId": "s37",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717027,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.critique_doc",
+        "tool": "docs.createDoc",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.011700000000018917,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s39",
+      "parentSpanId": "s37",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717027,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.critique_doc",
+        "tool": "docs.createDoc",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-3e41a7c7c33354fd",
+          "title": "Essay critique: Cornell University College of Arts & Sciences - Economics (Fall 2027)",
+          "body": "AI policy for Cornell University: grammar_only. This is a placeholder critique; the rubric critique of your draft is generated in the essay step.\n\n## Essay cornell-transfer-statement\n- Which paragraph of your draft answers this prompt most directly?\n- Is the draft within the 650-word limit?\n\n## Essay as-college-supplement\n- Which paragraph of your draft answers this prompt most directly?"
+        },
+        "latencyMs": 0.033999999999991815,
+        "result": {
+          "ref": {
+            "id": "doc-0002",
+            "url": "mock://docs/doc-0002"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s37",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717027,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "key": "tp1-3e41a7c7c33354fd",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "doc-0002",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s40",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717027,
+      "attrs": {
+        "actionId": "cornell-as-economics.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "key": "tp1-1e896275d9b01284",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s41",
+      "parentSpanId": "s40",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717027,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.tracker_row",
+        "tool": "notion.upsertTrackerRow",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.025500000000079126,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s42",
+      "parentSpanId": "s40",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717027,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.tracker_row",
+        "tool": "notion.upsertTrackerRow",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-1e896275d9b01284",
+          "schoolId": "cornell",
+          "programId": "cornell-as-economics",
+          "title": "Cornell University: College of Arts & Sciences - Economics",
+          "deadline": "2027-03-15",
+          "requiredDocs": [
+            "Essay cornell-transfer-statement (650 words)",
+            "Essay as-college-supplement",
+            "Recommendation letters: 1"
+          ],
+          "recsRequired": 1,
+          "essayStatus": "draft",
+          "gapCount": 2,
+          "status": "planning",
+          "notes": "GPA_BELOW_COMPETITIVE: No minimum GPA is published; GPA [redacted:gpa] is below the program's competitive GPA of [redacted:gpa].\nPREREQ_MISSING_TERMS_LEFT: 1 required course(s) missing (econ-1120) with 2 term(s) remaining before transfer.\nPREREQ_UNKNOWN_EQUIVALENCY: 1 course(s) need an equivalency check with an advisor or articulation office: as-writing-intensive (possible: ENGL 122).\nDATA_NOT_PUBLISHED: The prompt for essay as-college-supplement is not publicly available; check the application portal."
+        },
+        "latencyMs": 0.08960000000001855,
+        "result": {
+          "ref": {
+            "id": "page-0002",
+            "url": "mock://notion/page-0002"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s40",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717027,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "key": "tp1-1e896275d9b01284",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "page-0002",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s43",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717028,
+      "attrs": {
+        "actionId": "cornell-as-economics.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-e3349b11e0b63b8a",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s44",
+      "parentSpanId": "s43",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717028,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_deadline",
+        "tool": "calendar.createEvent",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.006499999999959982,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s45",
+      "parentSpanId": "s43",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717028,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_deadline",
+        "tool": "calendar.createEvent",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-e3349b11e0b63b8a",
+          "title": "Cornell University College of Arts & Sciences - Economics: application deadline",
+          "date": "2027-03-15",
+          "description": "Source: https://admissions.cornell.edu/how-to-apply/transfer-applicants"
+        },
+        "latencyMs": 0.05119999999999436,
+        "result": {
+          "ref": {
+            "id": "tp1e3349b11e0b63b8a",
+            "url": "mock://calendar/tp1e3349b11e0b63b8a"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s43",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717028,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-e3349b11e0b63b8a",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "tp1e3349b11e0b63b8a",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s46",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717028,
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-2c7d64c4a47f9fb2",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s47",
+      "parentSpanId": "s46",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717028,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t30",
+        "tool": "calendar.createEvent",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.004100000000107684,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s48",
+      "parentSpanId": "s46",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717028,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t30",
+        "tool": "calendar.createEvent",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-2c7d64c4a47f9fb2",
+          "title": "T-30 reminder: Cornell University application due 2027-03-15",
+          "date": "2027-02-13",
+          "description": "Source: https://admissions.cornell.edu/how-to-apply/transfer-applicants"
+        },
+        "latencyMs": 0.03979999999990014,
+        "result": {
+          "ref": {
+            "id": "tp12c7d64c4a47f9fb2",
+            "url": "mock://calendar/tp12c7d64c4a47f9fb2"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s46",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717028,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-2c7d64c4a47f9fb2",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "tp12c7d64c4a47f9fb2",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s49",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717028,
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-1d02bcd3780ae5fc",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s50",
+      "parentSpanId": "s49",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717028,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t14",
+        "tool": "calendar.createEvent",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.003199999999992542,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s51",
+      "parentSpanId": "s49",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717028,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t14",
+        "tool": "calendar.createEvent",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-1d02bcd3780ae5fc",
+          "title": "T-14 reminder: Cornell University application due 2027-03-15",
+          "date": "2027-03-01",
+          "description": "Source: https://admissions.cornell.edu/how-to-apply/transfer-applicants"
+        },
+        "latencyMs": 0.046699999999987085,
+        "result": {
+          "ref": {
+            "id": "tp11d02bcd3780ae5fc",
+            "url": "mock://calendar/tp11d02bcd3780ae5fc"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s49",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717028,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-1d02bcd3780ae5fc",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "tp11d02bcd3780ae5fc",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s52",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717029,
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-96a3c3a117204a9e",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s53",
+      "parentSpanId": "s52",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717029,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t3",
+        "tool": "calendar.createEvent",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.0027999999999792635,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s54",
+      "parentSpanId": "s52",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717029,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t3",
+        "tool": "calendar.createEvent",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-96a3c3a117204a9e",
+          "title": "T-3 reminder: Cornell University application due 2027-03-15",
+          "date": "2027-03-12",
+          "description": "Source: https://admissions.cornell.edu/how-to-apply/transfer-applicants"
+        },
+        "latencyMs": 0.03870000000006257,
+        "result": {
+          "ref": {
+            "id": "tp196a3c3a117204a9e",
+            "url": "mock://calendar/tp196a3c3a117204a9e"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s52",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717029,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-96a3c3a117204a9e",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "tp196a3c3a117204a9e",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s55",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717029,
+      "attrs": {
+        "actionId": "cornell-as-economics.event_rec_request",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-33e3c07690d5d180",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s56",
+      "parentSpanId": "s55",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717029,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_rec_request",
+        "tool": "calendar.createEvent",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.003199999999992542,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s57",
+      "parentSpanId": "s55",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717029,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_rec_request",
+        "tool": "calendar.createEvent",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-33e3c07690d5d180",
+          "title": "Request recommendation letters for Cornell University",
+          "date": "2027-02-01",
+          "description": "Source: https://admissions.cornell.edu/how-to-apply/transfer-applicants"
+        },
+        "latencyMs": 0.04240000000004329,
+        "result": {
+          "ref": {
+            "id": "tp133e3c07690d5d180",
+            "url": "mock://calendar/tp133e3c07690d5d180"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s55",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717029,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_rec_request",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-33e3c07690d5d180",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "tp133e3c07690d5d180",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s58",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717029,
+      "attrs": {
+        "actionId": "cornell-as-economics.draft_rec_request",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-6e90b4a6bba5a6d5",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s59",
+      "parentSpanId": "s58",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717029,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.draft_rec_request",
+        "tool": "gmail.createDraft",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.004299999999943793,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s60",
+      "parentSpanId": "s58",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717029,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.draft_rec_request",
+        "tool": "gmail.createDraft",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-6e90b4a6bba5a6d5",
+          "to": [
+            "lchen@example.edu"
+          ],
+          "subject": "[TransferPilot] Recommendation letter request for Cornell University (Fall 2027)",
+          "body": "Hello Dr. Lin Chen,\n\nI am applying to transfer to Cornell University for Fall 2027 and would be grateful if you could write a recommendation letter for me.\n\n- 1 letter(s) for College of Arts & Sciences - Economics\n- Application deadline 2027-03-15\n\nThank you,\n[redacted:name]"
+        },
+        "latencyMs": 0.03319999999996526,
+        "result": {
+          "ref": {
+            "id": "r-0003"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s58",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717029,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.draft_rec_request",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-6e90b4a6bba5a6d5",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "r-0003",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s61",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717030,
+      "attrs": {
+        "actionId": "cornell-as-economics.draft_advisor_prereq_check",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-cd4be9e7204cbbb1",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s62",
+      "parentSpanId": "s61",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717030,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.draft_advisor_prereq_check",
+        "tool": "gmail.createDraft",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.0036000000000058208,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s63",
+      "parentSpanId": "s61",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717030,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.draft_advisor_prereq_check",
+        "tool": "gmail.createDraft",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-cd4be9e7204cbbb1",
+          "to": [
+            "ppatel@example.edu"
+          ],
+          "subject": "[TransferPilot] Prerequisite equivalency check for Cornell University College of Arts & Sciences - Economics",
+          "body": "Hello Priya Patel,\n\nCould you help me confirm which of my courses satisfy the Cornell University College of Arts & Sciences - Economics prerequisites?\n\n- Introductory Macroeconomics (ECON 1120 or equivalent) (missing)\n- Writing-intensive composition course (unknown-equivalency)\n\nThank you,\n[redacted:name]"
+        },
+        "latencyMs": 0.0262000000000171,
+        "result": {
+          "ref": {
+            "id": "r-0004"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s61",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717030,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.draft_advisor_prereq_check",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-cd4be9e7204cbbb1",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "r-0004",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s64",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717030,
+      "attrs": {
+        "actionId": "umich-lsa.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "key": "tp1-ee43b935c4c2c810",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s65",
+      "parentSpanId": "s64",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717030,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.critique_doc",
+        "tool": "docs.createDoc",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.005500000000097316,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s66",
+      "parentSpanId": "s64",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717030,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.critique_doc",
+        "tool": "docs.createDoc",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-ee43b935c4c2c810",
+          "title": "Essay critique: University of Michigan - Ann Arbor College of Literature, Science, and the Arts (LSA) (Fall 2027)",
+          "body": "AI policy for University of Michigan - Ann Arbor: brainstorm_ok. This is a placeholder critique; the rubric critique of your draft is generated in the essay step.\n\n## Essay commonapp-personal-essay\n- Which paragraph of your draft answers this prompt most directly?\n- Is the draft within the 650-word limit?\n\n## Essay um-leaders-citizens\n- Which paragraph of your draft answers this prompt most directly?\n\n## Essay um-college-fit\n- Which paragraph of your draft answers this prompt most directly?\n\n## Essay um-transfer-reasons\n- Which paragraph of your draft answers this prompt most directly?"
+        },
+        "latencyMs": 0.017399999999952342,
+        "result": {
+          "ref": {
+            "id": "doc-0003",
+            "url": "mock://docs/doc-0003"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s64",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717030,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "key": "tp1-ee43b935c4c2c810",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "doc-0003",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s67",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717030,
+      "attrs": {
+        "actionId": "umich-lsa.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "key": "tp1-3225e29d02cb3761",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s68",
+      "parentSpanId": "s67",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717030,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.tracker_row",
+        "tool": "notion.upsertTrackerRow",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.004700000000070759,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s69",
+      "parentSpanId": "s67",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717030,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.tracker_row",
+        "tool": "notion.upsertTrackerRow",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-3225e29d02cb3761",
+          "schoolId": "umich",
+          "programId": "umich-lsa",
+          "title": "University of Michigan - Ann Arbor: College of Literature, Science, and the Arts (LSA)",
+          "deadline": "2027-02-01",
+          "requiredDocs": [
+            "Essay commonapp-personal-essay (650 words)",
+            "Essay um-leaders-citizens",
+            "Essay um-college-fit",
+            "Essay um-transfer-reasons"
+          ],
+          "recsRequired": 0,
+          "essayStatus": "draft",
+          "gapCount": 0,
+          "status": "planning",
+          "notes": "DATA_NOT_PUBLISHED: No minimum or competitive GPA is published for this program.\nDATA_NOT_PUBLISHED: No minimum unit requirement is published for this program."
+        },
+        "latencyMs": 0.07799999999997453,
+        "result": {
+          "ref": {
+            "id": "page-0003",
+            "url": "mock://notion/page-0003"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s67",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717031,
+      "durationMs": 1,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "key": "tp1-3225e29d02cb3761",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "page-0003",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s70",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717031,
+      "attrs": {
+        "actionId": "umich-lsa.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-745b6940e0be2bb1",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s71",
+      "parentSpanId": "s70",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717031,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_deadline",
+        "tool": "calendar.createEvent",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.0036999999999807187,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s72",
+      "parentSpanId": "s70",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717031,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_deadline",
+        "tool": "calendar.createEvent",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-745b6940e0be2bb1",
+          "title": "University of Michigan - Ann Arbor College of Literature, Science, and the Arts (LSA): application deadline",
+          "date": "2027-02-01",
+          "description": "Source: https://lsa.umich.edu/transfer/prospective-students/apply.html"
+        },
+        "latencyMs": 0.04330000000004475,
+        "result": {
+          "ref": {
+            "id": "tp1745b6940e0be2bb1",
+            "url": "mock://calendar/tp1745b6940e0be2bb1"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s70",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717031,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-745b6940e0be2bb1",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "tp1745b6940e0be2bb1",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s73",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717031,
+      "attrs": {
+        "actionId": "umich-lsa.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-cdda7cc25301cc00",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s74",
+      "parentSpanId": "s73",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717031,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_t30",
+        "tool": "calendar.createEvent",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.0026000000000294676,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s75",
+      "parentSpanId": "s73",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717031,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_t30",
+        "tool": "calendar.createEvent",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-cdda7cc25301cc00",
+          "title": "T-30 reminder: University of Michigan - Ann Arbor application due 2027-02-01",
+          "date": "2027-01-02",
+          "description": "Source: https://lsa.umich.edu/transfer/prospective-students/apply.html"
+        },
+        "latencyMs": 0.026399999999966894,
+        "result": {
+          "ref": {
+            "id": "tp1cdda7cc25301cc00",
+            "url": "mock://calendar/tp1cdda7cc25301cc00"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s73",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717031,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-cdda7cc25301cc00",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "tp1cdda7cc25301cc00",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s76",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717031,
+      "attrs": {
+        "actionId": "umich-lsa.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-35af476fdd074060",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s77",
+      "parentSpanId": "s76",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717031,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_t14",
+        "tool": "calendar.createEvent",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.0025000000000545697,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s78",
+      "parentSpanId": "s76",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717031,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_t14",
+        "tool": "calendar.createEvent",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-35af476fdd074060",
+          "title": "T-14 reminder: University of Michigan - Ann Arbor application due 2027-02-01",
+          "date": "2027-01-18",
+          "description": "Source: https://lsa.umich.edu/transfer/prospective-students/apply.html"
+        },
+        "latencyMs": 0.021100000000046748,
+        "result": {
+          "ref": {
+            "id": "tp135af476fdd074060",
+            "url": "mock://calendar/tp135af476fdd074060"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s76",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717031,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-35af476fdd074060",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "tp135af476fdd074060",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s79",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "start",
+      "ts": 1789324717031,
+      "attrs": {
+        "actionId": "umich-lsa.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-5b699bb5bbebce3c",
+        "maxAttempts": 3
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s80",
+      "parentSpanId": "s79",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717031,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_t3",
+        "tool": "calendar.createEvent",
+        "method": "findByKey",
+        "attempt": 1,
+        "latencyMs": 0.002399999999965985,
+        "result": {
+          "found": false
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s81",
+      "parentSpanId": "s79",
+      "name": "tool.call",
+      "kind": "event",
+      "ts": 1789324717031,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_t3",
+        "tool": "calendar.createEvent",
+        "method": "run",
+        "attempt": 1,
+        "args": {
+          "key": "tp1-5b699bb5bbebce3c",
+          "title": "T-3 reminder: University of Michigan - Ann Arbor application due 2027-02-01",
+          "date": "2027-01-29",
+          "description": "Source: https://lsa.umich.edu/transfer/prospective-students/apply.html"
+        },
+        "latencyMs": 0.020499999999969987,
+        "result": {
+          "ref": {
+            "id": "tp15b699bb5bbebce3c",
+            "url": "mock://calendar/tp15b699bb5bbebce3c"
+          }
+        }
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s79",
+      "parentSpanId": "s12",
+      "name": "action.execute",
+      "kind": "end",
+      "ts": 1789324717031,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-5b699bb5bbebce3c",
+        "maxAttempts": 3,
+        "attempt": 1,
+        "outcome": "created",
+        "refId": "tp15b699bb5bbebce3c",
+        "foundByKey": false
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s12",
+      "name": "execute",
+      "kind": "end",
+      "ts": 1789324717032,
+      "durationMs": 13,
+      "status": "ok",
+      "attrs": {
+        "planId": "plan-63478cfa9529"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s82",
+      "name": "verify",
+      "kind": "start",
+      "ts": 1789324717032,
+      "attrs": {
+        "planId": "plan-63478cfa9529",
+        "outcomes": 23
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s83",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717032,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "key": "tp1-7b7a827be6cba4bb"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s83",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717032,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "key": "tp1-7b7a827be6cba4bb",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s84",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717032,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "key": "tp1-10ce46ea998e08c2"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s84",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717032,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "key": "tp1-10ce46ea998e08c2",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s85",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717032,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-6291ad50f840c62f"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s85",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717032,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-6291ad50f840c62f",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s86",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717032,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-7687f4ebbd0526e9"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s86",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717032,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-7687f4ebbd0526e9",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s87",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717032,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-d9d6534e81f35f0a"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s87",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717033,
+      "durationMs": 1,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-d9d6534e81f35f0a",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s88",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717033,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-26a11247feaf269d"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s88",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717033,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-26a11247feaf269d",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s89",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717033,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.draft_admissions_question",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-93ef6becac5251ac"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s89",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717033,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.draft_admissions_question",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-93ef6becac5251ac",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s90",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717033,
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-d821eae6328f0752"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s90",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717033,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-d821eae6328f0752",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s91",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717033,
+      "attrs": {
+        "actionId": "cornell-as-economics.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "key": "tp1-3e41a7c7c33354fd"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s91",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717033,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "key": "tp1-3e41a7c7c33354fd",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s92",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717033,
+      "attrs": {
+        "actionId": "cornell-as-economics.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "key": "tp1-1e896275d9b01284"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s92",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717033,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "key": "tp1-1e896275d9b01284",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s93",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717033,
+      "attrs": {
+        "actionId": "cornell-as-economics.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-e3349b11e0b63b8a"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s93",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717033,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-e3349b11e0b63b8a",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s94",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717033,
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-2c7d64c4a47f9fb2"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s94",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717033,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-2c7d64c4a47f9fb2",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s95",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717033,
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-1d02bcd3780ae5fc"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s95",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717033,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-1d02bcd3780ae5fc",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s96",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717033,
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-96a3c3a117204a9e"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s96",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717033,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-96a3c3a117204a9e",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s97",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717033,
+      "attrs": {
+        "actionId": "cornell-as-economics.event_rec_request",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-33e3c07690d5d180"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s97",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717034,
+      "durationMs": 1,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.event_rec_request",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-33e3c07690d5d180",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s98",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717034,
+      "attrs": {
+        "actionId": "cornell-as-economics.draft_rec_request",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-6e90b4a6bba5a6d5"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s98",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717034,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.draft_rec_request",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-6e90b4a6bba5a6d5",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s99",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717034,
+      "attrs": {
+        "actionId": "cornell-as-economics.draft_advisor_prereq_check",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-cd4be9e7204cbbb1"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s99",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717034,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "cornell-as-economics.draft_advisor_prereq_check",
+        "app": "gmail",
+        "tool": "gmail.createDraft",
+        "key": "tp1-cd4be9e7204cbbb1",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s100",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717034,
+      "attrs": {
+        "actionId": "umich-lsa.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "key": "tp1-ee43b935c4c2c810"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s100",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717034,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.critique_doc",
+        "app": "docs",
+        "tool": "docs.createDoc",
+        "key": "tp1-ee43b935c4c2c810",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s101",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717034,
+      "attrs": {
+        "actionId": "umich-lsa.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "key": "tp1-3225e29d02cb3761"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s101",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717034,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.tracker_row",
+        "app": "notion",
+        "tool": "notion.upsertTrackerRow",
+        "key": "tp1-3225e29d02cb3761",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s102",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717034,
+      "attrs": {
+        "actionId": "umich-lsa.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-745b6940e0be2bb1"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s102",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717034,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_deadline",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-745b6940e0be2bb1",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s103",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717034,
+      "attrs": {
+        "actionId": "umich-lsa.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-cdda7cc25301cc00"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s103",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717034,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_t30",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-cdda7cc25301cc00",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s104",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717034,
+      "attrs": {
+        "actionId": "umich-lsa.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-35af476fdd074060"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s104",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717034,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_t14",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-35af476fdd074060",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s105",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "start",
+      "ts": 1789324717034,
+      "attrs": {
+        "actionId": "umich-lsa.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-5b699bb5bbebce3c"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s105",
+      "parentSpanId": "s82",
+      "name": "verify.readback",
+      "kind": "end",
+      "ts": 1789324717034,
+      "durationMs": 0,
+      "status": "ok",
+      "attrs": {
+        "actionId": "umich-lsa.event_t3",
+        "app": "calendar",
+        "tool": "calendar.createEvent",
+        "key": "tp1-5b699bb5bbebce3c",
+        "found": true,
+        "artifactStatus": "verified"
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s82",
+      "name": "verify",
+      "kind": "end",
+      "ts": 1789324717036,
+      "durationMs": 4,
+      "status": "ok",
+      "attrs": {
+        "planId": "plan-63478cfa9529",
+        "outcomes": 23,
+        "verified": 23,
+        "deduped": 0,
+        "mismatch": 0,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "traceId": "demo-sprint",
+      "spanId": "s106",
+      "name": "run.end",
+      "kind": "event",
+      "ts": 1789324717037,
+      "status": "ok",
+      "attrs": {
+        "runId": "run-demo-sprint",
+        "status": "ok",
+        "counts": {
+          "verified": 23,
+          "deduped": 0,
+          "failed": 0,
+          "skipped": 0
+        }
+      }
+    }
+  ],
+  "report": {
+    "runId": "run-demo-sprint",
+    "traceId": "demo-sprint",
+    "planId": "plan-63478cfa9529",
+    "mode": "mock",
+    "startedAt": "2026-09-13T18:38:37.017Z",
+    "finishedAt": "2026-09-13T18:38:37.036Z",
+    "approvedIds": [
+      "uc-berkeley-data-science-ba.critique_doc",
+      "uc-berkeley-data-science-ba.tracker_row",
+      "uc-berkeley-data-science-ba.event_deadline",
+      "uc-berkeley-data-science-ba.event_t30",
+      "uc-berkeley-data-science-ba.event_t14",
+      "uc-berkeley-data-science-ba.event_t3",
+      "uc-berkeley-data-science-ba.draft_admissions_question",
+      "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+      "cornell-as-economics.critique_doc",
+      "cornell-as-economics.tracker_row",
+      "cornell-as-economics.event_deadline",
+      "cornell-as-economics.event_t30",
+      "cornell-as-economics.event_t14",
+      "cornell-as-economics.event_t3",
+      "cornell-as-economics.event_rec_request",
+      "cornell-as-economics.draft_rec_request",
+      "cornell-as-economics.draft_advisor_prereq_check",
+      "umich-lsa.critique_doc",
+      "umich-lsa.tracker_row",
+      "umich-lsa.event_deadline",
+      "umich-lsa.event_t30",
+      "umich-lsa.event_t14",
+      "umich-lsa.event_t3"
+    ],
+    "artifacts": [
+      {
+        "actionId": "uc-berkeley-data-science-ba.critique_doc",
+        "app": "docs",
+        "idempotencyKey": "tp1-7b7a827be6cba4bb",
+        "status": "verified",
+        "ref": {
+          "id": "doc-0001",
+          "url": "mock://docs/doc-0001"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "uc-berkeley-data-science-ba.tracker_row",
+        "app": "notion",
+        "idempotencyKey": "tp1-10ce46ea998e08c2",
+        "status": "verified",
+        "ref": {
+          "id": "page-0001",
+          "url": "mock://notion/page-0001"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "uc-berkeley-data-science-ba.event_deadline",
+        "app": "calendar",
+        "idempotencyKey": "tp1-6291ad50f840c62f",
+        "status": "verified",
+        "ref": {
+          "id": "tp16291ad50f840c62f",
+          "url": "mock://calendar/tp16291ad50f840c62f"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "uc-berkeley-data-science-ba.event_t30",
+        "app": "calendar",
+        "idempotencyKey": "tp1-7687f4ebbd0526e9",
+        "status": "verified",
+        "ref": {
+          "id": "tp17687f4ebbd0526e9",
+          "url": "mock://calendar/tp17687f4ebbd0526e9"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "uc-berkeley-data-science-ba.event_t14",
+        "app": "calendar",
+        "idempotencyKey": "tp1-d9d6534e81f35f0a",
+        "status": "verified",
+        "ref": {
+          "id": "tp1d9d6534e81f35f0a",
+          "url": "mock://calendar/tp1d9d6534e81f35f0a"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "uc-berkeley-data-science-ba.event_t3",
+        "app": "calendar",
+        "idempotencyKey": "tp1-26a11247feaf269d",
+        "status": "verified",
+        "ref": {
+          "id": "tp126a11247feaf269d",
+          "url": "mock://calendar/tp126a11247feaf269d"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "uc-berkeley-data-science-ba.draft_admissions_question",
+        "app": "gmail",
+        "idempotencyKey": "tp1-93ef6becac5251ac",
+        "status": "verified",
+        "ref": {
+          "id": "r-0001"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+        "app": "gmail",
+        "idempotencyKey": "tp1-d821eae6328f0752",
+        "status": "verified",
+        "ref": {
+          "id": "r-0002"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "cornell-as-economics.critique_doc",
+        "app": "docs",
+        "idempotencyKey": "tp1-3e41a7c7c33354fd",
+        "status": "verified",
+        "ref": {
+          "id": "doc-0002",
+          "url": "mock://docs/doc-0002"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "cornell-as-economics.tracker_row",
+        "app": "notion",
+        "idempotencyKey": "tp1-1e896275d9b01284",
+        "status": "verified",
+        "ref": {
+          "id": "page-0002",
+          "url": "mock://notion/page-0002"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "cornell-as-economics.event_deadline",
+        "app": "calendar",
+        "idempotencyKey": "tp1-e3349b11e0b63b8a",
+        "status": "verified",
+        "ref": {
+          "id": "tp1e3349b11e0b63b8a",
+          "url": "mock://calendar/tp1e3349b11e0b63b8a"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "cornell-as-economics.event_t30",
+        "app": "calendar",
+        "idempotencyKey": "tp1-2c7d64c4a47f9fb2",
+        "status": "verified",
+        "ref": {
+          "id": "tp12c7d64c4a47f9fb2",
+          "url": "mock://calendar/tp12c7d64c4a47f9fb2"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "cornell-as-economics.event_t14",
+        "app": "calendar",
+        "idempotencyKey": "tp1-1d02bcd3780ae5fc",
+        "status": "verified",
+        "ref": {
+          "id": "tp11d02bcd3780ae5fc",
+          "url": "mock://calendar/tp11d02bcd3780ae5fc"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "cornell-as-economics.event_t3",
+        "app": "calendar",
+        "idempotencyKey": "tp1-96a3c3a117204a9e",
+        "status": "verified",
+        "ref": {
+          "id": "tp196a3c3a117204a9e",
+          "url": "mock://calendar/tp196a3c3a117204a9e"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "cornell-as-economics.event_rec_request",
+        "app": "calendar",
+        "idempotencyKey": "tp1-33e3c07690d5d180",
+        "status": "verified",
+        "ref": {
+          "id": "tp133e3c07690d5d180",
+          "url": "mock://calendar/tp133e3c07690d5d180"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "cornell-as-economics.draft_rec_request",
+        "app": "gmail",
+        "idempotencyKey": "tp1-6e90b4a6bba5a6d5",
+        "status": "verified",
+        "ref": {
+          "id": "r-0003"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "cornell-as-economics.draft_advisor_prereq_check",
+        "app": "gmail",
+        "idempotencyKey": "tp1-cd4be9e7204cbbb1",
+        "status": "verified",
+        "ref": {
+          "id": "r-0004"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "umich-lsa.critique_doc",
+        "app": "docs",
+        "idempotencyKey": "tp1-ee43b935c4c2c810",
+        "status": "verified",
+        "ref": {
+          "id": "doc-0003",
+          "url": "mock://docs/doc-0003"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "umich-lsa.tracker_row",
+        "app": "notion",
+        "idempotencyKey": "tp1-3225e29d02cb3761",
+        "status": "verified",
+        "ref": {
+          "id": "page-0003",
+          "url": "mock://notion/page-0003"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "umich-lsa.event_deadline",
+        "app": "calendar",
+        "idempotencyKey": "tp1-745b6940e0be2bb1",
+        "status": "verified",
+        "ref": {
+          "id": "tp1745b6940e0be2bb1",
+          "url": "mock://calendar/tp1745b6940e0be2bb1"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "umich-lsa.event_t30",
+        "app": "calendar",
+        "idempotencyKey": "tp1-cdda7cc25301cc00",
+        "status": "verified",
+        "ref": {
+          "id": "tp1cdda7cc25301cc00",
+          "url": "mock://calendar/tp1cdda7cc25301cc00"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "umich-lsa.event_t14",
+        "app": "calendar",
+        "idempotencyKey": "tp1-35af476fdd074060",
+        "status": "verified",
+        "ref": {
+          "id": "tp135af476fdd074060",
+          "url": "mock://calendar/tp135af476fdd074060"
+        },
+        "attempts": 1
+      },
+      {
+        "actionId": "umich-lsa.event_t3",
+        "app": "calendar",
+        "idempotencyKey": "tp1-5b699bb5bbebce3c",
+        "status": "verified",
+        "ref": {
+          "id": "tp15b699bb5bbebce3c",
+          "url": "mock://calendar/tp15b699bb5bbebce3c"
+        },
+        "attempts": 1
+      }
+    ],
+    "blockers": [
+      {
+        "code": "NO_TRANSFER_PROGRAM",
+        "message": "Computer Science (FICTIONAL) does not accept transfer applicants.",
+        "schoolId": "northfield-fictional",
+        "programId": "northfield-fictional-cs",
+        "requirementId": "northfield-fictional-cs#has_transfer_program"
+      }
+    ],
+    "flags": [],
+    "counts": {
+      "verified": 23,
+      "deduped": 0,
+      "failed": 0,
+      "skipped": 0
+    },
+    "status": "ok"
+  },
+  "rerun": {
+    "events": [
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s117",
+        "name": "policy.authorized",
+        "kind": "event",
+        "ts": 1789324717047,
+        "attrs": {
+          "planId": "plan-63478cfa9529",
+          "approved": 23,
+          "skipped": 0,
+          "blocked": 0
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s118",
+        "name": "execute",
+        "kind": "start",
+        "ts": 1789324717047,
+        "attrs": {
+          "planId": "plan-63478cfa9529"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s119",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717047,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.critique_doc",
+          "app": "docs",
+          "tool": "docs.createDoc",
+          "key": "tp1-7b7a827be6cba4bb",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s120",
+        "parentSpanId": "s119",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717047,
+        "status": "ok",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.critique_doc",
+          "tool": "docs.createDoc",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.017500000000040927,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "doc-0001",
+              "url": "mock://docs/doc-0001"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s121",
+        "parentSpanId": "s119",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717047,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.critique_doc",
+          "key": "tp1-7b7a827be6cba4bb",
+          "refId": "doc-0001"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s119",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717047,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.critique_doc",
+          "app": "docs",
+          "tool": "docs.createDoc",
+          "key": "tp1-7b7a827be6cba4bb",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "doc-0001",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s122",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717047,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.tracker_row",
+          "app": "notion",
+          "tool": "notion.upsertTrackerRow",
+          "key": "tp1-10ce46ea998e08c2",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s123",
+        "parentSpanId": "s122",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717048,
+        "status": "ok",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.tracker_row",
+          "tool": "notion.upsertTrackerRow",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.03589999999996962,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "page-0001",
+              "url": "mock://notion/page-0001"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s124",
+        "parentSpanId": "s122",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717048,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.tracker_row",
+          "key": "tp1-10ce46ea998e08c2",
+          "refId": "page-0001"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s122",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717048,
+        "durationMs": 1,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.tracker_row",
+          "app": "notion",
+          "tool": "notion.upsertTrackerRow",
+          "key": "tp1-10ce46ea998e08c2",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "page-0001",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s125",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717048,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_deadline",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-6291ad50f840c62f",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s126",
+        "parentSpanId": "s125",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717048,
+        "status": "ok",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_deadline",
+          "tool": "calendar.createEvent",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.017800000000079308,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "tp16291ad50f840c62f",
+              "url": "mock://calendar/tp16291ad50f840c62f"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s127",
+        "parentSpanId": "s125",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717048,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_deadline",
+          "key": "tp1-6291ad50f840c62f",
+          "refId": "tp16291ad50f840c62f"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s125",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717048,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_deadline",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-6291ad50f840c62f",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "tp16291ad50f840c62f",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s128",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717048,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t30",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-7687f4ebbd0526e9",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s129",
+        "parentSpanId": "s128",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717048,
+        "status": "ok",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t30",
+          "tool": "calendar.createEvent",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.011300000000005639,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "tp17687f4ebbd0526e9",
+              "url": "mock://calendar/tp17687f4ebbd0526e9"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s130",
+        "parentSpanId": "s128",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717048,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t30",
+          "key": "tp1-7687f4ebbd0526e9",
+          "refId": "tp17687f4ebbd0526e9"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s128",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717048,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t30",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-7687f4ebbd0526e9",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "tp17687f4ebbd0526e9",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s131",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717048,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t14",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-d9d6534e81f35f0a",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s132",
+        "parentSpanId": "s131",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717048,
+        "status": "ok",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t14",
+          "tool": "calendar.createEvent",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.009700000000066211,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "tp1d9d6534e81f35f0a",
+              "url": "mock://calendar/tp1d9d6534e81f35f0a"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s133",
+        "parentSpanId": "s131",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717048,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t14",
+          "key": "tp1-d9d6534e81f35f0a",
+          "refId": "tp1d9d6534e81f35f0a"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s131",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717048,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t14",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-d9d6534e81f35f0a",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "tp1d9d6534e81f35f0a",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s134",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717048,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t3",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-26a11247feaf269d",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s135",
+        "parentSpanId": "s134",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717048,
+        "status": "ok",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t3",
+          "tool": "calendar.createEvent",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.007999999999924512,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "tp126a11247feaf269d",
+              "url": "mock://calendar/tp126a11247feaf269d"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s136",
+        "parentSpanId": "s134",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717048,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t3",
+          "key": "tp1-26a11247feaf269d",
+          "refId": "tp126a11247feaf269d"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s134",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717048,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t3",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-26a11247feaf269d",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "tp126a11247feaf269d",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s137",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717048,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.draft_admissions_question",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-93ef6becac5251ac",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s138",
+        "parentSpanId": "s137",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717048,
+        "status": "ok",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.draft_admissions_question",
+          "tool": "gmail.createDraft",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.019400000000018736,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "r-0001"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s139",
+        "parentSpanId": "s137",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717048,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.draft_admissions_question",
+          "key": "tp1-93ef6becac5251ac",
+          "refId": "r-0001"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s137",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717049,
+        "durationMs": 1,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.draft_admissions_question",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-93ef6becac5251ac",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "r-0001",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s140",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717049,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-d821eae6328f0752",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s141",
+        "parentSpanId": "s140",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717049,
+        "status": "ok",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+          "tool": "gmail.createDraft",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.011199999999917054,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "r-0002"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s142",
+        "parentSpanId": "s140",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717049,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+          "key": "tp1-d821eae6328f0752",
+          "refId": "r-0002"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s140",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717049,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-d821eae6328f0752",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "r-0002",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s143",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717049,
+        "attrs": {
+          "actionId": "cornell-as-economics.critique_doc",
+          "app": "docs",
+          "tool": "docs.createDoc",
+          "key": "tp1-3e41a7c7c33354fd",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s144",
+        "parentSpanId": "s143",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717049,
+        "status": "ok",
+        "attrs": {
+          "actionId": "cornell-as-economics.critique_doc",
+          "tool": "docs.createDoc",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.011399999999980537,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "doc-0002",
+              "url": "mock://docs/doc-0002"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s145",
+        "parentSpanId": "s143",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717049,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.critique_doc",
+          "key": "tp1-3e41a7c7c33354fd",
+          "refId": "doc-0002"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s143",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717049,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.critique_doc",
+          "app": "docs",
+          "tool": "docs.createDoc",
+          "key": "tp1-3e41a7c7c33354fd",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "doc-0002",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s146",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717049,
+        "attrs": {
+          "actionId": "cornell-as-economics.tracker_row",
+          "app": "notion",
+          "tool": "notion.upsertTrackerRow",
+          "key": "tp1-1e896275d9b01284",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s147",
+        "parentSpanId": "s146",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717049,
+        "status": "ok",
+        "attrs": {
+          "actionId": "cornell-as-economics.tracker_row",
+          "tool": "notion.upsertTrackerRow",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.020099999999956708,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "page-0002",
+              "url": "mock://notion/page-0002"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s148",
+        "parentSpanId": "s146",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717049,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.tracker_row",
+          "key": "tp1-1e896275d9b01284",
+          "refId": "page-0002"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s146",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717049,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.tracker_row",
+          "app": "notion",
+          "tool": "notion.upsertTrackerRow",
+          "key": "tp1-1e896275d9b01284",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "page-0002",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s149",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717049,
+        "attrs": {
+          "actionId": "cornell-as-economics.event_deadline",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-e3349b11e0b63b8a",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s150",
+        "parentSpanId": "s149",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717049,
+        "status": "ok",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_deadline",
+          "tool": "calendar.createEvent",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.013800000000060209,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "tp1e3349b11e0b63b8a",
+              "url": "mock://calendar/tp1e3349b11e0b63b8a"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s151",
+        "parentSpanId": "s149",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717049,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_deadline",
+          "key": "tp1-e3349b11e0b63b8a",
+          "refId": "tp1e3349b11e0b63b8a"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s149",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717049,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_deadline",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-e3349b11e0b63b8a",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "tp1e3349b11e0b63b8a",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s152",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717049,
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t30",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-2c7d64c4a47f9fb2",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s153",
+        "parentSpanId": "s152",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717049,
+        "status": "ok",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t30",
+          "tool": "calendar.createEvent",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.009000000000014552,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "tp12c7d64c4a47f9fb2",
+              "url": "mock://calendar/tp12c7d64c4a47f9fb2"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s154",
+        "parentSpanId": "s152",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717049,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t30",
+          "key": "tp1-2c7d64c4a47f9fb2",
+          "refId": "tp12c7d64c4a47f9fb2"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s152",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717049,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t30",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-2c7d64c4a47f9fb2",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "tp12c7d64c4a47f9fb2",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s155",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717049,
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t14",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-1d02bcd3780ae5fc",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s156",
+        "parentSpanId": "s155",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717050,
+        "status": "ok",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t14",
+          "tool": "calendar.createEvent",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.008900000000039654,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "tp11d02bcd3780ae5fc",
+              "url": "mock://calendar/tp11d02bcd3780ae5fc"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s157",
+        "parentSpanId": "s155",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717050,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t14",
+          "key": "tp1-1d02bcd3780ae5fc",
+          "refId": "tp11d02bcd3780ae5fc"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s155",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717050,
+        "durationMs": 1,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t14",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-1d02bcd3780ae5fc",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "tp11d02bcd3780ae5fc",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s158",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717050,
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t3",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-96a3c3a117204a9e",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s159",
+        "parentSpanId": "s158",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717050,
+        "status": "ok",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t3",
+          "tool": "calendar.createEvent",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.010400000000004184,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "tp196a3c3a117204a9e",
+              "url": "mock://calendar/tp196a3c3a117204a9e"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s160",
+        "parentSpanId": "s158",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717050,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t3",
+          "key": "tp1-96a3c3a117204a9e",
+          "refId": "tp196a3c3a117204a9e"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s158",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717050,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t3",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-96a3c3a117204a9e",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "tp196a3c3a117204a9e",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s161",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717050,
+        "attrs": {
+          "actionId": "cornell-as-economics.event_rec_request",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-33e3c07690d5d180",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s162",
+        "parentSpanId": "s161",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717050,
+        "status": "ok",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_rec_request",
+          "tool": "calendar.createEvent",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.011200000000030741,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "tp133e3c07690d5d180",
+              "url": "mock://calendar/tp133e3c07690d5d180"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s163",
+        "parentSpanId": "s161",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717050,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_rec_request",
+          "key": "tp1-33e3c07690d5d180",
+          "refId": "tp133e3c07690d5d180"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s161",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717050,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_rec_request",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-33e3c07690d5d180",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "tp133e3c07690d5d180",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s164",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717050,
+        "attrs": {
+          "actionId": "cornell-as-economics.draft_rec_request",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-6e90b4a6bba5a6d5",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s165",
+        "parentSpanId": "s164",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717050,
+        "status": "ok",
+        "attrs": {
+          "actionId": "cornell-as-economics.draft_rec_request",
+          "tool": "gmail.createDraft",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.013199999999983447,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "r-0003"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s166",
+        "parentSpanId": "s164",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717050,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.draft_rec_request",
+          "key": "tp1-6e90b4a6bba5a6d5",
+          "refId": "r-0003"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s164",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717050,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.draft_rec_request",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-6e90b4a6bba5a6d5",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "r-0003",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s167",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717050,
+        "attrs": {
+          "actionId": "cornell-as-economics.draft_advisor_prereq_check",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-cd4be9e7204cbbb1",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s168",
+        "parentSpanId": "s167",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717050,
+        "status": "ok",
+        "attrs": {
+          "actionId": "cornell-as-economics.draft_advisor_prereq_check",
+          "tool": "gmail.createDraft",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.014800000000036562,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "r-0004"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s169",
+        "parentSpanId": "s167",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717050,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.draft_advisor_prereq_check",
+          "key": "tp1-cd4be9e7204cbbb1",
+          "refId": "r-0004"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s167",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717050,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.draft_advisor_prereq_check",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-cd4be9e7204cbbb1",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "r-0004",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s170",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717050,
+        "attrs": {
+          "actionId": "umich-lsa.critique_doc",
+          "app": "docs",
+          "tool": "docs.createDoc",
+          "key": "tp1-ee43b935c4c2c810",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s171",
+        "parentSpanId": "s170",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717050,
+        "status": "ok",
+        "attrs": {
+          "actionId": "umich-lsa.critique_doc",
+          "tool": "docs.createDoc",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.011200000000030741,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "doc-0003",
+              "url": "mock://docs/doc-0003"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s172",
+        "parentSpanId": "s170",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717051,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.critique_doc",
+          "key": "tp1-ee43b935c4c2c810",
+          "refId": "doc-0003"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s170",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717051,
+        "durationMs": 1,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.critique_doc",
+          "app": "docs",
+          "tool": "docs.createDoc",
+          "key": "tp1-ee43b935c4c2c810",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "doc-0003",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s173",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717051,
+        "attrs": {
+          "actionId": "umich-lsa.tracker_row",
+          "app": "notion",
+          "tool": "notion.upsertTrackerRow",
+          "key": "tp1-3225e29d02cb3761",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s174",
+        "parentSpanId": "s173",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717051,
+        "status": "ok",
+        "attrs": {
+          "actionId": "umich-lsa.tracker_row",
+          "tool": "notion.upsertTrackerRow",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.026299999999991996,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "page-0003",
+              "url": "mock://notion/page-0003"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s175",
+        "parentSpanId": "s173",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717051,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.tracker_row",
+          "key": "tp1-3225e29d02cb3761",
+          "refId": "page-0003"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s173",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717051,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.tracker_row",
+          "app": "notion",
+          "tool": "notion.upsertTrackerRow",
+          "key": "tp1-3225e29d02cb3761",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "page-0003",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s176",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717051,
+        "attrs": {
+          "actionId": "umich-lsa.event_deadline",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-745b6940e0be2bb1",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s177",
+        "parentSpanId": "s176",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717051,
+        "status": "ok",
+        "attrs": {
+          "actionId": "umich-lsa.event_deadline",
+          "tool": "calendar.createEvent",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.016200000000026193,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "tp1745b6940e0be2bb1",
+              "url": "mock://calendar/tp1745b6940e0be2bb1"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s178",
+        "parentSpanId": "s176",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717051,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.event_deadline",
+          "key": "tp1-745b6940e0be2bb1",
+          "refId": "tp1745b6940e0be2bb1"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s176",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717051,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.event_deadline",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-745b6940e0be2bb1",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "tp1745b6940e0be2bb1",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s179",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717051,
+        "attrs": {
+          "actionId": "umich-lsa.event_t30",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-cdda7cc25301cc00",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s180",
+        "parentSpanId": "s179",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717051,
+        "status": "ok",
+        "attrs": {
+          "actionId": "umich-lsa.event_t30",
+          "tool": "calendar.createEvent",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.014999999999986358,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "tp1cdda7cc25301cc00",
+              "url": "mock://calendar/tp1cdda7cc25301cc00"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s181",
+        "parentSpanId": "s179",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717051,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.event_t30",
+          "key": "tp1-cdda7cc25301cc00",
+          "refId": "tp1cdda7cc25301cc00"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s179",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717051,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.event_t30",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-cdda7cc25301cc00",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "tp1cdda7cc25301cc00",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s182",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717051,
+        "attrs": {
+          "actionId": "umich-lsa.event_t14",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-35af476fdd074060",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s183",
+        "parentSpanId": "s182",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717051,
+        "status": "ok",
+        "attrs": {
+          "actionId": "umich-lsa.event_t14",
+          "tool": "calendar.createEvent",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.011300000000005639,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "tp135af476fdd074060",
+              "url": "mock://calendar/tp135af476fdd074060"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s184",
+        "parentSpanId": "s182",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717051,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.event_t14",
+          "key": "tp1-35af476fdd074060",
+          "refId": "tp135af476fdd074060"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s182",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717051,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.event_t14",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-35af476fdd074060",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "tp135af476fdd074060",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s185",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "start",
+        "ts": 1789324717051,
+        "attrs": {
+          "actionId": "umich-lsa.event_t3",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-5b699bb5bbebce3c",
+          "maxAttempts": 3
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s186",
+        "parentSpanId": "s185",
+        "name": "tool.call",
+        "kind": "event",
+        "ts": 1789324717052,
+        "status": "ok",
+        "attrs": {
+          "actionId": "umich-lsa.event_t3",
+          "tool": "calendar.createEvent",
+          "method": "findByKey",
+          "attempt": 1,
+          "latencyMs": 0.009799999999927422,
+          "result": {
+            "found": true,
+            "ref": {
+              "id": "tp15b699bb5bbebce3c",
+              "url": "mock://calendar/tp15b699bb5bbebce3c"
+            }
+          }
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s187",
+        "parentSpanId": "s185",
+        "name": "idempotency.hit",
+        "kind": "event",
+        "ts": 1789324717052,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.event_t3",
+          "key": "tp1-5b699bb5bbebce3c",
+          "refId": "tp15b699bb5bbebce3c"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s185",
+        "parentSpanId": "s118",
+        "name": "action.execute",
+        "kind": "end",
+        "ts": 1789324717052,
+        "durationMs": 1,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.event_t3",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-5b699bb5bbebce3c",
+          "maxAttempts": 3,
+          "attempt": 0,
+          "outcome": "deduped",
+          "refId": "tp15b699bb5bbebce3c",
+          "foundByKey": true
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s118",
+        "name": "execute",
+        "kind": "end",
+        "ts": 1789324717052,
+        "durationMs": 5,
+        "status": "ok",
+        "attrs": {
+          "planId": "plan-63478cfa9529"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s188",
+        "name": "verify",
+        "kind": "start",
+        "ts": 1789324717052,
+        "attrs": {
+          "planId": "plan-63478cfa9529",
+          "outcomes": 23
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s189",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717052,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.critique_doc",
+          "app": "docs",
+          "tool": "docs.createDoc",
+          "key": "tp1-7b7a827be6cba4bb"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s189",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717052,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.critique_doc",
+          "app": "docs",
+          "tool": "docs.createDoc",
+          "key": "tp1-7b7a827be6cba4bb",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s190",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717052,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.tracker_row",
+          "app": "notion",
+          "tool": "notion.upsertTrackerRow",
+          "key": "tp1-10ce46ea998e08c2"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s190",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717052,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.tracker_row",
+          "app": "notion",
+          "tool": "notion.upsertTrackerRow",
+          "key": "tp1-10ce46ea998e08c2",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s191",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717052,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_deadline",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-6291ad50f840c62f"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s191",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717052,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_deadline",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-6291ad50f840c62f",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s192",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717052,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t30",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-7687f4ebbd0526e9"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s192",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717052,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t30",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-7687f4ebbd0526e9",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s193",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717052,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t14",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-d9d6534e81f35f0a"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s193",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717052,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t14",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-d9d6534e81f35f0a",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s194",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717052,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t3",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-26a11247feaf269d"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s194",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717052,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.event_t3",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-26a11247feaf269d",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s195",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717052,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.draft_admissions_question",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-93ef6becac5251ac"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s195",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717052,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.draft_admissions_question",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-93ef6becac5251ac",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s196",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717052,
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-d821eae6328f0752"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s196",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717052,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-d821eae6328f0752",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s197",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717052,
+        "attrs": {
+          "actionId": "cornell-as-economics.critique_doc",
+          "app": "docs",
+          "tool": "docs.createDoc",
+          "key": "tp1-3e41a7c7c33354fd"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s197",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717053,
+        "durationMs": 1,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.critique_doc",
+          "app": "docs",
+          "tool": "docs.createDoc",
+          "key": "tp1-3e41a7c7c33354fd",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s198",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717053,
+        "attrs": {
+          "actionId": "cornell-as-economics.tracker_row",
+          "app": "notion",
+          "tool": "notion.upsertTrackerRow",
+          "key": "tp1-1e896275d9b01284"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s198",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717053,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.tracker_row",
+          "app": "notion",
+          "tool": "notion.upsertTrackerRow",
+          "key": "tp1-1e896275d9b01284",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s199",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717053,
+        "attrs": {
+          "actionId": "cornell-as-economics.event_deadline",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-e3349b11e0b63b8a"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s199",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717053,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_deadline",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-e3349b11e0b63b8a",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s200",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717053,
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t30",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-2c7d64c4a47f9fb2"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s200",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717053,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t30",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-2c7d64c4a47f9fb2",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s201",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717053,
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t14",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-1d02bcd3780ae5fc"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s201",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717053,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t14",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-1d02bcd3780ae5fc",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s202",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717053,
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t3",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-96a3c3a117204a9e"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s202",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717053,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_t3",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-96a3c3a117204a9e",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s203",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717053,
+        "attrs": {
+          "actionId": "cornell-as-economics.event_rec_request",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-33e3c07690d5d180"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s203",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717053,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.event_rec_request",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-33e3c07690d5d180",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s204",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717053,
+        "attrs": {
+          "actionId": "cornell-as-economics.draft_rec_request",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-6e90b4a6bba5a6d5"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s204",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717053,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.draft_rec_request",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-6e90b4a6bba5a6d5",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s205",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717053,
+        "attrs": {
+          "actionId": "cornell-as-economics.draft_advisor_prereq_check",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-cd4be9e7204cbbb1"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s205",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717053,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "cornell-as-economics.draft_advisor_prereq_check",
+          "app": "gmail",
+          "tool": "gmail.createDraft",
+          "key": "tp1-cd4be9e7204cbbb1",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s206",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717053,
+        "attrs": {
+          "actionId": "umich-lsa.critique_doc",
+          "app": "docs",
+          "tool": "docs.createDoc",
+          "key": "tp1-ee43b935c4c2c810"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s206",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717053,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.critique_doc",
+          "app": "docs",
+          "tool": "docs.createDoc",
+          "key": "tp1-ee43b935c4c2c810",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s207",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717053,
+        "attrs": {
+          "actionId": "umich-lsa.tracker_row",
+          "app": "notion",
+          "tool": "notion.upsertTrackerRow",
+          "key": "tp1-3225e29d02cb3761"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s207",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717053,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.tracker_row",
+          "app": "notion",
+          "tool": "notion.upsertTrackerRow",
+          "key": "tp1-3225e29d02cb3761",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s208",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717053,
+        "attrs": {
+          "actionId": "umich-lsa.event_deadline",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-745b6940e0be2bb1"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s208",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717054,
+        "durationMs": 1,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.event_deadline",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-745b6940e0be2bb1",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s209",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717054,
+        "attrs": {
+          "actionId": "umich-lsa.event_t30",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-cdda7cc25301cc00"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s209",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717054,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.event_t30",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-cdda7cc25301cc00",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s210",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717054,
+        "attrs": {
+          "actionId": "umich-lsa.event_t14",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-35af476fdd074060"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s210",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717054,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.event_t14",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-35af476fdd074060",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s211",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "start",
+        "ts": 1789324717054,
+        "attrs": {
+          "actionId": "umich-lsa.event_t3",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-5b699bb5bbebce3c"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s211",
+        "parentSpanId": "s188",
+        "name": "verify.readback",
+        "kind": "end",
+        "ts": 1789324717054,
+        "durationMs": 0,
+        "status": "deduped",
+        "attrs": {
+          "actionId": "umich-lsa.event_t3",
+          "app": "calendar",
+          "tool": "calendar.createEvent",
+          "key": "tp1-5b699bb5bbebce3c",
+          "found": true,
+          "artifactStatus": "deduped"
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s188",
+        "name": "verify",
+        "kind": "end",
+        "ts": 1789324717054,
+        "durationMs": 2,
+        "status": "ok",
+        "attrs": {
+          "planId": "plan-63478cfa9529",
+          "outcomes": 23,
+          "verified": 0,
+          "deduped": 23,
+          "mismatch": 0,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "traceId": "demo-sprint",
+        "spanId": "s212",
+        "name": "run.end",
+        "kind": "event",
+        "ts": 1789324717054,
+        "status": "ok",
+        "attrs": {
+          "runId": "run-demo-sprint",
+          "status": "ok",
+          "counts": {
+            "verified": 0,
+            "deduped": 23,
+            "failed": 0,
+            "skipped": 0
+          }
+        }
+      }
+    ],
+    "report": {
+      "runId": "run-demo-sprint",
+      "traceId": "demo-sprint",
+      "planId": "plan-63478cfa9529",
+      "mode": "mock",
+      "startedAt": "2026-09-13T18:38:37.046Z",
+      "finishedAt": "2026-09-13T18:38:37.054Z",
+      "approvedIds": [
+        "uc-berkeley-data-science-ba.critique_doc",
+        "uc-berkeley-data-science-ba.tracker_row",
+        "uc-berkeley-data-science-ba.event_deadline",
+        "uc-berkeley-data-science-ba.event_t30",
+        "uc-berkeley-data-science-ba.event_t14",
+        "uc-berkeley-data-science-ba.event_t3",
+        "uc-berkeley-data-science-ba.draft_admissions_question",
+        "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+        "cornell-as-economics.critique_doc",
+        "cornell-as-economics.tracker_row",
+        "cornell-as-economics.event_deadline",
+        "cornell-as-economics.event_t30",
+        "cornell-as-economics.event_t14",
+        "cornell-as-economics.event_t3",
+        "cornell-as-economics.event_rec_request",
+        "cornell-as-economics.draft_rec_request",
+        "cornell-as-economics.draft_advisor_prereq_check",
+        "umich-lsa.critique_doc",
+        "umich-lsa.tracker_row",
+        "umich-lsa.event_deadline",
+        "umich-lsa.event_t30",
+        "umich-lsa.event_t14",
+        "umich-lsa.event_t3"
+      ],
+      "artifacts": [
+        {
+          "actionId": "uc-berkeley-data-science-ba.critique_doc",
+          "app": "docs",
+          "idempotencyKey": "tp1-7b7a827be6cba4bb",
+          "status": "deduped",
+          "ref": {
+            "id": "doc-0001",
+            "url": "mock://docs/doc-0001"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "uc-berkeley-data-science-ba.tracker_row",
+          "app": "notion",
+          "idempotencyKey": "tp1-10ce46ea998e08c2",
+          "status": "deduped",
+          "ref": {
+            "id": "page-0001",
+            "url": "mock://notion/page-0001"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "uc-berkeley-data-science-ba.event_deadline",
+          "app": "calendar",
+          "idempotencyKey": "tp1-6291ad50f840c62f",
+          "status": "deduped",
+          "ref": {
+            "id": "tp16291ad50f840c62f",
+            "url": "mock://calendar/tp16291ad50f840c62f"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "uc-berkeley-data-science-ba.event_t30",
+          "app": "calendar",
+          "idempotencyKey": "tp1-7687f4ebbd0526e9",
+          "status": "deduped",
+          "ref": {
+            "id": "tp17687f4ebbd0526e9",
+            "url": "mock://calendar/tp17687f4ebbd0526e9"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "uc-berkeley-data-science-ba.event_t14",
+          "app": "calendar",
+          "idempotencyKey": "tp1-d9d6534e81f35f0a",
+          "status": "deduped",
+          "ref": {
+            "id": "tp1d9d6534e81f35f0a",
+            "url": "mock://calendar/tp1d9d6534e81f35f0a"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "uc-berkeley-data-science-ba.event_t3",
+          "app": "calendar",
+          "idempotencyKey": "tp1-26a11247feaf269d",
+          "status": "deduped",
+          "ref": {
+            "id": "tp126a11247feaf269d",
+            "url": "mock://calendar/tp126a11247feaf269d"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "uc-berkeley-data-science-ba.draft_admissions_question",
+          "app": "gmail",
+          "idempotencyKey": "tp1-93ef6becac5251ac",
+          "status": "deduped",
+          "ref": {
+            "id": "r-0001"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "uc-berkeley-data-science-ba.draft_advisor_prereq_check",
+          "app": "gmail",
+          "idempotencyKey": "tp1-d821eae6328f0752",
+          "status": "deduped",
+          "ref": {
+            "id": "r-0002"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "cornell-as-economics.critique_doc",
+          "app": "docs",
+          "idempotencyKey": "tp1-3e41a7c7c33354fd",
+          "status": "deduped",
+          "ref": {
+            "id": "doc-0002",
+            "url": "mock://docs/doc-0002"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "cornell-as-economics.tracker_row",
+          "app": "notion",
+          "idempotencyKey": "tp1-1e896275d9b01284",
+          "status": "deduped",
+          "ref": {
+            "id": "page-0002",
+            "url": "mock://notion/page-0002"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "cornell-as-economics.event_deadline",
+          "app": "calendar",
+          "idempotencyKey": "tp1-e3349b11e0b63b8a",
+          "status": "deduped",
+          "ref": {
+            "id": "tp1e3349b11e0b63b8a",
+            "url": "mock://calendar/tp1e3349b11e0b63b8a"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "cornell-as-economics.event_t30",
+          "app": "calendar",
+          "idempotencyKey": "tp1-2c7d64c4a47f9fb2",
+          "status": "deduped",
+          "ref": {
+            "id": "tp12c7d64c4a47f9fb2",
+            "url": "mock://calendar/tp12c7d64c4a47f9fb2"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "cornell-as-economics.event_t14",
+          "app": "calendar",
+          "idempotencyKey": "tp1-1d02bcd3780ae5fc",
+          "status": "deduped",
+          "ref": {
+            "id": "tp11d02bcd3780ae5fc",
+            "url": "mock://calendar/tp11d02bcd3780ae5fc"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "cornell-as-economics.event_t3",
+          "app": "calendar",
+          "idempotencyKey": "tp1-96a3c3a117204a9e",
+          "status": "deduped",
+          "ref": {
+            "id": "tp196a3c3a117204a9e",
+            "url": "mock://calendar/tp196a3c3a117204a9e"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "cornell-as-economics.event_rec_request",
+          "app": "calendar",
+          "idempotencyKey": "tp1-33e3c07690d5d180",
+          "status": "deduped",
+          "ref": {
+            "id": "tp133e3c07690d5d180",
+            "url": "mock://calendar/tp133e3c07690d5d180"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "cornell-as-economics.draft_rec_request",
+          "app": "gmail",
+          "idempotencyKey": "tp1-6e90b4a6bba5a6d5",
+          "status": "deduped",
+          "ref": {
+            "id": "r-0003"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "cornell-as-economics.draft_advisor_prereq_check",
+          "app": "gmail",
+          "idempotencyKey": "tp1-cd4be9e7204cbbb1",
+          "status": "deduped",
+          "ref": {
+            "id": "r-0004"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "umich-lsa.critique_doc",
+          "app": "docs",
+          "idempotencyKey": "tp1-ee43b935c4c2c810",
+          "status": "deduped",
+          "ref": {
+            "id": "doc-0003",
+            "url": "mock://docs/doc-0003"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "umich-lsa.tracker_row",
+          "app": "notion",
+          "idempotencyKey": "tp1-3225e29d02cb3761",
+          "status": "deduped",
+          "ref": {
+            "id": "page-0003",
+            "url": "mock://notion/page-0003"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "umich-lsa.event_deadline",
+          "app": "calendar",
+          "idempotencyKey": "tp1-745b6940e0be2bb1",
+          "status": "deduped",
+          "ref": {
+            "id": "tp1745b6940e0be2bb1",
+            "url": "mock://calendar/tp1745b6940e0be2bb1"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "umich-lsa.event_t30",
+          "app": "calendar",
+          "idempotencyKey": "tp1-cdda7cc25301cc00",
+          "status": "deduped",
+          "ref": {
+            "id": "tp1cdda7cc25301cc00",
+            "url": "mock://calendar/tp1cdda7cc25301cc00"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "umich-lsa.event_t14",
+          "app": "calendar",
+          "idempotencyKey": "tp1-35af476fdd074060",
+          "status": "deduped",
+          "ref": {
+            "id": "tp135af476fdd074060",
+            "url": "mock://calendar/tp135af476fdd074060"
+          },
+          "attempts": 0
+        },
+        {
+          "actionId": "umich-lsa.event_t3",
+          "app": "calendar",
+          "idempotencyKey": "tp1-5b699bb5bbebce3c",
+          "status": "deduped",
+          "ref": {
+            "id": "tp15b699bb5bbebce3c",
+            "url": "mock://calendar/tp15b699bb5bbebce3c"
+          },
+          "attempts": 0
+        }
+      ],
+      "blockers": [
+        {
+          "code": "NO_TRANSFER_PROGRAM",
+          "message": "Computer Science (FICTIONAL) does not accept transfer applicants.",
+          "schoolId": "northfield-fictional",
+          "programId": "northfield-fictional-cs",
+          "requirementId": "northfield-fictional-cs#has_transfer_program"
+        }
+      ],
+      "flags": [],
+      "counts": {
+        "verified": 0,
+        "deduped": 23,
+        "failed": 0,
+        "skipped": 0
+      },
+      "status": "ok"
+    }
+  }
+}
