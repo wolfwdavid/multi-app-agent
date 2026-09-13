@@ -9,7 +9,7 @@
 
 - [x] **DATA-01**: Requirements dataset covers 4 real schools + 1 clearly-labeled fictional adversarial school, keyed by school **and** program (min/competitive GPA, units + semester/quarter system, required courses, GE pattern, essay prompts + word limits, recs, deadlines by term, has_transfer_program, ai_policy)
 - [x] **DATA-02**: Every requirement field carries `source_url`, `retrieved_at`, and `confidence`, and the UI shows a "verify on official page" link next to it
-- [ ] **DATA-03**: User can load a seeded demo student profile or edit a profile form (current school, major, GPA, units + system, courses, activities, goals, target school+program list), validated by schema
+- [x] **DATA-03**: User can load a seeded demo student profile or edit a profile form (current school, major, GPA, units + system, courses, activities, goals, target school+program list), validated by schema
 
 ### Gap Analysis
 
@@ -59,7 +59,7 @@
 
 ### Interfaces
 
-- [ ] **UI-01**: SvelteKit UI flow: profile → gap report → plan approval → live step trace → verified artifacts
+- [x] **UI-01**: SvelteKit UI flow: profile → gap report → plan approval → live step trace → verified artifacts
 - [ ] **UI-02**: Eval dashboard page shows pass rates, failure taxonomy breakdown, and a replayable trace of a caught silent failure
 - [ ] **API-01**: REST API endpoints to start a sprint, approve a plan, stream trace events, and fetch eval results
 - [x] **MCP-01**: Custom MCP server exposes `gap_analysis`, `critique_essay`, `plan_sprint`, and `run_sprint` tools reusing the same tool registry, usable from VS Code
@@ -105,7 +105,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | DATA-01 | Phase 1 | Complete |
 | DATA-02 | Phase 1 | Complete (data); UI "verify on official page" link pending Phase 7 |
-| DATA-03 | Phase 7 | Pending |
+| DATA-03 | Phase 7 | Complete |
 | GAP-01 | Phase 3 | Complete |
 | GAP-02 | Phase 3 | Complete |
 | GAP-03 | Phase 5 | Complete |
@@ -134,7 +134,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | EVAL-03 | Phase 6 | Complete |
 | EVAL-04 | Phase 6 | Complete |
 | EVAL-05 | Phase 6 | Complete |
-| UI-01 | Phase 7 | Pending |
+| UI-01 | Phase 7 | Complete |
 | UI-02 | Phase 7 | Pending |
 | API-01 | Phase 9 | Pending |
 | MCP-01 | Phase 11 | Complete |
