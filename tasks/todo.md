@@ -7,8 +7,8 @@ Submission: repo · 2-min demo video · system & reliability brief.
 
 ## Setup
 - [x] Scaffold repo (README, Gradio app stub, landing page, brief template)
-- [ ] Push to GitHub + enable Pages (`/docs`)
-- [ ] Create + push HF Space
+- [x] Push to GitHub + enable Pages (`/docs`) — verified 200
+- [x] Create HF Space — static (Gradio/Docker Spaces need HF PRO); verified running
 - [ ] Pick idea
 
 ## Build
