@@ -157,4 +157,6 @@ export const TraceEvent = z.object({
 });
 export type TraceEvent = z.infer<typeof TraceEvent>;
 
-// Dataset/profile/fixture schemas are re-exported below by plan 01-03 (schemas/school.ts, schemas/profile.ts, schemas/fixtures.ts).
+export * from './schemas/school.ts';
+export * from './schemas/profile.ts';
+export * from './schemas/fixtures.ts';
