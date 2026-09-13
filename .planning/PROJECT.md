@@ -14,8 +14,9 @@ One end-to-end application sprint (profile + target school → gap analysis → 
 
 - ✓ Program-level transfer requirements dataset (4 real schools + 1 fictional, 93 sourced fields with source_url/retrieved_at/confidence) — Validated in Phase 1: Contracts, Seed Data & Build Smoke
 - ✓ Framework-free core contracts (schemas, connector ports with draft-only Gmail, tool registry, tracer) + dual static/Vercel build — Validated in Phase 1
-- ✓ Deterministic per-school gap analysis + feasibility warnings with stable codes, every finding traced to requirement id + source URL (LLM-phrased actions still pending, GAP-03) — Validated in Phase 3: Deterministic Gap Analysis
+- ✓ Deterministic per-school gap analysis + feasibility warnings with stable codes, every finding traced to requirement id + source URL — Validated in Phase 3: Deterministic Gap Analysis (LLM-phrased next actions with byte-identical findings, GAP-03, validated in Phase 5)
 - ✓ Stateful mock app twins (Notion, Calendar, Docs, Gmail drafts-only, GitHub, HF) with per-run worlds, findByKey dedupe, realistic API validation, seeded fault injection (429/500/ghost-write/lying-success/latency), and a mock/real connector factory — Validated in Phase 2: Stateful Mock App Twins
+- ✓ Policy-aware essay critique Doc on mocks (reads only the profile's essay doc id; questions-not-prose scored against the transfer prompt + word limit; grammar_only/feedback_ok/brainstorm_ok depth; "evidence you're not using yet" from GitHub/HF), claim-evidence validator for critique and outreach drafts, and injection in docs/emails flagged but unable to change actions or recipients (ESSAY-01..04, AGENT-04, GAP-03, PORT-04) — Validated in Phase 5: Essay Critique, Evidence Grounding & Injection Guard. Open warnings: grammar_only filter is section-level only; outreach claim check covers achievement words only; UMich critique targets the Common App prompt; no real-LLM run yet
 
 ### Active
 
@@ -114,4 +115,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-09-13 after initialization*
+*Last updated: 2026-09-13 after Phase 5 completion*
