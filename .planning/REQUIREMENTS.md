@@ -54,8 +54,8 @@
 - [x] **EVAL-01**: Seeded scenario suite (≥8) including adversarial cases: existing duplicate tracker row, same-day/changed deadlines, missing/empty essay doc, Notion/Calendar 429/500, prompt injection in doc and email, school with no transfer program, GPA below program minimum, quarter vs semester units, essay over word limit
 - [x] **EVAL-02**: Eval runner executes each scenario N times against mocks and asserts final app state (not the agent's self-report)
 - [x] **EVAL-03**: Failures are classified into Lemma's taxonomy (skipped work, out-of-scope work, instruction violation, integration failure, retry loop, hallucination, communication failure)
-- [ ] **EVAL-04**: Eval results (pass rate per scenario, failure classes, run count, model) are written to a JSON artifact consumed by the UI and BRIEF.md
-- [ ] **EVAL-05**: A deterministic scripted-policy baseline runs the suite with no LLM key, alongside LLM-backed runs
+- [x] **EVAL-04**: Eval results (pass rate per scenario, failure classes, run count, model) are written to a JSON artifact consumed by the UI and BRIEF.md
+- [x] **EVAL-05**: A deterministic scripted-policy baseline runs the suite with no LLM key, alongside LLM-backed runs
 
 ### Interfaces
 
@@ -132,8 +132,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | EVAL-01 | Phase 6 | Complete |
 | EVAL-02 | Phase 6 | Complete |
 | EVAL-03 | Phase 6 | Complete |
-| EVAL-04 | Phase 6 | Pending |
-| EVAL-05 | Phase 6 | Pending |
+| EVAL-04 | Phase 6 | Complete |
+| EVAL-05 | Phase 6 | Complete |
 | UI-01 | Phase 7 | Pending |
 | UI-02 | Phase 7 | Pending |
 | API-01 | Phase 9 | Pending |

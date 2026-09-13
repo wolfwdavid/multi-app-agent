@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 06-01-PLAN.md
-last_updated: "2026-09-13T19:41:58.062Z"
+stopped_at: Completed 06-02-PLAN.md
+last_updated: "2026-09-13T19:47:15.258Z"
 progress:
   total_phases: 12
-  completed_phases: 8
+  completed_phases: 9
   total_plans: 26
-  completed_plans: 18
+  completed_plans: 19
 ---
 
 # Project State
@@ -70,6 +70,7 @@ Plan: 2 of 2
 | Phase 08 P02 | 11min | 2 tasks | 4 files |
 | Phase 11 P01 | 5min | 2 tasks | 8 files |
 | Phase 06 P01 | 12min | 3 tasks | 10 files |
+| Phase 06 P02 | 15min | 3 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -129,6 +130,8 @@ Recent decisions affecting current work:
 - [Phase 11]: 11-01: critique_essay uses the FakeLLM critique slot (PHASE5-SWAP, source placeholder) until Phase 5 exports a critique entry point
 - [Phase 06]: 06-01: Oracle injection-leak check scans agent outputs only (written rows/events/drafts, gmail.sent, keyed docs), never gmail.inbox
 - [Phase 06]: 06-01: Classifier puts communication_failure before integration/skipped; report-ok over missing state is the silent failure
+- [Phase 06]: Scope cut: evals.json shipped; silent-failure-run.json, eval traces, evals.md, mergeEvalsFiles and LLM column resolver deferred
+- [Phase 06]: Scripted baseline n10 seed1337: verifier-on 84% runs (82% scenarios all-pass), verifier-off 75%; lying-success caught
 
 ### Pending Todos
 
@@ -145,6 +148,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-09-13T19:41:58.056Z
-Stopped at: Completed 06-01-PLAN.md
+Last session: 2026-09-13T19:47:15.251Z
+Stopped at: Completed 06-02-PLAN.md
 Resume file: None

@@ -166,7 +166,7 @@ Plans:
 
 Plans:
 - [x] 06-01-PLAN.md — 19 data-driven adversarial scenarios + seeded per-run World setup + verifier-on/off agent adapter + independent final-state oracle + Lemma taxonomy classifier (wave 1)
-- [ ] 06-02-PLAN.md — N-run runner with pass rate/pass^k + EvalsFile/SilentFailureRun contracts + scripts/eval.ts (no-key scripted baseline, --llm hook) + committed evals.json, silent-failure replay, BRIEF tables (wave 2)
+- [x] 06-02-PLAN.md — N-run runner with pass rate/pass^k + EvalsFile/SilentFailureRun contracts + scripts/eval.ts (no-key scripted baseline, --llm hook) + committed evals.json, silent-failure replay, BRIEF tables (wave 2)
 
 ### Phase 7: Sprint UI, Eval Dashboard & Static Showcase
 **Goal**: A judge can open the public GitHub Pages or HF site, walk through the sprint (profile, gap report, plan approval, step trace, verified artifacts), and see real eval numbers with a caught silent failure.
