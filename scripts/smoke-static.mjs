@@ -14,6 +14,8 @@
 //   --port    local port (default 0 = ephemeral)
 //   --url     check a live site instead of the local build; the base comes from the URL path
 //   --wait N  remote mode: retry the whole check set every 10 s for up to N seconds
+//   --dir-index  host does not serve directory indexes (HF static Spaces 302 `/evals/` off-origin):
+//             request `<dir>/index.html` for pages and crawled dir links; unknown page must be non-200
 //
 // Node >= 22 built-ins only. Exit 0 on SMOKE OK, 1 otherwise.
 import http from 'node:http';
@@ -27,7 +29,7 @@ const WEB = join(ROOT, 'web');
 const MAX_URLS = 150;
 
 function parseArgs(argv) {
-	const opts = { build: false, base: '', dir: join(WEB, 'build'), serve: false, port: 0, url: null, wait: 0 };
+	const opts = { build: false, base: '', dir: join(WEB, 'build'), serve: false, port: 0, url: null, wait: 0, dirIndex: false };
 	for (let i = 0; i < argv.length; i++) {
 		const a = argv[i];
 		const next = () => (i + 1 < argv.length ? argv[++i] : '');
@@ -39,8 +41,9 @@ function parseArgs(argv) {
 		else if (a === '--port') opts.port = Number(next());
 		else if (a === '--url') opts.url = next();
 		else if (a === '--wait') opts.wait = Number(next());
+		else if (a === '--dir-index') opts.dirIndex = true;
 		else if (a === '--help' || a === '-h') {
-			console.log(readFileSync(fileURLToPath(import.meta.url), 'utf8').split('\n').slice(1, 17).join('\n'));
+			console.log(readFileSync(fileURLToPath(import.meta.url), 'utf8').split('\n').slice(1, 19).join('\n'));
 			process.exit(0);
 		} else {
 			console.error(`unknown argument: ${a}`);
@@ -147,8 +150,11 @@ async function get(url, { follow = true } = {}) {
 	return { status: res.status, text: await res.text(), url: finalUrl };
 }
 
-async function runChecks({ origin, prefix, local, dir }) {
+async function runChecks({ origin, prefix, local, dir, dirIndex = false }) {
 	const results = [];
+	// Hosts without directory indexes: `/evals/` is only reachable as `/evals/index.html`.
+	const pagePath = (p) => (dirIndex && p.endsWith('/') ? p + 'index.html' : p);
+	if (dirIndex) console.log('WARN --dir-index: host does not serve directory indexes; checking <dir>/index.html (hard loads of /evals/ are not served)');
 	const pass = (name) => {
 		results.push({ name, ok: true });
 		console.log(`PASS ${name}`);
@@ -165,9 +171,9 @@ async function runChecks({ origin, prefix, local, dir }) {
 		['/', ['Application sprint', 'TransferPilot']],
 		['/evals/', ['Eval results']]
 	]) {
-		const name = `GET ${prefix}${path}`;
+		const name = `GET ${prefix}${pagePath(path)}`;
 		try {
-			const r = await get(at(path), { follow: false });
+			const r = await get(at(pagePath(path)), { follow: false });
 			const missing = markers.filter((m) => !r.text.includes(m));
 			if (r.status !== 200) fail(name, `status ${r.status}`);
 			else if (missing.length) fail(name, `missing text ${missing.map((m) => JSON.stringify(m)).join(', ')}`);
@@ -253,7 +259,7 @@ async function runChecks({ origin, prefix, local, dir }) {
 	for (const p of crawlPages) {
 		const html = pages[p];
 		if (html == null) continue;
-		const pageUrl = at(p);
+		const pageUrl = at(pagePath(p));
 		const refs = [];
 		for (const m of html.matchAll(/(?:href|src)="([^"#][^"]*)"/g)) refs.push(m[1]);
 		for (const m of html.matchAll(/["'](\.{1,2}\/_app\/[^"']+)["']/g)) refs.push(m[1]);
@@ -273,6 +279,7 @@ async function runChecks({ origin, prefix, local, dir }) {
 				fail(`link ${ref} on ${prefix}${p}`, `outside base path ${prefix || '/'}`);
 				continue;
 			}
+			if (dirIndex && u.pathname.endsWith('/')) u.pathname += 'index.html';
 			if (!urls.has(u.href)) urls.set(u.href, p);
 		}
 	}
@@ -302,6 +309,7 @@ async function runChecks({ origin, prefix, local, dir }) {
 	try {
 		const r = await get(at('/definitely-missing-page/'), { follow: false });
 		if (r.status === 404) pass(`GET ${prefix}/definitely-missing-page/ -> 404`);
+		else if (dirIndex && r.status !== 200) pass(`GET ${prefix}/definitely-missing-page/ -> ${r.status} (not served)`);
 		else fail(`GET ${prefix}/definitely-missing-page/`, `expected 404, got ${r.status}`);
 	} catch (e) {
 		fail(`GET ${prefix}/definitely-missing-page/`, e.message);
@@ -358,7 +366,7 @@ async function main() {
 	for (;;) {
 		attempt++;
 		if (opts.wait > 0 && !local) console.log(`attempt ${attempt}`);
-		outcome = await runChecks({ origin, prefix, local, dir: opts.dir });
+		outcome = await runChecks({ origin, prefix, local, dir: opts.dir, dirIndex: opts.dirIndex });
 		if (outcome.failures === 0 || local || Date.now() + 10_000 > deadline) break;
 		console.log(`${outcome.failures} failure(s); retrying in 10 s`);
 		await new Promise((r) => setTimeout(r, 10_000));
