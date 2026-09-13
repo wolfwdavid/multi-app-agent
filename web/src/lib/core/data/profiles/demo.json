@@ -1,0 +1,133 @@
+{
+  "profile_id": "demo",
+  "student": {
+    "name": "Alex Rivera",
+    "email": "alex.rivera@example.com"
+  },
+  "current_school": {
+    "name": "Diablo Valley College",
+    "kind": "community_college",
+    "state": "CA"
+  },
+  "intended_major": "Data Science",
+  "gpa": 3.3,
+  "units": {
+    "completed": 45,
+    "in_progress": 15,
+    "system": "semester"
+  },
+  "terms_remaining": 2,
+  "courses": [
+    {
+      "code": "MATH 192",
+      "title": "Analytic Geometry and Calculus I",
+      "units": 5,
+      "status": "completed",
+      "grade": "A",
+      "satisfies": ["calc-1", "math-1110"]
+    },
+    {
+      "code": "MATH 193",
+      "title": "Analytic Geometry and Calculus II",
+      "units": 5,
+      "status": "in_progress",
+      "grade": null,
+      "satisfies": ["calc-2"]
+    },
+    {
+      "code": "COMSC 110",
+      "title": "Introduction to Programming (Python)",
+      "units": 4,
+      "status": "completed",
+      "grade": "A-",
+      "satisfies": ["intro-programming"]
+    },
+    {
+      "code": "ECON 220",
+      "title": "Principles of Microeconomics",
+      "units": 3,
+      "status": "completed",
+      "grade": "B+",
+      "satisfies": ["econ-1110"]
+    },
+    {
+      "code": "ENGL 122",
+      "title": "Freshman English: Composition",
+      "units": 3,
+      "status": "completed",
+      "grade": "B",
+      "satisfies": []
+    },
+    {
+      "code": "MATH 142",
+      "title": "Elementary Statistics with Probability",
+      "units": 4,
+      "status": "completed",
+      "grade": "B+",
+      "satisfies": []
+    },
+    {
+      "code": "COMSC 165",
+      "title": "Advanced Programming with C/C++",
+      "units": 4,
+      "status": "planned",
+      "grade": null,
+      "satisfies": []
+    }
+  ],
+  "activities": [
+    {
+      "id": "ds-club",
+      "title": "Data Science Club",
+      "role": "President",
+      "description": "Organizes weekly Kaggle-style study sessions for club members.",
+      "hours_per_week": 4
+    },
+    {
+      "id": "food-bank-dashboard",
+      "title": "Food bank demand dashboard",
+      "role": "Volunteer data analyst",
+      "description": "Built a demand dashboard for a local food bank.",
+      "hours_per_week": 3
+    },
+    {
+      "id": "hf-models",
+      "title": "Independent ML projects",
+      "role": "Builder",
+      "description": "Publishes small models and Spaces on Hugging Face."
+    }
+  ],
+  "goals": "Use applied machine learning to make public-interest data easier to act on. Transfer into a data science program with strong statistics and computing depth.",
+  "targets": [
+    { "school_id": "uc-berkeley", "program_id": "uc-berkeley-data-science-ba", "term": "Fall 2027" },
+    { "school_id": "cornell", "program_id": "cornell-as-economics", "term": "Fall 2027" },
+    { "school_id": "umich", "program_id": "umich-lsa", "term": "Fall 2027" },
+    { "school_id": "northfield-fictional", "program_id": "northfield-fictional-cs", "term": "Fall 2027" }
+  ],
+  "contacts": [
+    {
+      "id": "rep-berkeley",
+      "role": "admissions_rep",
+      "name": "Berkeley Transfer Admissions",
+      "email": "transfer-questions@example.edu",
+      "school_id": "uc-berkeley"
+    },
+    {
+      "id": "prof-chen",
+      "role": "professor",
+      "name": "Dr. Lin Chen",
+      "email": "lchen@example.edu"
+    },
+    {
+      "id": "advisor-patel",
+      "role": "cc_advisor",
+      "name": "Priya Patel",
+      "email": "ppatel@example.edu"
+    }
+  ],
+  "portfolio": {
+    "github_username": "wolfwdavid",
+    "hf_username": "WolfDavid"
+  },
+  "essay_doc_id": "doc-essay-demo"
+}
