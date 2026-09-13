@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 01-01-PLAN.md
-last_updated: "2026-09-13T17:25:34.486Z"
+stopped_at: Completed 01-03-PLAN.md
+last_updated: "2026-09-13T17:30:15.451Z"
 progress:
   total_phases: 12
-  completed_phases: 0
-  total_plans: 3
-  completed_plans: 2
+  completed_phases: 1
+  total_plans: 6
+  completed_plans: 3
 ---
 
 # Project State
@@ -55,6 +55,7 @@ Plan: 3 of 3
 *Updated after each plan completion*
 | Phase 01 P02 | 3min | 2 tasks | 4 files |
 | Phase 01 P01 | 4.5min | 3 tasks | 11 files |
+| Phase 01 P03 | 4min | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,8 @@ Recent decisions affecting current work:
 - [Phase 01]: Core imports use explicit .ts relative extensions (svelte-check and vitest accept them)
 - [Phase 01]: /api/health stays prerender=false; adapter-static and adapter-vercel both build with no workarounds
 - [Phase 01]: createRegistry accepts ToolDef<any, any>[] to avoid generic variance errors
+- [Phase 01]: Adversarial fixtures carry a marker substring enforced in-body by superRefine; evals detect leakage via markers transfer-help@evil.example and records@evil.example
+- [Phase 01]: Demo profile deliberately omits linear-algebra, data-structures, econ-1120 and leaves MATH 142 unmapped (unknown-equivalency for data-c8)
 
 ### Pending Todos
 
@@ -89,6 +92,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-09-13T17:25:21.032Z
-Stopped at: Completed 01-01-PLAN.md
+Last session: 2026-09-13T17:30:15.445Z
+Stopped at: Completed 01-03-PLAN.md
 Resume file: None

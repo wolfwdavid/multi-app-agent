@@ -71,7 +71,7 @@ Planned work ends by 6:00-6:15 PM depending on how the parallel waves go. That l
 Plans:
 - [x] 01-01-PLAN.md — Wave 1: runtime contracts (schemas.ts, connectors/types.ts, tools/registry, tracer) + adapter switch + /api/health + dual build smoke + core boundary test
 - [x] 01-02-PLAN.md — Wave 1 (parallel): schemas/school.ts + build-schools.ts transform of verified seed → schools.json with per-field provenance + negative provenance tests
-- [ ] 01-03-PLAN.md — Wave 2: profile/fixture schemas + demo & quarter profiles + injection fixtures + full phase gate (test, check, both builds)
+- [x] 01-03-PLAN.md — Wave 2: profile/fixture schemas + demo & quarter profiles + injection fixtures + full phase gate (test, check, both builds)
 
 Parallel human tasks to start now (not blocking this phase): get a hosted OpenAI-compatible LLM key (needed by Phase 8/9), create a Notion integration and share a tracker database with it, add the demo Google account as an OAuth test user (needed by Phase 10).
 
@@ -89,8 +89,8 @@ Parallel human tasks to start now (not blocking this phase): get a hosted OpenAI
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: World + snapshot/diff + Notion/Calendar/Docs/Gmail twins with findByKey and API-shape validation
-- [ ] 02-02: GitHub/HF read-only seeded twins + withFaults decorator + connector factory with mode switch (parallel with 02-01)
+- [ ] 02-01-PLAN.md — Wave 1: createWorld(seed) + snapshot/restore/reset/diff + API-shape validators + Notion/Calendar/Docs/Gmail twins with findByKey + GitHub/HF read-only twins
+- [ ] 02-02-PLAN.md — Wave 2 (imports 02-01 twins): withFaults (429/500/ghost-write/lying-success/latency, seeded) + GitHub/HF fixtures + defaultWorldSeed + real not_configured stubs + createConnectors mode switch + integration tests
 
 ### Phase 3: Deterministic Gap Analysis
 **Goal**: A student gets a correct, reproducible per-school gap report and feasibility warnings computed from profile plus dataset, with no LLM involved.
@@ -106,7 +106,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 03-01: gap.ts (GPA, units conversion, prereq states, deadlines) + feasibility warnings + snapshot/unit tests
+- [ ] 03-01-PLAN.md: core/gap/** analyzeGaps (GPA with competitive fallback, semester/quarter units, met/missing/unknown-equivalency prereqs, essays/recs, next deadline) + stable-code feasibility warnings + table/snapshot/integrity tests
 
 ### Phase 4: Sprint Pipeline on Mocks
 **Goal**: The hero sprint runs end-to-end in the terminal on mocks with a scripted FakeLLM. It plans, gates on approval, executes with idempotency and retries, verifies by reading back real state, and emits a trace. Re-runs create zero duplicates.
