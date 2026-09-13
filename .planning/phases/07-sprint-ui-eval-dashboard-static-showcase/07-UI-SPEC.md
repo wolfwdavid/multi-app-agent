@@ -107,7 +107,7 @@ Prose from the dataset (essay prompts) uses Body. The typography plugin is **not
 | Accent (10%) `accent` | `#4f46e5` | `#818cf8` | Reserved list below |
 | Accent hover `accent-hover` | `#4338ca` | `#a5b4fc` | Primary button hover only |
 | Text on accent `accent-fg` | `#ffffff` | `#020617` | Primary button label (6.3:1 light, 6.8:1 dark) |
-| Destructive `danger` | `#b91c1c` | `#f87171` | Inline validation error text, invalid input border, the "Discard edits" confirm link. Never used for status chips (those use `fail-*`). |
+| Destructive `danger` | `#b91c1c` | `#f87171` | Inline validation error text and invalid input border only. (Discarding profile edits uses the native `confirm()` dialog, which has no on-page element to color.) Never used for status chips (those use `fail-*`). |
 
 **Accent reserved for (exhaustive):**
 1. The primary CTA button "Run N approved actions" (fill), plus the dashboard's "Next step" replay button (fill). Only one filled accent button is visible per screen region.
@@ -344,6 +344,7 @@ Parse all three with zod `safeParse` in `web/src/lib/ui/data.ts` (`loadStatic<T>
 Header block:
 - H1 "Application sprint" (Display).
 - Subtitle (Body, muted): "Profile → gap report → plan → approve → run → verify. Nothing is written to any app until you approve it."
+- **Focal point:** before a plan exists, the H1 is the primary visual anchor. Once a plan exists, the sticky "Run {n} approved actions" button is the primary anchor (it is the only accent-filled element on the page).
 - Step index `<nav aria-label="Sprint steps">` with hash links `#profile #gaps #plan #trace #results`, labeled "1 Profile · 2 Gaps · 3 Plan · 4 Run · 5 Verified" (text-sm). A step whose data exists shows `✓` before its label.
 
 #### Step 1: Profile panel (`ProfilePanel.svelte`, `id="profile"`)
@@ -485,6 +486,7 @@ Span name for executed actions: `action.execute`. Verifier spans: `verify.readba
 Header block:
 - H1 "Eval results".
 - Subtitle (Body muted): "Each scenario runs N times against stateful mock apps. A run passes only when an independent oracle finds the expected final app state, not when the agent says it succeeded."
+- **Focal point:** the row of four stat cards is the primary visual anchor; the per-scenario table and the caught-silent-failure replay are secondary.
 - Meta line (text-sm muted, mono for the SHA): "Commit `{sha7}` · Generated {Sep 13, 2026, 4:02 PM} · {n} runs per scenario".
 - Link "Read the reliability brief (BRIEF.md) ↗" → `https://github.com/wolfwdavid/multi-app-agent/blob/main/BRIEF.md` (`target="_blank" rel="noopener noreferrer"`).
 
@@ -697,11 +699,11 @@ No third-party UI packages are added in this phase. Existing deps are used: `tai
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: PASS ("Step"/"Restart"/"Play"/"Pause" are intentional media-transport labels next to the "Step {i} of {total}" counter)
+- [x] Dimension 2 Visuals: PASS (FLAG resolved: focal points declared for Screen 1 and Screen 2)
+- [x] Dimension 3 Color: PASS (minor fix: `danger` usage no longer cites a nonexistent "Discard edits" link)
+- [x] Dimension 4 Typography: PASS
+- [x] Dimension 5 Spacing: PASS
+- [x] Dimension 6 Registry Safety: PASS
 
-**Approval:** pending
+**Approval:** approved 2026-09-13
