@@ -1,0 +1,245 @@
+[
+  {
+    "school_id": "uc-berkeley",
+    "name": "University of California, Berkeley",
+    "programs": [
+      {
+        "program_id": "uc-berkeley-data-science-ba",
+        "name": "Data Science BA (College of Computing, Data Science, and Society)",
+        "has_transfer_program": true,
+        "min_gpa": 3.0,
+        "competitive_gpa": null,
+        "units": { "min": 60, "system": "semester" },
+        "required_courses": [
+          { "id": "calc-1", "name": "Calculus I", "notes": "Data Science lower-division requirement. Check ASSIST.org for community college articulation." },
+          { "id": "calc-2", "name": "Calculus II", "notes": "Data Science lower-division requirement." },
+          { "id": "data-c8", "name": "Foundations of Data Science (Data C8)", "notes": "Lower-division requirement. Few community college equivalents; confirm on ASSIST.org." },
+          { "id": "intro-programming", "name": "Programming: CS 61A or CS/Data C88C, or Engin 7", "notes": "Lower-division requirement." },
+          { "id": "linear-algebra", "name": "Linear Algebra (Math 54 or equivalent)", "notes": "Lower-division requirement." },
+          { "id": "data-structures", "name": "Data Structures (CS 61B or 61BL)", "notes": "Lower-division requirement." },
+          { "id": "domain-emphasis", "name": "Domain Emphasis lower-division course", "notes": "Chosen from an approved list." },
+          { "id": "uc-7-course-pattern", "name": "UC 7-course pattern", "notes": "UC eligibility: 2 English composition (UC-E), 1 math/quantitative reasoning (UC-M), 4 courses from at least 2 of UC-H, UC-B, UC-S; each course 3 semester / 4-5 quarter units; completed by the end of spring before fall enrollment." }
+        ],
+        "ge_pattern": "UC 7-course pattern required for eligibility. Completing IGETC, Cal-GETC, or campus-specific GE may already satisfy it. Berkeley also lists a Reading & Composition requirement.",
+        "deadlines": [
+          { "term": "Fall 2027", "type": "filing_open", "date": "2026-10-01" },
+          { "term": "Fall 2027", "type": "application", "date": "2026-11-30" },
+          { "term": "Fall 2027", "type": "docs", "date": "2027-01-31" },
+          { "term": "Fall 2027", "type": "docs", "date": "2027-07-01" }
+        ],
+        "essays": [
+          { "id": "uc-piq-required", "prompt": "Please describe how you have prepared for your intended major, including your readiness to succeed in your upper-division courses once you enroll at the university.", "word_limit": 350, "required": true },
+          { "id": "uc-piq-1-leadership", "prompt": "Describe an example of your leadership experience in which you have positively influenced others, helped resolve disputes, or contributed to group efforts over time.", "word_limit": 350, "required": false },
+          { "id": "uc-piq-2-creative", "prompt": "Every person has a creative side, and it can be expressed in many ways: problem solving, original and innovative thinking, and artistically, to name a few. Describe how you express your creative side.", "word_limit": 350, "required": false },
+          { "id": "uc-piq-3-talent", "prompt": "What would you say is your greatest talent or skill? How have you developed and demonstrated that talent over time?", "word_limit": 350, "required": false },
+          { "id": "uc-piq-4-educational", "prompt": "Describe how you have taken advantage of a significant educational opportunity or worked to overcome an educational barrier you have faced.", "word_limit": 350, "required": false },
+          { "id": "uc-piq-5-challenge", "prompt": "Describe the most significant challenge you have faced and the steps you have taken to overcome this challenge. How has this challenge affected your academic achievement?", "word_limit": 350, "required": false },
+          { "id": "uc-piq-6-community", "prompt": "What have you done to make your school or your community a better place?", "word_limit": 350, "required": false },
+          { "id": "uc-piq-7-beyond", "prompt": "Beyond what has already been shared in your application, what do you believe makes you a strong candidate for admissions to the University of California?", "word_limit": 350, "required": false }
+        ],
+        "recs_required": 0,
+        "ai_policy": "feedback_ok",
+        "ai_policy_quote": "Students may receive advice on content and editing, including the use of generative artificial intelligence software to assist with readability, but content and final written text must be their own.",
+        "sources": [
+          { "field": "deadlines", "url": "https://admission.universityofcalifornia.edu/how-to-apply/applying-as-a-transfer/dates-and-deadlines.html", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "essays", "url": "https://admission.universityofcalifornia.edu/how-to-apply/applying-as-a-transfer/personal-insight-questions.html", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "units", "url": "https://transfers.berkeley.edu/prospective-students/general-admission-information", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "min_gpa", "url": "https://transfers.berkeley.edu/prospective-students/general-admission-information", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "ge_pattern", "url": "https://admission.universityofcalifornia.edu/admission-requirements/transfer-requirements/preparing-to-transfer/basic-requirements.html", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "required_courses", "url": "https://cdss.berkeley.edu/dsus/academics/requirements-lower-division", "retrieved_at": "2026-09-13", "confidence": "MEDIUM" },
+          { "field": "recs_required", "url": "https://admission.universityofcalifornia.edu/admission-requirements/transfer-requirements/preparing-to-transfer/basic-requirements.html", "retrieved_at": "2026-09-13", "confidence": "MEDIUM" },
+          { "field": "ai_policy", "url": "https://apply.universityofcalifornia.edu/docs/StatementOfIntegrity.pdf", "retrieved_at": "2026-09-13", "confidence": "HIGH" }
+        ]
+      }
+    ]
+  },
+  {
+    "school_id": "cornell",
+    "name": "Cornell University",
+    "programs": [
+      {
+        "program_id": "cornell-ilr",
+        "name": "School of Industrial and Labor Relations (ILR)",
+        "has_transfer_program": true,
+        "min_gpa": null,
+        "competitive_gpa": 3.4,
+        "units": { "min": 12, "system": "semester" },
+        "required_courses": [
+          { "id": "ilr-soph-eng-comp", "name": "1 English Composition/Writing-Intensive course", "notes": "Sophomore entry: complete or be in progress by the time you apply. Junior entry: 2 courses." },
+          { "id": "ilr-intro-econ", "name": "Introductory economics (macro or micro)", "notes": "Sophomore entry: 1 course. Junior entry: both macroeconomics and microeconomics." },
+          { "id": "ilr-math", "name": "Math up to Statistics or Calculus", "notes": "Your next appropriate math level." },
+          { "id": "ilr-sci-tech", "name": "1 Science & Technology distribution course", "notes": "E.g. chemistry, biology, astronomy, physics, evolution, geology. Sophomores may substitute ILR elective credit (foreign language)." },
+          { "id": "ilr-electives", "name": "At least 2 ILR elective courses (junior entry)", "notes": "Foreign language classes can count. Applicants missing courses can still apply and be considered. ILR gives no credit below a C; at most 60 transfer credits." }
+        ],
+        "ge_pattern": null,
+        "deadlines": [
+          { "term": "Fall 2027", "type": "application", "date": "2027-03-15" },
+          { "term": "Fall 2027", "type": "docs", "date": "2027-04-15" }
+        ],
+        "essays": [
+          { "id": "cornell-transfer-statement", "prompt": "How does continuing your education at a new institution help you achieve your future goals?", "word_limit": 650, "required": true },
+          { "id": "cornell-university-community", "prompt": "We all contribute to, and are influenced by, the communities that are meaningful to us. Share how you've been shaped by one of the communities you belong to. Define community in the way that is most meaningful to you. This community example can be drawn from your family, school, workplace, activities or interests, or any other group you belong to.", "word_limit": 350, "required": true },
+          { "id": "ilr-supplement", "prompt": "Using your personal, academic, or volunteer/work experiences, describe the topics or issues that you care about and why they are important to you. Your response should show us that your interests align with the ILR School.", "word_limit": 650, "required": true }
+        ],
+        "recs_required": 1,
+        "ai_policy": "grammar_only",
+        "ai_policy_quote": "Having AI tools outline, draft, or write your application responses, translate your responses from another language, or create works for a required portfolio. [listed as unacceptable] | FAQ: ethical uses include researching colleges, brainstorming essay topics, and reviewing the grammar and spelling of your completed essays.",
+        "sources": [
+          { "field": "deadlines", "url": "https://admissions.cornell.edu/how-to-apply/transfer-applicants", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "units", "url": "https://admissions.cornell.edu/how-to-apply/transfer-applicants", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "essays.cornell-transfer-statement", "url": "https://admissions.cornell.edu/how-to-apply/transfer-applicants", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "recs_required", "url": "https://admissions.cornell.edu/how-to-apply/transfer-applicants", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "competitive_gpa", "url": "https://www.ilr.cornell.edu/sites/default/files-d8/2026-02/transfer-guidelines-fa-26-final.pdf", "retrieved_at": "2026-09-13", "confidence": "MEDIUM" },
+          { "field": "required_courses", "url": "https://www.ilr.cornell.edu/sites/default/files-d8/2026-02/transfer-guidelines-fa-26-final.pdf", "retrieved_at": "2026-09-13", "confidence": "MEDIUM" },
+          { "field": "essays.cornell-university-community", "url": "https://www.ilr.cornell.edu/sites/default/files-d8/2026-02/transfer-guidelines-fa-26-final.pdf", "retrieved_at": "2026-09-13", "confidence": "MEDIUM" },
+          { "field": "essays.ilr-supplement", "url": "https://www.ilr.cornell.edu/sites/default/files-d8/2026-02/transfer-guidelines-fa-26-final.pdf", "retrieved_at": "2026-09-13", "confidence": "MEDIUM" },
+          { "field": "ai_policy", "url": "https://admissions.cornell.edu/policies/receiving-help-with-your-application", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "ai_policy", "url": "https://faq.enrollment.cornell.edu/kb/article/428-can-prospective-students-use-generative-ai-to-help-with-their-application-to-cornell/", "retrieved_at": "2026-09-13", "confidence": "HIGH" }
+        ]
+      },
+      {
+        "program_id": "cornell-as-economics",
+        "name": "College of Arts & Sciences - Economics",
+        "has_transfer_program": true,
+        "min_gpa": null,
+        "competitive_gpa": 3.5,
+        "units": { "min": 12, "system": "semester" },
+        "required_courses": [
+          { "id": "econ-1110", "name": "Introductory Microeconomics (ECON 1110 or equivalent)", "notes": "Required before applying to the Economics major; B- or better." },
+          { "id": "econ-1120", "name": "Introductory Macroeconomics (ECON 1120 or equivalent)", "notes": "Required before applying to the Economics major; B- or better." },
+          { "id": "math-1110", "name": "Calculus I (MATH 1110 or equivalent)", "notes": "Required before applying to the Economics major; C or better." },
+          { "id": "as-writing-intensive", "name": "Writing-intensive composition course", "notes": "Strongly encouraged, not required. Junior transfers must have finished their intended major's prerequisites. A&S requires at least 60 credits and four semesters in residence at Cornell." }
+        ],
+        "ge_pattern": null,
+        "deadlines": [
+          { "term": "Fall 2027", "type": "application", "date": "2027-03-15" },
+          { "term": "Fall 2027", "type": "docs", "date": "2027-04-15" }
+        ],
+        "essays": [
+          { "id": "cornell-transfer-statement", "prompt": "How does continuing your education at a new institution help you achieve your future goals?", "word_limit": 650, "required": true },
+          { "id": "as-college-supplement", "prompt": null, "word_limit": null, "required": true }
+        ],
+        "recs_required": 1,
+        "ai_policy": "grammar_only",
+        "ai_policy_quote": "Having AI tools outline, draft, or write your application responses, translate your responses from another language, or create works for a required portfolio. [listed as unacceptable] | FAQ: ethical uses include researching colleges, brainstorming essay topics, and reviewing the grammar and spelling of your completed essays.",
+        "sources": [
+          { "field": "deadlines", "url": "https://admissions.cornell.edu/how-to-apply/transfer-applicants", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "units", "url": "https://admissions.cornell.edu/how-to-apply/transfer-applicants", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "essays.cornell-transfer-statement", "url": "https://admissions.cornell.edu/how-to-apply/transfer-applicants", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "essays.as-college-supplement", "url": "https://admissions.cornell.edu/how-to-apply/transfer-applicants", "retrieved_at": "2026-09-13", "confidence": "LOW" },
+          { "field": "recs_required", "url": "https://admissions.cornell.edu/how-to-apply/transfer-applicants", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "competitive_gpa", "url": "https://as.cornell.edu/admissions/admissions-requirements-and-process", "retrieved_at": "2026-09-13", "confidence": "MEDIUM" },
+          { "field": "required_courses", "url": "https://economics.cornell.edu/major", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "required_courses", "url": "https://as.cornell.edu/admissions/admissions-requirements-and-process", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "ai_policy", "url": "https://admissions.cornell.edu/policies/receiving-help-with-your-application", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "ai_policy", "url": "https://faq.enrollment.cornell.edu/kb/article/428-can-prospective-students-use-generative-ai-to-help-with-their-application-to-cornell/", "retrieved_at": "2026-09-13", "confidence": "HIGH" }
+        ]
+      }
+    ]
+  },
+  {
+    "school_id": "umich",
+    "name": "University of Michigan - Ann Arbor",
+    "programs": [
+      {
+        "program_id": "umich-lsa",
+        "name": "College of Literature, Science, and the Arts (LSA)",
+        "has_transfer_program": true,
+        "min_gpa": null,
+        "competitive_gpa": null,
+        "units": { "min": null, "system": "semester" },
+        "required_courses": [],
+        "ge_pattern": null,
+        "deadlines": [
+          { "term": "Winter 2027", "type": "application", "date": "2026-10-01" },
+          { "term": "Fall 2027", "type": "application", "date": "2027-02-01" }
+        ],
+        "essays": [
+          { "id": "commonapp-personal-essay", "prompt": "Common App personal essay (choose one Common App prompt).", "word_limit": 650, "required": true },
+          { "id": "commonapp-challenges", "prompt": "Common App challenges and circumstances question (optional).", "word_limit": 250, "required": false },
+          { "id": "um-leaders-citizens", "prompt": "At the University of Michigan, we are focused on developing leaders and citizens who will challenge the present and enrich the future. In your essay, share with us how you are prepared to contribute to these goals. This could include the people, places, experiences, or aspirations that have shaped your journey and future plans. (1,500 characters maximum.)", "word_limit": null, "required": true },
+          { "id": "um-college-fit", "prompt": "Describe the unique qualities that attract you to the specific undergraduate college or school (including preferred admission and dual degree programs) to which you are applying at the University of Michigan. How would that curriculum support your interests? (2,750 characters maximum.)", "word_limit": null, "required": true },
+          { "id": "um-transfer-reasons", "prompt": "Please provide a statement that addresses your reasons for transferring and the objectives you hope to achieve. (1,500 characters maximum.)", "word_limit": null, "required": true }
+        ],
+        "recs_required": 0,
+        "ai_policy": "brainstorm_ok",
+        "ai_policy_quote": "AI tools can be helpful when used thoughtfully, such as for brainstorming, outlining, proofreading, or organizing information. We recognize these tools may be especially useful for applicants who have limited access to application guidance. However, your application should reflect your own ideas, experiences, and authentic voice. Do not copy and paste AI-generated text or submit work that does not represent you.",
+        "sources": [
+          { "field": "deadlines", "url": "https://lsa.umich.edu/transfer/prospective-students/apply.html", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "deadlines", "url": "https://admissions.umich.edu/apply/transfer-applicants/requirements-deadlines", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "min_gpa", "url": "https://admissions.umich.edu/apply/transfer-applicants/requirements-deadlines", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "units", "url": "https://admissions.umich.edu/apply/transfer-applicants/requirements-deadlines", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "required_courses", "url": "https://admissions.umich.edu/apply/transfer-applicants/requirements-deadlines", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "essays", "url": "https://admissions.umich.edu/apply/transfer-applicants/essay-questions", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "recs_required", "url": "https://lsa.umich.edu/transfer/prospective-students/apply.html", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "ai_policy", "url": "https://admissions.umich.edu/apply/transfer-applicants/essay-questions", "retrieved_at": "2026-09-13", "confidence": "HIGH" }
+        ]
+      }
+    ]
+  },
+  {
+    "school_id": "uva",
+    "name": "University of Virginia",
+    "programs": [
+      {
+        "program_id": "uva-as-vccs-gaa",
+        "name": "College of Arts and Sciences - VCCS Guaranteed Admission Agreement",
+        "has_transfer_program": true,
+        "min_gpa": 3.4,
+        "competitive_gpa": null,
+        "units": { "min": 45, "system": "semester" },
+        "required_courses": [
+          { "id": "vccs-transfer-associate", "name": "SCHEV-approved transfer associate degree (AA, AS, or AA&S)", "notes": "Earned at a VCCS college after high school and finished by the end of spring before fall enrollment. General Studies counts only if recognized as a transfer degree." },
+          { "id": "vccs-credits", "name": "At least 45 transferable VCCS credits", "notes": "At least 24 at the degree-granting college. Dual enrollment, AP, IB, military, and workforce credit do not count. The 3.4 GPA covers VCCS coursework only." },
+          { "id": "vccs-min-grade", "name": "C or better in all attempts of every VCCS course", "notes": "Required for the guarantee." },
+          { "id": "post-admission-literacies", "name": "Writing (ENG 111+112 with B or better), World Language, QCD", "notes": "NOT required for guaranteed admission; may be required after transfer to satisfy upper-division Literacies." }
+        ],
+        "ge_pattern": "Completing the transfer associate degree satisfies all lower-division (Disciplines) general education; upper-division Literacies may remain.",
+        "deadlines": [
+          { "term": "Fall 2027", "type": "application", "date": "2027-03-01" }
+        ],
+        "essays": [
+          { "id": "uva-supplement", "prompt": null, "word_limit": null, "required": true }
+        ],
+        "recs_required": 0,
+        "ai_policy": "unknown",
+        "ai_policy_quote": null,
+        "sources": [
+          { "field": "min_gpa", "url": "https://admission.virginia.edu/transfer/guaranteed-transfer-admission", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "min_gpa", "url": "https://admission.virginia.edu/sites/admission/files/2025-03/UVA_Arts__Sciences_VCCS_GAA_Final_Spring25.pdf", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "units", "url": "https://admission.virginia.edu/transfer/guaranteed-transfer-admission", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "required_courses", "url": "https://admission.virginia.edu/transfer/guaranteed-transfer-admission", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "ge_pattern", "url": "https://admission.virginia.edu/transfer/guaranteed-transfer-admission", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "deadlines", "url": "https://admission.virginia.edu/transfer/about-transfer/transfer", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "recs_required", "url": "https://admission.virginia.edu/transfer/about-transfer/transfer", "retrieved_at": "2026-09-13", "confidence": "HIGH" },
+          { "field": "essays", "url": "https://admission.virginia.edu/transfer/about-transfer/transfer", "retrieved_at": "2026-09-13", "confidence": "LOW" },
+          { "field": "ai_policy", "url": "https://admission.virginia.edu/transfer/about-transfer/transfer", "retrieved_at": "2026-09-13", "confidence": "LOW" }
+        ]
+      }
+    ]
+  },
+  {
+    "school_id": "northfield-fictional",
+    "name": "Northfield Institute of Technology",
+    "programs": [
+      {
+        "program_id": "northfield-fictional-cs",
+        "name": "Computer Science (FICTIONAL)",
+        "has_transfer_program": false,
+        "min_gpa": null,
+        "competitive_gpa": null,
+        "units": { "min": null, "system": "semester" },
+        "required_courses": [],
+        "ge_pattern": null,
+        "deadlines": [],
+        "essays": [],
+        "recs_required": 0,
+        "ai_policy": "unknown",
+        "ai_policy_quote": null,
+        "sources": [
+          { "field": "*", "url": "about:fictional", "retrieved_at": "2026-09-13", "confidence": "LOW" }
+        ]
+      }
+    ]
+  }
+]
