@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 07-03-PLAN.md
-last_updated: "2026-09-13T21:13:19.683Z"
+stopped_at: Completed 12-01-PLAN.md
+last_updated: "2026-09-13T21:21:07.990Z"
 progress:
   total_phases: 12
   completed_phases: 10
   total_plans: 27
-  completed_plans: 23
+  completed_plans: 24
 ---
 
 # Project State
@@ -75,6 +75,7 @@ Plan: Not started
 | Phase 07 P02 | 28min | 3 tasks | 19 files |
 | Phase 06 P03 | 23min | 6 tasks | 16 files |
 | Phase 07 P03 | 25min | 3 tasks | 4 files |
+| Phase 12 P01 | 12min | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -149,6 +150,7 @@ Recent decisions affecting current work:
 - [Phase 07]: 07-02: Artifact Open link only for http(s) refs; mock:// refs show ids only
 - [Phase 07]: 07-03: HF deploy uses HfApi.upload_folder (hf upload create_repo space_sdk=gradio returns 402 on free accounts); hf upload kept as fallback
 - [Phase 07]: 07-03: HF static host serves no directory indexes (/evals/ 302s to huggingface.co); smoke-static --dir-index for HF, Pages/CI unchanged; showcase live ~5:04 PM ET
+- [Phase 12]: 12-01: Docs verified at 13f9856 from a clean clone (864/864 tests, 0 check errors, scripted evals reproduce); Vercel/REST cut, Notion/Google credential-gated, real-LLM 0/2 silent failures reported as a finding
 
 ### Pending Todos
 
@@ -165,6 +167,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-09-13T21:13:19.677Z
-Stopped at: Completed 07-03-PLAN.md
+Last session: 2026-09-13T21:21:07.984Z
+Stopped at: Completed 12-01-PLAN.md
 Resume file: None

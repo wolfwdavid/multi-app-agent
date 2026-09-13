@@ -67,8 +67,8 @@
 ### Ship
 
 - [ ] **SHIP-01**: Live app deployed on Vercel (server routes hold secrets); static showcase (eval dashboard + recorded traces) on GitHub Pages and the HF static Space
-- [ ] **SHIP-02**: BRIEF.md system & reliability brief with architecture, reliability measures, real eval numbers, ethics/privacy handling, known limitations
-- [ ] **SHIP-03**: README with run instructions and a 2-minute demo script that includes a caught failure and an idempotent re-run
+- [x] **SHIP-02**: BRIEF.md system & reliability brief with architecture, reliability measures, real eval numbers, ethics/privacy handling, known limitations
+- [x] **SHIP-03**: README with run instructions and a 2-minute demo script that includes a caught failure and an idempotent re-run
 
 ## v2 Requirements
 
@@ -139,8 +139,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | API-01 | Phase 9 | Pending |
 | MCP-01 | Phase 11 | Complete |
 | SHIP-01 | Phase 9 | Pending |
-| SHIP-02 | Phase 12 | Pending |
-| SHIP-03 | Phase 12 | Pending |
+| SHIP-02 | Phase 12 | Complete |
+| SHIP-03 | Phase 12 | Complete |
 
 **Coverage:**
 - v1 requirements: 38 total

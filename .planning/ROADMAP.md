@@ -268,7 +268,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 12-01-PLAN.md — Wave 1: verified facts (clean-clone test/check, eval reproduction at HEAD, smoke-real counts, URL codes, secret scan of repo/history/build) + BRIEF.md and README.md with every TODO replaced by real numbers or honest cut rows, committed locally
+- [x] 12-01-PLAN.md — Wave 1: verified facts (clean-clone test/check, eval reproduction at HEAD, smoke-real counts, URL codes, secret scan of repo/history/build) + BRIEF.md and README.md with every TODO replaced by real numbers or honest cut rows, committed locally
 - [ ] 12-02-PLAN.md — Wave 1 (parallel; push gated on the 12-01 commit): DEMO.md 2:00 shooting script + pre-flight, SUBMISSION.md, human recording checkpoint, then trailer strip + push + Pages/HF redeploy + public URL checks
 
 ## Progress
@@ -289,4 +289,4 @@ Phases execute in numeric order, with parallel waves: 1 → (2 ‖ 3) → 4 → 
 | 9. Live Backend on Vercel & REST API | 0/2 | Not started | - |
 | 10. Real External Apps | 2/3 | In Progress|  |
 | 11. MCP Server | 1/1 | Complete   | 2026-09-13 |
-| 12. Brief, README & Demo | 0/2 | Not started | - |
+| 12. Brief, README & Demo | 1/2 | In Progress|  |
