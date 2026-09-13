@@ -8,3 +8,4 @@ export * from './classify.ts';
 export * from './metrics.ts';
 export * from './runner.ts';
 export * from './report.ts';
+export * from './llm-column.ts';
