@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: Deterministic Gap Analysis** - per-school gap report and feasibility warnings in pure TypeScript (25 min, parallel with Phase 2) (completed 2026-09-13)
 - [x] **Phase 4: Sprint Pipeline on Mocks** - terminal vertical slice: plan, approve, execute with idempotency and retry, read-back verify, redacted trace (45 min) (completed 2026-09-13)
 - [x] **Phase 5: Essay Critique, Evidence Grounding & Injection Guard** - policy-aware critique Doc, claim-evidence validator, injection flagged and contained, LLM-phrased actions (30 min) (completed 2026-09-13)
-- [ ] **Phase 6: Eval Harness & Real Pass Rates** - 8+ adversarial scenarios x N runs, state oracle, Lemma taxonomy, evals.json (40 min)
+- [x] **Phase 6: Eval Harness & Real Pass Rates** - 8+ adversarial scenarios x N runs, state oracle, Lemma taxonomy, evals.json (40 min) (completed 2026-09-13)
 - [ ] **Phase 7: Sprint UI, Eval Dashboard & Static Showcase** - profile to verified artifacts UI, eval dashboard, deployed to Pages + HF with real numbers (45 min)
 - [x] **Phase 8: Real LLM Slots** - Ollama qwen3.5:4b (think off) and hosted fallback via env, LLM-backed eval column (20 min) (completed 2026-09-13)
 - [ ] **Phase 9: Live Backend on Vercel & REST API** - plan/execute/SSE/evals endpoints, server-enforced approval, live mock-mode URL (25 min)

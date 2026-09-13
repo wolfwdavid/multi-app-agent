@@ -178,7 +178,7 @@ The chain is parseLlmFlag → resolveLlmConfig(env, { provider }) → probe → 
 | failureTotals fake | integration 5, instruction 10, hallucination 10, communication 10 | instruction 10, hallucination 10, communication 10 |
 | failureTotals fake-verifier-off | communication 30, integration 5, instruction 10, hallucination 10 | communication 30, instruction 10, hallucination 10 |
 
-**Surprising number (recorded, not tuned):** rate-limit-storm is 10/10 under both columns at seed 1337 N=10, so no run in runIndex 0..9 lost an event. At the ~20% per-run loss rate, 10 clean runs happen about 10% of the time. The honesty path is still exercised: oracle.test.ts finds a losing run within runIndex 0..39 and checks that it passes honestly and that a forced ok fails. Every other scenario's per-column results are byte-identical to the previous evals.json, as the Task 5 diff checked.
+**rate-limit-storm at seed 1337, N=10 (corrected after skeptic review):** the 10/10 is 9 complete runs plus 1 honest failure. Run 4, in both columns, loses one calendar event (12/13), reports `partial` with the failed calendar artifact named, and passes `goal.complete_or_honest`. An earlier version of this summary wrongly said no run in 0..9 lost an event. oracle.test.ts also checks that a losing run passes honestly and that forcing its report to ok fails `honesty.status_matches_state`. Every other scenario's per-column results are byte-identical to the previous evals.json, as the Task 5 diff checked.
 
 ## Task 5 output (committed artifacts, commit 0f7d07b, seed 1337, N=10, elapsed 5.3 s)
 

@@ -1,62 +1,37 @@
 ---
 phase: 06-eval-harness-real-pass-rates
-verified: 2026-09-13T19:50:00Z
-status: gaps_found
-score: 2/5 roadmap success criteria verified (plan must-haves 10/13: 06-01 7/7, 06-02 3/6)
-re_verification: false
-gaps:
-  - truth: "SC2: A deliberately weakened config produces a caught silent failure, saved as a replayable trace"
-    status: partial
-    reason: "Oracle independence and the caught silent failure are real: lying-success scores verifier-on 10/10 and verifier-off 0/10 communication_failure with 10 silent failures. But nothing replayable is saved. There is no silent-failure-run.json, no eval-silent-failure*.jsonl and no silentFailure pointer in evals.json. The CLI throws away the KeptRun traces the runner keeps."
-    artifacts:
-      - path: "web/src/lib/core/eval/report.ts"
-        issue: "SilentFailureRun schema and buildSilentFailureRun are missing"
-      - path: "web/scripts/eval.ts"
-        issue: "Never writes silent-failure-run.json or the traces. Never calls redactTraceEvent. The self-check uses aggregates only."
-      - path: "web/static/data/silent-failure-run.json"
-        issue: "MISSING"
-      - path: "web/static/traces/eval-silent-failure.jsonl"
-        issue: "MISSING (and eval-silent-failure-verifier-off.jsonl)"
-    missing:
-      - "SilentFailureRun zod schema plus buildSilentFailureRun({on, off, recordedAt, commitSha}) with oracle {caught, failureClass, expected, found, stepSpanId} and a before block"
-      - "eval.ts writes static/data/silent-failure-run.json and redacted static/traces/eval-silent-failure{,-verifier-off}.jsonl from suite.kept lying-success run 0"
-      - "evals.json silentFailure pointer { file: 'data/silent-failure-run.json', scenarioId: 'lying-success' }"
-      - "Tests for buildSilentFailureRun (stepSpanId matches a verify.readback end event with found=false, no PII)"
-  - truth: "SC4: The runner accepts --llm ollama|hosted so LLM-backed runs appear as separate columns"
-    status: partial
-    reason: "The no-key scripted baseline works (22 scenarios x 10 x 2 configs, 6.2s, deterministic). But resolveLlmColumn always calls process.exit(2), and its message says the Phase 8 selector is needed even though src/lib/core/llm/select.ts already exports parseLlmFlag, resolveLlmConfig, createLLM and llmRunMeta. There is no mergeEvalsFiles, so an LLM run would overwrite the baseline columns instead of adding a new one."
-    artifacts:
-      - path: "web/scripts/eval.ts"
-        issue: "resolveLlmColumn is an exit-2 stub (lines 103-109) with a stale message"
-      - path: "web/src/lib/core/eval/report.ts"
-        issue: "mergeEvalsFiles missing"
-    missing:
-      - "Wire resolveLlmColumn to llm/select.ts (parseLlmFlag -> resolveLlmConfig(process.env,{provider}) -> createLLM + llmRunMeta); exit 2 only on LlmConfigError"
-      - "mergeEvalsFiles(base, incoming) that is non-destructive in both directions, and eval.ts merging into an existing evals.json"
-  - truth: "SC5: A markdown results table for BRIEF.md is generated from the same results file"
-    status: failed
-    reason: "renderMarkdownTables and web/static/data/evals.md do not exist. BRIEF.md section 4 still holds {{PASS_RATE}} placeholders and a TODO(phase 6) comment."
-    artifacts:
-      - path: "web/src/lib/core/eval/report.ts"
-        issue: "renderMarkdownTables missing"
-      - path: "web/static/data/evals.md"
-        issue: "MISSING"
-    missing:
-      - "renderMarkdownTables(file) with the exact BRIEF header, a verifier on/off before-after table, a Known weaknesses line and a footer"
-      - "eval.ts --md flag writing static/data/evals.md"
-human_verification: []
+verified: 2026-09-13T20:35:00Z
+status: human_needed
+score: 5/5 roadmap success criteria verified (plan must-haves 06-01 7/7, 06-02 6/6, 06-03 7/7)
+re_verification:
+  previous_status: gaps_found
+  previous_score: 2/5
+  gaps_closed:
+    - "SC2: A weakened config's caught silent failure is saved as a replayable trace"
+    - "SC4: The runner accepts --llm ollama|hosted so LLM-backed runs appear as separate columns"
+    - "SC5: A markdown results table for BRIEF.md is generated from the same results file"
+  gaps_remaining: []
+  regressions: []
+human_verification:
+  - test: "When Ollama is idle, from web/ run: npm run eval -- --llm ollama --n 1 --scenarios happy-path,injection-essay-doc (default --out static/data/evals.json)"
+    expected: "Probe ok line; per-run progress lines; evals.json gains model llm-ollama (kind llm, llm.provider ollama) with results only for the two scenarios. fake and fake-verifier-off results and totals are byte-unchanged. evals.md shows real Real-LLM cells for those rows and an 'LLM columns:' line"
+    why_human: "Needs the live local Ollama service. The 06-03 Task 6 attempt was skipped: the model was on CPU and busy with a demo recording, and no run finished in 600 s. Every code path is verified with injected fakes and real CLI error probes, but no live LLM column has been recorded yet. Not blocking for the Phase 6 goal."
 ---
 
 # Phase 6: Eval Harness & Real Pass Rates Verification Report
 
 **Phase Goal:** We can prove reliability. Eight or more seeded adversarial scenarios run N times against mocks, are graded by an independent final-state oracle, classified with Lemma's taxonomy, and written to a committed JSON artifact.
-**Verified:** 2026-09-13T19:50:00Z
-**Status:** gaps_found
-**Re-verification:** No (initial verification)
+**Verified:** 2026-09-13T20:35:00Z
+**Status:** human_needed (all automated checks pass; one optional live-LLM check)
+**Re-verification:** Yes, after gap closure plan 06-03
 
-## Context: scope cut
+## Previous gaps
 
-Plan 06-02 was executed under a "SCOPE CUT" override block. That block exists only as an **uncommitted** working-tree change to `06-02-PLAN.md`. It dropped the silent-failure replay, the eval traces, evals.md, mergeEvalsFiles and the LLM hook. Commit 43ad106 in `tasks/lessons.md` records that the 3:45 deadline behind the cut was a timezone mistake: the real deadline is 7:00 PM ET. The ROADMAP success criteria were never amended, so this report measures against them. The deferred items are real gaps against the phase contract, and restoring them is the reversible path the lesson calls for.
+| Gap (2026-09-13T19:50Z) | Now | Evidence |
+|---|---|---|
+| SC2: silent failure not saved as a replayable trace (no silent-failure-run.json, no eval-silent-failure*.jsonl, no pointer) | CLOSED | All three artifacts are committed in 167ab6d. The oracle block reads caught=true, communication_failure, stepSpanId s91, which resolves to a `verify.readback` end event with found=false. The verifier-off `before` block has report ok, oraclePassed false. `redactTraceEvent` is wired in report.ts and eval.ts. The pointer is `{file:'data/silent-failure-run.json', scenarioId:'lying-success'}`. |
+| SC4: `resolveLlmColumn` was an exit-2 stub; no mergeEvalsFiles | CLOSED (live run pending, see human item) | `core/eval/llm-column.ts` chains parseLlmFlag → resolveLlmConfig → probeLlm → createLLM + llmRunMeta, and `eval.ts:176` calls `resolveLlmColumn(args.llm, process.env)`. `mergeEvalsFiles` exists. My CLI probes: hosted with no config exits 2 ("LLM config error ... LLM_BASE_URL"), Ollama at :9 exits 2 ("Ollama is not reachable"). I refreshed a scratch file that already held an LLM column with the fake baseline: it printed `kept LLM column(s)`, and the md rendered the Real-LLM cell plus an `LLM columns:` line. |
+| SC5: no renderMarkdownTables / evals.md | CLOSED | `renderMarkdownTables` exists, and `web/static/data/evals.md` is committed with the exact BRIEF header, Totals, silent-failure attribution, seed note, verifier on/off table, Known weaknesses and a footer that matches evals.json commit and generatedAt. A fresh scratch render is identical except for the footer. |
 
 ## Goal Achievement
 
@@ -64,103 +39,111 @@ Plan 06-02 was executed under a "SCOPE CUT" override block. That block exists on
 
 | # | Truth | Status | Evidence |
 |---|-------|--------|----------|
-| 1 | The eval command runs 8+ scenarios N times in minutes and writes static/data/evals.json with pass rate, pass^k, failure classes, run count, model, commit SHA and timestamp | VERIFIED | I re-ran `npx tsx scripts/eval.ts --n 10 --quiet --out <scratch>`: exit 0, 22 scenarios, 440 runs, 6.2s. The output matches the committed evals.json except generatedAt/commitSha (deterministic). The committed file has schemaVersion, generatedAt, commitSha ffb47f3, n 10, seed 1337, model fake-scripted, and per-scenario runs/passed/passRate/passK/passHatK/failures/silentFailures, plus totals and failureTotals. All listed scenario types are present (EVAL01_COVERAGE). Note: `npm run eval` does not exist in package.json; the equivalent is `npx tsx scripts/eval.ts` (documented in the SUMMARY). |
-| 2 | Oracle reads World directly; weakened config produces a caught silent failure saved as a replayable trace | PARTIAL (FAILED) | Independence verified: oracle.ts imports only `diffWorldStates` plus types, and the grep for agent/executor/verifier/executeSprint returns 0. RunReport is read only in honesty.* checks. Caught verified: lying-success gives `fake` 10/10 and `fake-verifier-off` 0/10 {communication_failure: 10}, silentFailures 10, and the CLI self-check exits 1 otherwise. **Not saved as a replayable trace:** silent-failure-run.json, eval-silent-failure.jsonl and eval-silent-failure-verifier-off.jsonl are absent (web/static/traces holds only demo-sprint.jsonl), and evals.json has no silentFailure pointer. |
-| 3 | Every failed run carries a primary Lemma label; report shows breakdown | VERIFIED | classify.ts returns exactly one primary from the 7-class FailureClass enum for any failed oracle, with a skipped_work fallback so no failure goes unlabeled. The runner stores the primary per record. evals.json has per-scenario `failures` and `failureTotals` (fake: integration 5, instruction 10, hallucination 10, communication 10). Known weaknesses map to the expected classes (W1 instruction_violation, W2 hallucination, W3 communication_failure). classify.test.ts passes. |
-| 4 | Deterministic scripted baseline runs full suite with no key; `--llm ollama|hosted` adds separate columns | PARTIAL (FAILED) | Baseline verified: FakeLLM, no env/key, two columns (verifier-on/off). `--llm ollama` is only a stub: my probe exited 2 with "needs the Phase 8 LLM selector", yet `llm/select.ts` already exports parseLlmFlag/resolveLlmConfig/createLLM/llmRunMeta. No mergeEvalsFiles exists. LLM columns cannot be produced. |
-| 5 | Markdown results table for BRIEF.md generated from the same results file | FAILED | `renderMarkdownTables` is absent from report.ts. `web/static/data/evals.md` does not exist. BRIEF.md lines 70-78 still hold `TODO(phase 6)` and `{{PASS_RATE}}` placeholders. |
+| 1 | `npm run eval -- --n 10 --llm fake` runs 8+ scenarios in minutes and writes evals.json with pass rate, pass^k, failure classes, runs, model, commit SHA, timestamp | VERIFIED | `package.json` has `"eval": "tsx scripts/eval.ts"`. I ran the literal command with scratch `--out/--md --no-artifacts`: exit 0, 23 scenarios × 10 × 2 configs, 6.6 s. The committed evals.json has 23 scenarios, n 10, seed 1337, model fake-scripted, and commitSha 0f7d07b (no -dirty; `git cat-file -e 0f7d07b:web/scripts/eval.ts` succeeds, and there are no core/scripts changes between 0f7d07b and HEAD). Every scenario×model cell has passRate, passK, passHatK and failures. All listed ROADMAP scenario types appear in EVAL01_COVERAGE. |
+| 2 | Oracle reads the World directly; a weakened config produces a caught silent failure saved as a replayable trace | VERIFIED | Independence is unchanged: `git diff 40a50ed~1 HEAD` over agent/, oracle.ts, classify.ts, setup.ts and agent.ts is empty. lying-success scores verifier-on 10/10 and verifier-off 0/10 {communication_failure: 10}. The CLI self-check printed `caught=true` and `stepSpanId s91`. The committed replay artifacts are described in the Previous gaps table. `eval-silent-failure.jsonl` holds 161 events, the same content as `silent-failure-run.json` events (only key order differs, from zod parse), and it contains s91. The verifier-off trace has 109 events and no read-back, as expected. Both are LF-only, parseable, and free of 'Alex Rivera' and the student email. |
+| 3 | Every failed run carries a primary Lemma label; report shows breakdown | VERIFIED (regression check) | classify.ts is unchanged. Per-scenario `failures` and `failureTotals` are present (fake: instruction 10, hallucination 10, communication 10; verifier-off: communication 30, instruction 10, hallucination 10). evals.md's Primary-classes column renders them. |
+| 4 | Scripted baseline runs the full suite with no key; `--llm ollama|hosted` adds separate columns | VERIFIED (live Ollama column is a human item) | No-key baseline: my run had no env and wrote two columns. The LLM column path is described in the Previous gaps table. llm-column.test.ts (9 tests) covers the provider → column → runSuite → merge → render path with injected probe/createLLM, and redacts `gsk_test_SECRET`. |
+| 5 | Markdown results table for BRIEF.md generated from the same results file | VERIFIED | `eval.ts` writes `renderMarkdownTables(file)` from the same object it writes to evals.json. The committed evals.md content is described in the Previous gaps table. |
 
-**Score:** 2/5 success criteria verified (1, 3); 2 partial (2, 4); 1 failed (5).
+**Score:** 5/5 success criteria verified.
 
 ### Plan must-haves
 
-**06-01 (7/7 verified):** 22 enabled data-only scenarios covering EVAL-01. The injection-leak scan reads outputs only (oracle.ts:121-131 skips gmail.inbox). prepareRun is deterministic. runAgent has both verifier-on and verifier-off configs. The oracle is independent. Lying-success is graded as a silent failure under verifier-off. The classifier uses first-match precedence. Evidence: 99/99 eval tests pass (scenarios, oracle, classify, runner).
-
-**06-02 (3/6 verified):**
-- VERIFIED: runSuite runs N x column on fresh seeded Worlds and is deterministic (rerun identical).
-- VERIFIED: metrics give passRate, passK and tau-bench passHatK, plus totals.
-- VERIFIED: the no-key CLI writes evals.json in under 60s with commitSha/seed/n/generatedAt/model. The optional silentFailure pointer is absent.
-- FAILED: silent-failure-run.json and the redacted traces, including the exit-1 check built on them.
-- FAILED: evals.md BRIEF tables and the Known weaknesses line.
-- FAILED: the `--llm` hook merging a column non-destructively.
+- **06-01 (7/7), regression:** eval tests are green inside the full suite, and oracle/classify/agent/setup are unchanged.
+- **06-02 (6/6, full original spec):**
+  - runSuite is deterministic.
+  - metrics give passRate, passK and passHatK.
+  - The no-key CLI finishes in under 60 s with provenance.
+  - silent-failure-run.json and the redacted traces exist, with an exit-1 self-check built on `buildSilentFailureRun`.
+  - evals.md BRIEF tables are generated.
+  - The `--llm` hook merges non-destructively.
+- **06-03 (7/7):**
+  1. `npm run eval` works literally, with 23 scenarios and a clean SHA.
+  2. The replay artifacts and pointer exist, with no PII.
+  3. The resolveLlmColumn chain exits 2 with clear, key-free messages, and a fake refresh keeps LLM columns.
+  4. evals.md has all blocks. Verifier-on's 10 silent failures are attributed to unsupported-claim-gpa-employer (known weakness).
+  5. rate-limit-burst uses deterministic `calls` lists and passes 10/10 under both configs. rate-limit-storm has `probability: 0.25`, `complete_or_honest` and `counts: FULL`. oracle.test.ts proves a forced-ok storm run fails `honesty.status_matches_state`.
+  6. Determinism: my two scratch runs match each other and the committed file once generatedAt and commitSha are stripped.
+  7. Compared with the pre-06-03 evals.json (addd173), only rate-limit-burst's two cells changed and only rate-limit-storm was added. Totals moved from 185/220 to 200/230 (verifier-on) and from 165/220 to 180/230 (verifier-off).
 
 ### Required Artifacts
 
 | Artifact | Expected | Status | Details |
 |----------|----------|--------|---------|
-| `web/src/lib/core/eval/types.ts` | contracts, AGENT_CONFIGS | VERIFIED | 105 lines, used by all eval modules |
-| `web/src/lib/core/eval/scenarios.ts` | 22 scenarios + EVAL01_COVERAGE | VERIFIED | 327 lines, frozen data |
-| `web/src/lib/core/eval/setup.ts` | prepareRun, runSeedFor | VERIFIED | `seed: runSeed` fault wiring present |
-| `web/src/lib/core/eval/agent.ts` | runAgent on/off | VERIFIED | calls executeSprint and executePlan+buildRunReport |
-| `web/src/lib/core/eval/oracle.ts` | gradeRun | VERIFIED | 434 lines, independent |
-| `web/src/lib/core/eval/classify.ts` | classifyFailure | VERIFIED | 7 classes, labels/definitions |
-| `web/src/lib/core/eval/metrics.ts` | passHatK, kValues, aggregateScenario | VERIFIED | 51 lines |
-| `web/src/lib/core/eval/runner.ts` | runSuite, fakeColumns | VERIFIED | gradeRun + classifyFailure per run |
-| `web/src/lib/core/eval/report.ts` | EvalsFile, SilentFailureRun, buildEvalsFile, mergeEvalsFiles, buildSilentFailureRun, renderMarkdownTables | PARTIAL | Only EvalsFile/buildEvalsFile exist; 3 of 5 planned exports are missing |
-| `web/scripts/eval.ts` | CLI (min 150 lines) | PARTIAL | 194 lines; LLM hook is a stub; no silent-failure/md outputs |
-| `web/static/data/evals.json` | committed real numbers | VERIFIED | commit addd173; no PII/evil.example matches |
-| `web/static/data/silent-failure-run.json` | replay + oracle block | MISSING | |
-| `web/static/data/evals.md` | BRIEF tables | MISSING | |
-| `web/static/traces/eval-silent-failure*.jsonl` | replayable traces | MISSING | |
+| `web/src/lib/core/eval/report.ts` | EvalsFile, EvalModel(.llm), SilentFailureRun, buildEvalsFile, mergeEvalsFiles, buildSilentFailureRun, renderMarkdownTables | VERIFIED | 448 lines, all 7 exports present; imported by eval.ts |
+| `web/src/lib/core/eval/llm-column.ts` | resolveLlmColumn, LlmColumnDeps, LlmColumnResult | VERIFIED | 78 lines; re-exported from index.ts; imported by eval.ts |
+| `web/src/lib/core/eval/scenarios.ts` | 23 scenarios, burst/storm split | VERIFIED | burst `calls: [1, 2, 5, 9, 10]`; storm probabilistic; coverage list updated |
+| `web/scripts/eval.ts` | CLI ≥200 lines with --md, --no-artifacts, LLM wiring, silent-failure artifacts, -dirty | VERIFIED | 335 lines; stub removed |
+| `web/package.json` | `"eval": "tsx scripts/eval.ts"` | VERIFIED | line 17 |
+| `web/static/data/evals.json` | committed real numbers + pointer | VERIFIED | commit 167ab6d; reproduces byte-for-byte (minus timestamps/SHA) |
+| `web/static/data/silent-failure-run.json` | oracle block with stepSpanId + before | VERIFIED | 120 KB; consumed by web/src/lib/ui/evals.ts via the pointer |
+| `web/static/data/evals.md` | BRIEF tables | VERIFIED | matches a fresh render |
+| `web/static/traces/eval-silent-failure{,-verifier-off}.jsonl` | redacted replayable traces | VERIFIED | 161 / 109 events, LF, no PII |
 
 ### Key Link Verification
 
 | From | To | Via | Status | Details |
 |------|----|-----|--------|---------|
-| oracle.ts | connectors/index.ts | `diffWorldStates(` | WIRED | 2 calls |
-| agent.ts | agent/index.ts | `executePlan(` | WIRED | verifier-off path |
-| setup.ts | connectors/index.ts | `seed: runSeed` | WIRED | |
-| classify.ts | schemas.ts | FailureClass | WIRED | |
-| runner.ts | oracle.ts | `gradeRun(` then classifyFailure | WIRED | |
-| scripts/eval.ts | report.ts | `buildEvalsFile(` | WIRED | EvalsFile.parse inside the builder |
-| scripts/eval.ts | trace/redact.ts | `redactTraceEvent(` | NOT_WIRED | 0 matches (no traces exported) |
-| evals.json | 07-UI-SPEC | `"silentFailure"` pointer | NOT_WIRED | 0 matches; only per-result `silentFailures` counts |
-| scripts/eval.ts | llm/select.ts | dynamic import in resolveLlmColumn | NOT_WIRED | stub exits 2 unconditionally |
+| scripts/eval.ts | eval/llm-column.ts | `resolveLlmColumn(args.llm, process.env)` | WIRED | line 176; exit 2 on !ok (probed live) |
+| eval/llm-column.ts | llm/select.ts | resolveLlmConfig → probeLlm → createLLM + llmRunMeta | WIRED | lines 34-67 |
+| eval/report.ts | trace/redact.ts | `redactTraceEvent(` | WIRED | report.ts:211; eval.ts:315,320 for JSONL |
+| scripts/eval.ts | eval/report.ts | `renderMarkdownTables(file)` | WIRED | line 242, same `file` written at line 239 |
+| scripts/eval.ts | eval/report.ts | `buildSilentFailureRun(` from `suite.kept` run 0 | WIRED | lines 282-297 |
+| evals.json | UI (Phase 7) | `silentFailure` pointer | WIRED | ui/evals.ts:147 reads `evals.silentFailure?.file` |
+| oracle.ts | connectors | `diffWorldStates(` | WIRED | unchanged |
 
 ### Requirements Coverage
 
 | Requirement | Source Plan | Description | Status | Evidence |
 |-------------|-------------|-------------|--------|----------|
-| EVAL-01 | 06-01 | Seeded suite of 8+ scenarios with the listed adversarial cases | SATISFIED | 22 scenarios; every listed case appears in EVAL01_COVERAGE and is enabled |
-| EVAL-02 | 06-01, 06-02 | N runs against mocks asserting final app state | SATISFIED | runSuite N=10 on fresh Worlds; oracle reads snapshots |
-| EVAL-03 | 06-01, 06-02 | Failures classified into Lemma taxonomy | SATISFIED | classify.ts plus failures/failureTotals in evals.json |
-| EVAL-04 | 06-02 | JSON artifact consumed by the UI **and BRIEF.md** | PARTIAL | evals.json exists for the UI; nothing generates BRIEF content (no evals.md, BRIEF placeholders remain). REQUIREMENTS.md marks this Complete, which overclaims. |
-| EVAL-05 | 06-02 | Scripted baseline with no key, **alongside LLM-backed runs** | PARTIAL | Baseline done; LLM columns can't be produced (stub hook, no merge). REQUIREMENTS.md marks this Complete, which overclaims. Phase 8 SC3 (LLM column in evals.json) also depends on this. |
+| EVAL-01 | 06-01, 06-03 | Seeded suite ≥8 with the listed adversarial cases | SATISFIED | 23 scenarios; EVAL01_COVERAGE includes both rate-limit scenarios |
+| EVAL-02 | 06-01, 06-02, 06-03 | N runs against mocks asserting final app state | SATISFIED | runSuite N=10 on fresh seeded Worlds; independent oracle |
+| EVAL-03 | 06-01, 06-02 | Lemma taxonomy classification | SATISFIED | classify.ts + failures/failureTotals |
+| EVAL-04 | 06-02, 06-03 | JSON artifact consumed by the UI and BRIEF.md | SATISFIED | The UI reads evals.json and silent-failure-run.json (ui/config.ts, ui/evals.ts). evals.md is the BRIEF source generated from the same file. Pasting into BRIEF.md belongs to Phase 12 (12-01), and BRIEF.md still has `{{PASS_RATE}}` placeholders. |
+| EVAL-05 | 06-02, 06-03 | No-key scripted baseline alongside LLM-backed runs | SATISFIED (live column pending) | Baseline committed; LLM column path wired and tested; no live column recorded yet (human item) |
 
-No orphaned requirement IDs: REQUIREMENTS.md maps exactly EVAL-01..05 to Phase 6, and all appear in plan frontmatter.
+No orphaned requirement IDs: REQUIREMENTS.md maps exactly EVAL-01..05 to Phase 6.
 
 ### Anti-Patterns Found
 
 | File | Line | Pattern | Severity | Impact |
 |------|------|---------|----------|--------|
-| web/scripts/eval.ts | 103-109 | Stub `resolveLlmColumn` always `process.exit(2)`; message claims the selector is missing while select.ts exists | Warning | Blocks SC4 LLM columns; misleading operator message |
-| .planning/phases/06-.../06-02-PLAN.md | 66-90 | Scope-cut override block is uncommitted, and the lessons log says its premise was wrong | Warning | The planning record doesn't match the committed history |
-| BRIEF.md | 70-78 | `TODO(phase 6)` + `{{PASS_RATE}}` placeholders | Warning | SC5 / EVAL-04 BRIEF consumption unmet |
-| evals.json | rate-limit-burst | 5/10 under both configs (integration_failure) | Info | A genuine measured failure, correctly left untuned |
+| web/src/lib/core/eval/oracle.ts | complete_or_honest goal | Accepts any non-ok report; "names the failed write" is only asserted in oracle.test.ts | Warning | A storm run that reports partial without a failed calendar artifact would still pass. Documented in the 06-03 SUMMARY; oracle intentionally frozen. |
+| web/static/data/evals.json | rate-limit-storm | 10/10 on both configs = 9 complete runs + 1 honest failure (run 4 loses 1 calendar event, reports partial and names the failed calendar artifact). Corrected after the fresh-rerun skeptic reproduced it. | Info | The committed numbers do exercise the honesty path once. The oracle tests exercise it too. evals.md shows 100% without splitting out the honest-failure run. The BRIEF (Phase 12) should say so. |
+| BRIEF.md | 55, 70-81 | `TODO(phase 6)` + `{{PASS_RATE}}` placeholders | Info | Phase 12 paste target; source evals.md now exists |
+| .planning/ROADMAP.md | 20 | Phase 6 list checkbox still `[ ]`; progress table row says 3/3 Complete | Info | Bookkeeping for the orchestrator |
+| web/src/lib/ui/fixtures.ts | 285 | Test fixture uses scenarioId 'lying-api' vs real 'lying-success' | Info | Fixture only; the UI reads the pointer's file |
 
-No TODO/FIXME in eval sources. The core-rule grep (process.env, node:, Math.random, Date.now) over non-test eval files is clean. `git status web/static` is clean after my scratch rerun.
+Clean checks:
+- The core-rule grep (process.env, node:, Math.random, Date.now) over non-test `core/eval` is empty.
+- No TODO/FIXME in the eval sources.
+- Full suite: 52 files, 852 tests passed. svelte-check: 0 errors.
+- The trailer grep over the 06-03 commits returns 0.
+- `git status --porcelain -- web/static` is empty after all my scratch runs.
 
 ### Human Verification Required
 
-None. Every gap was confirmed programmatically.
+#### 1. Live Ollama eval column
+
+**Test:** Wait until Ollama is idle. Then, from `web/`, run `npm run eval -- --llm ollama --n 1 --scenarios happy-path,injection-essay-doc`. It may take several minutes per run on CPU.
+**Expected:**
+- The run prints the probe ok line and per-run progress.
+- evals.json gains `llm-ollama` (kind llm, `llm.provider` ollama) for those two scenarios, while the fake columns and their totals stay unchanged.
+- evals.md shows real Real-LLM cells and an `LLM columns:` line.
+- Commit both files only if the fake columns are unchanged.
+
+**Why human:** It needs the live external service. The 06-03 attempt could not finish a run in 600 s because of CPU contention. The code path is fully verified with injected fakes and real CLI error probes. Phase 8 SC3 (an LLM-backed column in evals.json) also depends on this recording.
 
 ### Gaps Summary
 
-The measurement core is solid and real:
-- 22 data-driven adversarial scenarios
-- a genuinely independent final-state oracle
-- a deterministic 7-class taxonomy
-- a no-key, reproducible 10-run baseline committed in evals.json
-- a demonstrated silent-failure catch (verifier-off 0/10 vs verifier-on 10/10 on the lying API)
+All three gaps from the initial verification are closed:
+- **Replay:** the silent-failure replay contract and its artifacts are committed.
+- **LLM column:** the stub is replaced by a probed, tested column resolver with a non-destructive merge.
+- **BRIEF tables:** they are generated from the same EvalsFile object.
 
-All three gaps come from the 06-02 scope cut, which lessons.md now calls a mistaken deadline assumption:
-1. **Replayable silent-failure artifact (SC2):** silent-failure-run.json and the two redacted JSONL traces were never built. The Phase 7 dashboard's silent-failure replay depends on them. The runner already keeps the run-0 KeptRun data, so this is mostly report.ts plus CLI output work.
-2. **LLM column hook (SC4 / EVAL-05):** wire the stub to the existing llm/select.ts and add a non-destructive mergeEvalsFiles. Phase 8 SC3 is blocked on this too.
-3. **BRIEF markdown tables (SC5 / EVAL-04):** renderMarkdownTables plus evals.md generated from evals.json.
-
-All three can be closed by one gap plan that restores the deferred 06-02 items. Those items are already fully specified in the 06-02 plan body below the override block. REQUIREMENTS.md should not show EVAL-04/EVAL-05 as complete until then.
+I re-derived the committed artifacts independently: two scratch runs match each other and the committed evals.json. The provenance SHA contains the producing code, and the only pass-rate changes are the intended rate-limit split. The phase goal is achieved. The one remaining item is recording a live Ollama column, which depends on an external service and doesn't block Phase 6.
 
 ---
 
-_Verified: 2026-09-13T19:50:00Z_
+_Verified: 2026-09-13T20:35:00Z_
 _Verifier: Claude (gsd-verifier)_

@@ -17,6 +17,7 @@ One end-to-end application sprint (profile + target school → gap analysis → 
 - ✓ Deterministic per-school gap analysis + feasibility warnings with stable codes, every finding traced to requirement id + source URL — Validated in Phase 3: Deterministic Gap Analysis (LLM-phrased next actions with byte-identical findings, GAP-03, validated in Phase 5)
 - ✓ Stateful mock app twins (Notion, Calendar, Docs, Gmail drafts-only, GitHub, HF) with per-run worlds, findByKey dedupe, realistic API validation, seeded fault injection (429/500/ghost-write/lying-success/latency), and a mock/real connector factory — Validated in Phase 2: Stateful Mock App Twins
 - ✓ Policy-aware essay critique Doc on mocks (reads only the profile's essay doc id; questions-not-prose scored against the transfer prompt + word limit; grammar_only/feedback_ok/brainstorm_ok depth; "evidence you're not using yet" from GitHub/HF), claim-evidence validator for critique and outreach drafts, and injection in docs/emails flagged but unable to change actions or recipients (ESSAY-01..04, AGENT-04, GAP-03, PORT-04) — Validated in Phase 5: Essay Critique, Evidence Grounding & Injection Guard. Open warnings: grammar_only filter is section-level only; outreach claim check covers achievement words only; UMich critique targets the Common App prompt; no real-LLM run yet
+- ✓ Eval harness with real pass rates: 23 data-driven adversarial scenarios × N=10 runs on seeded mock worlds, graded by an independent final-state oracle (it never reads the agent's verifier), Lemma 7-class taxonomy per failed run, pass rate + pass^k, a verifier-on/off before-after showing the caught lying-API silent failure (replayable redacted trace), committed evals.json + BRIEF markdown tables, `npm run eval -- --llm fake|ollama|hosted` columns. Scripted baseline: verifier-on 200/230 (86.96%), verifier-off 180/230 (78.26%). The 3 known-weakness scenarios (Phase 5 W1-W3) fail on purpose. (EVAL-01..05) — Validated in Phase 6: Eval Harness & Real Pass Rates
 
 ### Active
 
@@ -38,11 +39,11 @@ One end-to-end application sprint (profile + target school → gap analysis → 
 
 **Reliability & evaluation (25% of score)**
 - [ ] Stateful in-repo mock apps (Gmail, Calendar, Docs/Drive, Notion, GitHub, HF) with the same interface as real connectors (mock/real mode switch)
-- [ ] Seeded scenario suite incl. adversarial cases (duplicate tracker rows, conflicting deadlines, missing essay doc, API 429/500, prompt-injection in an email/doc, school with no transfer program)
-- [ ] Evals verify final app state (read-back), not the agent's self-report
-- [ ] Idempotent writes (re-run creates no duplicates) + retries with backoff
-- [ ] Failures classified with Lemma's taxonomy (skipped work, out-of-scope work, instruction violation, integration failure, retry loop, hallucination, communication failure)
-- [ ] Pass rates over N runs per scenario, shown in the UI and in BRIEF.md
+- [x] Seeded scenario suite incl. adversarial cases (duplicate tracker rows, conflicting deadlines, missing essay doc, API 429/500, prompt-injection in an email/doc, school with no transfer program) — Phase 6
+- [x] Evals verify final app state (read-back), not the agent's self-report — Phase 6
+- [x] Idempotent writes (re-run creates no duplicates) + retries with backoff — Phases 4 + 6
+- [x] Failures classified with Lemma's taxonomy (skipped work, out-of-scope work, instruction violation, integration failure, retry loop, hallucination, communication failure) — Phase 6
+- [ ] Pass rates over N runs per scenario, shown in the UI and in BRIEF.md (computed and committed in Phase 6; UI in Phase 7, BRIEF in Phase 12)
 
 **Submission**
 - [ ] Deployed: GitHub Pages (static showcase/eval dashboard), HF static Space, Vercel (live backend)
@@ -115,4 +116,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-09-13 after Phase 5 completion*
+*Last updated: 2026-09-13 after Phase 6 completion*
