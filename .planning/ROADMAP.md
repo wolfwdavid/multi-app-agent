@@ -19,7 +19,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 5: Essay Critique, Evidence Grounding & Injection Guard** - policy-aware critique Doc, claim-evidence validator, injection flagged and contained, LLM-phrased actions (30 min)
 - [ ] **Phase 6: Eval Harness & Real Pass Rates** - 8+ adversarial scenarios x N runs, state oracle, Lemma taxonomy, evals.json (40 min)
 - [ ] **Phase 7: Sprint UI, Eval Dashboard & Static Showcase** - profile to verified artifacts UI, eval dashboard, deployed to Pages + HF with real numbers (45 min)
-- [ ] **Phase 8: Real LLM Slots** - Ollama qwen3.5:4b (think off) and hosted fallback via env, LLM-backed eval column (20 min)
+- [x] **Phase 8: Real LLM Slots** - Ollama qwen3.5:4b (think off) and hosted fallback via env, LLM-backed eval column (20 min) (completed 2026-09-13)
 - [ ] **Phase 9: Live Backend on Vercel & REST API** - plan/execute/SSE/evals endpoints, server-enforced approval, live mock-mode URL (25 min)
 - [ ] **Phase 10: Real External Apps** - live GitHub/HF evidence, real Notion, one real Google app, optional Obsidian (25 min, CUT CANDIDATE, parallel with Phase 11)
 - [x] **Phase 11: MCP Server** - stdio MCP server generated from the tool registry, usable from VS Code (15 min, CUT CANDIDATE, parallel with Phase 10) (completed 2026-09-13)
@@ -284,7 +284,7 @@ Phases execute in numeric order, with parallel waves: 1 → (2 ‖ 3) → 4 → 
 | 5. Essay Critique, Evidence Grounding & Injection Guard | 1/2 | In Progress | - |
 | 6. Eval Harness & Real Pass Rates | 0/3 | Not started | - |
 | 7. Sprint UI, Eval Dashboard & Static Showcase | 0/3 | Not started | - |
-| 8. Real LLM Slots | 0/1 | Not started | - |
+| 8. Real LLM Slots | 0/1 | Complete    | 2026-09-13 |
 | 9. Live Backend on Vercel & REST API | 0/2 | Not started | - |
 | 10. Real External Apps | 2/3 | In Progress|  |
 | 11. MCP Server | 1/1 | Complete   | 2026-09-13 |
