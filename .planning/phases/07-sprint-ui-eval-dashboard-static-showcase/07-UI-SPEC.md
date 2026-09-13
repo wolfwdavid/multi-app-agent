@@ -604,7 +604,7 @@ Routes: `web/src/routes/+layout.svelte` (shell), `+layout.ts` (+ `trailingSlash`
 | Recording missing (error) | Heading "Recorded run not available" · Body "data/hero-run.json could not be loaded ({status}). The gap report still works; the plan and trace need a recording. Run scripts/record.ts and rebuild." |
 | Live API error (Phase 9 path) | Heading "Plan request failed" · Body "The server returned {status}. Try again, or add ?replay to the URL to use the recorded run." + button "Try again" |
 | Run failed mid-stream | "The run stopped at step {n}: {error message}. Completed steps are shown below; nothing past step {n} was written." |
-| Evals empty | Heading "No eval results yet" · Body "Run npm run eval -- --n 10 --llm fake, then rebuild the site." |
+| Evals empty | Heading "No eval results yet" · Body "Run npx tsx scripts/eval.ts --n 10 in web/, then rebuild the site." |
 | Evals error | Heading "Couldn't load eval results" · Body "data/evals.json returned {status or 'an invalid format'}. The numbers are also in BRIEF.md." + link "Read BRIEF.md ↗" |
 | Silent-failure file missing | Heading "Replay not available" · Body "The recorded silent-failure trace is missing from this build." |
 | Replay banner | "Recorded run. This static site replays a mock-mode run recorded on {date} (commit {sha7}). Gap analysis runs live in your browser; the plan, trace and results come from the recording. Personal details in the recording are redacted." |
