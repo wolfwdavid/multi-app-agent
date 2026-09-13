@@ -44,8 +44,10 @@ to tracked files under `web/static/` by default, so every recording redirected b
   lines are the CLI's own. The suite finished in about 9 s. While it ran, a waiting line was on screen, and the progress dots were
   replayed afterwards (the real wall time is printed). `--no-artifacts` and `--out` into scratch meant no tracked eval file was rewritten.
 - **Scene 03's exit code is 0 by design.** `--expect-status partial` asserts that the run must end `partial`.
-- **Review.** Scenes 01 and 02 passed a frame-by-frame review. Scenes 03 to 06, and every transition in the reel, were checked by
-  sampling frames (title cards, mid-run, final state). No scene was excluded from the reel.
+- **Review.** A separate reviewer, not the recorder, checked each of scenes 01 to 06. The reviewer extracted at least 6 evenly spaced
+  frames plus the final frame, read them, and checked duration and codec with `ffprobe`. All six were approved. Scene 05 was
+  approved on its second take: the first review ran before the render existed, so it was re-recorded and re-reviewed. The reel's
+  transitions and scene 07 were checked by sampling frames (title cards, mid-run, final state). No scene was excluded from the reel.
 
 ## Re-recording a scene
 
