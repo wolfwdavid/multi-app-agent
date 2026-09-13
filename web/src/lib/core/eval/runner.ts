@@ -18,6 +18,8 @@ export interface ModelColumn {
 	config: AgentConfig;
 	model: string;
 	llm?: () => LLM;
+	/** Key-free model metadata for LLM columns (written to evals.json models[].llm). Ignored by runSuite. */
+	llmMeta?: { provider: 'fake' | 'ollama' | 'hosted'; seed: number | null; temperature: number | null; numCtx: number | null };
 }
 export interface RunRecord {
 	scenarioId: string;
