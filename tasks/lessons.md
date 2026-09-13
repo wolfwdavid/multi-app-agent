@@ -10,3 +10,8 @@
 - **What happened:** I launched 9 agents in one batch and then sent the plan checker's 04-01 fix note to the agent ID of the Phase 11 *planner* instead of the 04-01 *executor*. I mapped IDs by position, and the spawn results arrived out of order relative to the calls. The executor never got the note until I noticed a "Coordinator note on Cornell" in the Phase 11 planner's report.
 - **Rule:** Before any SendMessage, identify the target from its spawn result's own `description` (e.g. "Execute plan 04-01"), not from its position in a batch. Right after launching a batch, keep an explicit `description → agentId` map.
 - **Also:** An Edit with identical old/new strings is a no-op. Re-read the intended change before sending it.
+
+## 2026-09-13: `git add X && git commit` swept another agent's staged files
+- **What happened:** A README agent staged `git rm` deletions (app.py, docs/index.html, requirements.txt). My next commit, "docs(11): create phase 11 MCP server plan" (317a66e), ran `git add <plan files> && git commit`, which recorded the whole index. The deletions landed in a mislabeled commit. Agents told to "stage only your own files" can hit the same bug.
+- **Rule:** When other agents share the working tree, always commit with an explicit pathspec: `git commit --only -m "..." -- <paths>` (or gsd-tools `commit --files`). Check `git diff --cached --name-only` before every commit. Never tell a non-committing agent to stage (`git add`/`git rm`); unstaged working-tree changes are safe, staged ones are not.
+- **Also add the rule to every executor/planner prompt** alongside the no-AI-trailer rule.
