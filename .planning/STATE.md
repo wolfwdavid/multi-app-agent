@@ -4,12 +4,12 @@ milestone: v1.0
 milestone_name: milestone
 status: unknown
 stopped_at: Completed 04-02-PLAN.md
-last_updated: "2026-09-13T18:29:36.836Z"
+last_updated: "2026-09-13T18:34:25.085Z"
 progress:
   total_phases: 12
   completed_phases: 3
   total_plans: 24
-  completed_plans: 9
+  completed_plans: 11
 ---
 
 # Project State
@@ -63,6 +63,7 @@ Plan: 3 of 3
 | Phase 10 P01 | 10min | 3 tasks | 21 files |
 | Phase 04 P02 | 8min | 3 tasks | 7 files |
 | Phase 10 P02 | 10min | 2 tasks | 4 files |
+| Phase 08 P01 | 6min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -101,6 +102,9 @@ Recent decisions affecting current work:
 - [Phase 10]: 10-02: Notion SDK retries disabled (retry: false); the Phase 4 executor owns retries with a findByKey re-check, so a ghost-write create never duplicates rows
 - [Phase 10]: 10-02: Tracker title property must be named Name; a misnamed title is a 'missing' issue that --apply fixes by renaming, while wrong_type issues are never auto-changed
 - [Phase 10]: 10-02: Rows are read back from the Notion page response; select values outside the tracker enum fail with validation instead of being coerced
+- [Phase 08]: 08-01: Backends return malformed model output (string or wrong-shape value) and throw LLMError only on transport/protocol failure; zod validation and the single repair stay solely in callSlot
+- [Phase 08]: 08-01: Ollama uses native /api/chat (format = zod JSON schema minus $schema, think:false, temperature 0, seed 42, num_ctx 8192, keep_alive 10m, 180 s timeout); localhost pinned to 127.0.0.1
+- [Phase 08]: 08-01: Hosted backend lazy-imports openai; strict json_schema downgrades per instance to json_object after one HTTP 400; 401/403 omit provider text, other messages are key-redacted
 
 ### Pending Todos
 
