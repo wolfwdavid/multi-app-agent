@@ -1,0 +1,11 @@
+{
+  "servers": {
+    "transferpilot": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["tsx", "scripts/mcp.ts"],
+      "cwd": "${workspaceFolder}/web",
+      "env": { "TRANSFERPILOT_MCP_MODE": "mock" }
+    }
+  }
+}
