@@ -158,6 +158,12 @@ None. The actual `LLM`, `LLMRequest`, `LLMSlotError` and `callSlot` in llm/types
 
 - AGENT-02 is only partly delivered. The backends exist, but provider selection from env, per-slot routing and the live smoke test belong to 08-02, so AGENT-02 is not marked complete here.
 
+## ROADMAP.md
+
+- I ran `roadmap update-plan-progress 08` (2 plans, 1 summary, In Progress). It checked the `08-01-PLAN.md` box in the working tree.
+- The commit was skipped under the shared-file rule. The Phase 8 plan list (`08-01-PLAN.md` / `08-02-PLAN.md` lines) exists only as another agent's uncommitted ROADMAP edit and is absent from HEAD. Committing the checkbox would also have committed their lines.
+- The `[x]` stays in the working tree and will land whenever that section is committed.
+
 ## Known Stubs
 
 None.
