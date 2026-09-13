@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 04-02-PLAN.md
-last_updated: "2026-09-13T18:34:25.085Z"
+stopped_at: Completed 04-03-PLAN.md
+last_updated: "2026-09-13T18:43:40.500Z"
 progress:
   total_phases: 12
-  completed_phases: 3
-  total_plans: 24
-  completed_plans: 11
+  completed_phases: 5
+  total_plans: 25
+  completed_plans: 13
 ---
 
 # Project State
@@ -65,6 +65,7 @@ Plan: 3 of 3
 | Phase 10 P02 | 10min | 2 tasks | 4 files |
 | Phase 08 P01 | 6min | 2 tasks | 6 files |
 | Phase 10 P03 | 11min | 3 tasks | 11 files |
+| Phase 04 P03 | 15min | 3 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -109,6 +110,9 @@ Recent decisions affecting current work:
 - [Phase 10]: Google Calendar event id = base32hex(sha256(key)); mock twin keeps key.replace('-',''); ids are internal, callers use keys
 - [Phase 10]: Real Gmail is drafts-only on gmail.compose; real searchInbox rejects not_configured (no gmail.readonly), inbox content is mock-only
 - [Phase 10]: createRealGoogle/probeGoogle take deps.implemented to override GOOGLE_IMPLEMENTED per app (test seam); all three Google flags are true
+- [Phase 04]: 04-03: planSprint (no writes, signed) + executeSprint (authorize, execute, read-back verify, report) are the single sprint entry for CLI, evals, REST and MCP; PolicyError is thrown before any write
+- [Phase 04]: 04-03: Exports redact student name/email/GPA at the boundary (strings and gpa-named keys only; numbers untouched so zod contracts parse); contact recipients stay visible
+- [Phase 04]: 04-03: hero-run.json is produced only via buildHeroRunFile (redact + HeroRunFile.parse); the recorder is scripts/sprint.ts via npm run record, not scripts/record.ts
 
 ### Pending Todos
 
@@ -125,6 +129,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-09-13T18:28:02.354Z
-Stopped at: Completed 04-02-PLAN.md
+Last session: 2026-09-13T18:43:40.490Z
+Stopped at: Completed 04-03-PLAN.md
 Resume file: None

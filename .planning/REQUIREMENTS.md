@@ -47,7 +47,7 @@
 - [x] **AGENT-03**: User sees a dry-run plan (app, operation, payload) and approves all or individual actions before any external write
 - [ ] **AGENT-04**: Content from docs/emails is treated as data; instructions embedded in it (prompt injection) cause no out-of-plan tool calls and are flagged
 - [x] **AGENT-05**: After execution, agent reads back each target app and marks each artifact verified/failed based on actual final state
-- [ ] **AGENT-06**: Every run emits a structured step trace (tool, args, result, latency, verification) with PII redacted in exported artifacts
+- [x] **AGENT-06**: Every run emits a structured step trace (tool, args, result, latency, verification) with PII redacted in exported artifacts
 
 ### Evaluation
 
@@ -128,7 +128,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AGENT-03 | Phase 4 | Complete |
 | AGENT-04 | Phase 5 | Pending |
 | AGENT-05 | Phase 4 | Complete |
-| AGENT-06 | Phase 4 | Pending |
+| AGENT-06 | Phase 4 | Complete |
 | EVAL-01 | Phase 6 | Pending |
 | EVAL-02 | Phase 6 | Pending |
 | EVAL-03 | Phase 6 | Pending |
