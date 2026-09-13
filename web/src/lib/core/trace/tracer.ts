@@ -1,5 +1,14 @@
 // Minimal span tracer. Pure: no I/O and no Node-only APIs (the JSONL file sink lives under scripts in Phase 4).
+// Action spans use the SpanControl passed to fn to publish their final attempt/status attrs on the END
+// event, which the UI timeline reads.
 import type { TraceEvent, TraceStatus } from '../schemas.ts';
+
+export interface SpanControl {
+	/** merged into the END event attrs */
+	set(attrs: Record<string, unknown>): void;
+	/** END status when fn resolves; ignored if fn throws */
+	status(s: TraceStatus): void;
+}
 
 export interface TraceSink {
 	write(e: TraceEvent): void;
@@ -25,7 +34,11 @@ export class CallbackSink implements TraceSink {
 export interface Tracer {
 	readonly traceId: string;
 	event(name: string, attrs?: Record<string, unknown>, status?: TraceStatus): void;
-	span<T>(name: string, attrs: Record<string, unknown>, fn: (spanId: string) => Promise<T>): Promise<T>;
+	span<T>(
+		name: string,
+		attrs: Record<string, unknown>,
+		fn: (spanId: string, ctl: SpanControl) => Promise<T>
+	): Promise<T>;
 }
 
 export function createTracer(opts: {
@@ -66,11 +79,28 @@ export function createTracer(opts: {
 			const start = now();
 			emit({ ...base, kind: 'start', ts: start, attrs: { ...attrs } });
 			stack.push(spanId);
+			const endAttrs: Record<string, unknown> = {};
+			let endStatus: TraceStatus | undefined;
+			const ctl: SpanControl = {
+				set: (a) => {
+					Object.assign(endAttrs, a);
+				},
+				status: (s) => {
+					endStatus = s;
+				}
+			};
 			try {
-				const result = await fn(spanId);
+				const result = await fn(spanId, ctl);
 				stack.pop();
 				const end = now();
-				emit({ ...base, kind: 'end', ts: end, durationMs: Math.max(0, end - start), status: 'ok', attrs: { ...attrs } });
+				emit({
+					...base,
+					kind: 'end',
+					ts: end,
+					durationMs: Math.max(0, end - start),
+					status: endStatus ?? 'ok',
+					attrs: { ...attrs, ...endAttrs }
+				});
 				return result;
 			} catch (err) {
 				stack.pop();
@@ -81,7 +111,7 @@ export function createTracer(opts: {
 					ts: end,
 					durationMs: Math.max(0, end - start),
 					status: 'error',
-					attrs: { ...attrs, 'error.message': err instanceof Error ? err.message : String(err) }
+					attrs: { ...attrs, ...endAttrs, 'error.message': err instanceof Error ? err.message : String(err) }
 				});
 				throw err;
 			}
