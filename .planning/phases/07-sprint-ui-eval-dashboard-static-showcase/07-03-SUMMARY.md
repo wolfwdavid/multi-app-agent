@@ -155,3 +155,27 @@ None added by this plan. It only adds deploy and smoke tooling.
 - `grep -rn "deploy-hf\|HF_TOKEN" .github/` prints nothing
 - `web/build/404.html` contains `/multi-app-agent/_app` (12 matches), so the local Pages build is restored
 - The HF API reports `sdk: static` with sha 7f7cfad; both live smokes printed SMOKE OK
+
+## Republish (round 2)
+
+**What was published:** the round-2 UI fixes. That covers `ce2d10d` (real pass^k, the sprint button on the first screen, the known-weakness chip and the partial LLM column) and `4ab9010` (the mobile evals overflow fix and the first-screen description), plus the 12-01/12-02 docs.
+
+- **Push:** `cd34e3e..4ab9010`, which is `4643aa0`, `e7a0757`, `fb67311` and `4ab9010`. The AI-mention check on the range printed 0.
+- **Pages:** run `34783793154` for `4ab9010` finished with **success**. Build, smoke and deploy all passed.
+- **HF Space:** `bash scripts/deploy-hf.sh` passed its local smoke (SMOKE OK, 8 checks) and uploaded HF commit `2e49cd05de202b372d560e2563d8e7ab4c293f9f`. The HF API reports `sdk: static`, stage RUNNING.
+- **Local tree:** after the HF deploy, `web/build` was rebuilt as the Pages build (`BASE_PATH=/multi-app-agent npm run build`). `web/build/404.html` references `/multi-app-agent/_app` 12 times.
+
+**Live smokes:**
+- Pages: `node scripts/smoke-static.mjs --url https://wolfwdavid.github.io/multi-app-agent/ --wait 300` gave SMOKE OK (7 checks, 15 urls) on the first attempt.
+- HF: `node scripts/smoke-static.mjs --url https://wolfdavid-multi-app-agent.static.hf.space --dir-index --wait 300` gave SMOKE OK (7 checks, 15 urls) on the first attempt. The expected `--dir-index` WARN was printed.
+
+**Round-2 markers in the live bundles:** both hosts were fetched with cache-busting.
+
+| Marker | Pages | HF |
+|---|---|---|
+| "Plans a college transfer application" | `/` HTML + `nodes/2.C-bNkRh5.js` | `/index.html` + `nodes/2.4xvkPbA0.js` |
+| "Replay the recorded sprint" | same | same |
+| `` `pass^${c.k} · all ${c.k} runs pass` `` (label built at runtime) | `nodes/3.CtLHIzoF.js` | `nodes/3.OP406hfc.js` |
+| "Known weakness · fails by design" | `nodes/3.CtLHIzoF.js` | `nodes/3.OP406hfc.js` |
+
+**Live `data/evals.json`:** on both hosts it is byte-identical to `HEAD:web/static/data/evals.json`. Its models are `fake`, `fake-verifier-off` and `llm-ollama`.
