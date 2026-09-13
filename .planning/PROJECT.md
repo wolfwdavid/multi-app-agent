@@ -12,7 +12,8 @@ One end-to-end application sprint (profile + target school → gap analysis → 
 
 ### Validated
 
-(None yet — ship to validate)
+- ✓ Program-level transfer requirements dataset (4 real schools + 1 fictional, 93 sourced fields with source_url/retrieved_at/confidence) — Validated in Phase 1: Contracts, Seed Data & Build Smoke
+- ✓ Framework-free core contracts (schemas, connector ports with draft-only Gmail, tool registry, tracer) + dual static/Vercel build — Validated in Phase 1
 
 ### Active
 
