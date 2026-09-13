@@ -1,7 +1,11 @@
 import { defineConfig } from 'vitest/config';
 import tailwindcss from '@tailwindcss/vite';
-import adapter from '@sveltejs/adapter-static';
+import adapterStatic from '@sveltejs/adapter-static';
+import adapterVercel from '@sveltejs/adapter-vercel';
 import { sveltekit } from '@sveltejs/kit/vite';
+
+// VERCEL=1 is set by Vercel at build time -> serverless build. Otherwise static build for GitHub Pages (BASE_PATH=/multi-app-agent) and the HF Space (base '').
+const isVercel = !!process.env.VERCEL;
 
 export default defineConfig({
 	plugins: [
@@ -11,9 +15,9 @@ export default defineConfig({
 				// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
 				runes: ({ filename }) => filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-			adapter: adapter({ fallback: '404.html' }),
+			adapter: isVercel ? adapterVercel() : adapterStatic({ fallback: '404.html' }),
 			// GitHub Pages serves from /<repo>; set BASE_PATH in CI, leave empty locally.
-			paths: { base: (process.env.BASE_PATH ?? '') as '' | `/${string}` }
+			paths: { base: (isVercel ? '' : (process.env.BASE_PATH ?? '')) as '' | `/${string}` }
 		})
 	],
 	test: {
