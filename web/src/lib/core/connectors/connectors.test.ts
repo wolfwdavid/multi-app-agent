@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
 	ConnectorError,
 	createConnectors,
+	createRealConnectors,
 	defaultWorldSeed,
 	isEmptyDiff,
 	realConnectorStatus,
@@ -181,11 +182,11 @@ describe('createConnectors faults over the real twins', () => {
 });
 
 describe('createConnectors real mode', () => {
-	it('every method of every port rejects not_configured', async () => {
+	it('credential-gated ports reject not_configured with the missing env names', async () => {
 		const c = createConnectors({ mode: 'real', env: {} });
 		expect(c.mode).toBe('real');
 		expect(c.world).toBeNull();
-		const apps = ['gmail', 'calendar', 'docs', 'notion', 'github', 'hf'] as const;
+		const apps = ['notion', 'calendar', 'gmail', 'docs'] as const;
 		let count = 0;
 		for (const app of apps) {
 			const port = c[app] as unknown as Record<string, (...a: unknown[]) => Promise<unknown>>;
@@ -198,21 +199,39 @@ describe('createConnectors real mode', () => {
 				count++;
 			}
 		}
-		// notion 3 + calendar 3 + gmail 4 + docs 3 + github 1 + hf 1
-		expect(count).toBe(15);
+		// notion 3 + calendar 3 + gmail 4 + docs 3
+		expect(count).toBe(13);
 		await expect(c.notion.findByKey(K(1))).rejects.toThrow(/NOTION_TOKEN/);
+		await expect(c.gmail.listDrafts()).rejects.toThrow(/GOOGLE_REFRESH_TOKEN/);
 	});
 
-	it('credentials present still reject, pointing at Phase 10; status reports missing env', async () => {
-		const c = createConnectors({ mode: 'real', env: { NOTION_TOKEN: 'x', NOTION_DATA_SOURCE_ID: 'y' } });
-		await expect(c.notion.findByKey(K(1))).rejects.toMatchObject({ kind: 'not_configured' });
-		await expect(c.notion.findByKey(K(1))).rejects.toThrow(/Phase 10/);
+	it('github and hf are live read ports (not called here: no network in tests)', () => {
+		const c = createConnectors({ mode: 'real', env: {} });
+		expect(typeof c.github.listRepos).toBe('function');
+		expect(typeof c.hf.listModelsAndSpaces).toBe('function');
+	});
+
+	it('status reports configured, implemented and missing env per app', () => {
 		const status = realConnectorStatus({ NOTION_TOKEN: 'x' });
-		const notion = status.find((s) => s.app === 'notion');
-		expect(notion?.missing).toEqual(['NOTION_DATA_SOURCE_ID']);
-		expect(notion?.configured).toBe(false);
-		expect(status.find((s) => s.app === 'github')?.configured).toBe(true);
-		expect(status.every((s) => s.implemented === false)).toBe(true);
+		expect(status.find((s) => s.app === 'notion')).toMatchObject({
+			configured: false,
+			missing: ['NOTION_DATA_SOURCE_ID']
+		});
+		expect(status.find((s) => s.app === 'github')).toMatchObject({ configured: true, implemented: true });
+		expect(status.find((s) => s.app === 'hf')).toMatchObject({ configured: true, implemented: true });
+		expect(status.find((s) => s.app === 'gmail')?.configured).toBe(false);
+	});
+
+	it('real gmail has no send', () => {
+		const c = createConnectors({ mode: 'real', env: {} });
+		expect('send' in c.gmail).toBe(false);
+	});
+
+	it('Google credentials present builds lazy ports synchronously without importing Google', () => {
+		const c = createRealConnectors({ GOOGLE_CLIENT_ID: 'a', GOOGLE_CLIENT_SECRET: 'b', GOOGLE_REFRESH_TOKEN: 'c' });
+		expect(Object.keys(c.calendar)).toEqual(['findByKey', 'createEvent', 'listEvents']);
+		expect(Object.keys(c.gmail)).toEqual(['findByKey', 'createDraft', 'listDrafts', 'searchInbox']);
+		expect('send' in c.gmail).toBe(false);
 	});
 });
 
