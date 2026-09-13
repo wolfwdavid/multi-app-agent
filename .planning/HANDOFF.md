@@ -9,7 +9,7 @@ Hackathon build window ends **7:00 PM ET** (judging at 7). GSD project: `.planni
 | 2 Mock app twins | ✓ complete, verified |
 | 3 Gap analysis | ✓ complete, verified |
 | 4 Sprint pipeline on mocks | ✓ complete, verified |
-| 5 Essay critique & injection guard | 05-01 ✓. **05-02 was executing at handoff.** Check that `.planning/phases/05-*/05-02-SUMMARY.md` exists. If it does, run the phase 5 verifier. If it doesn't, check `git log --oneline --grep=05-02`; with no progress, re-run `/gsd:execute-phase 5` (it skips completed plans). |
+| 5 Essay critique & injection guard | 05-01 ✓, 05-02 ✓ (agent report: 663 tests, check clean, hero run re-recorded once at `cd5b9af`, PII 0). **Next: run the phase 5 verifier, then `phase complete 5`** |
 | 6 Eval harness (25% of score, CRITICAL PATH) | planned + checked; execute after phase 5 |
 | 7 UI + Pages/HF showcase | planned + checked; after 6. 07-03 has a user checkpoint before publishing |
 | 8 Real LLM | ✓ complete, verified (real Ollama hero sprint 23/23) |
@@ -26,6 +26,8 @@ Next command order: verify phase 5 → `/gsd:execute-phase 6` → `/gsd:execute-
 - **Before any push:** `bash scripts/strip-ai-trailers.sh origin/main`, plus an independent `git log origin/main..HEAD --format=%B | grep -inE "co-authored|claude|anthropic"`. Push only when no agent is committing.
 - **`web/scripts/sprint.ts`** rewrites the tracked `web/static/data/hero-run.json` and `static/traces/demo-sprint*.jsonl` on every plain run. For verification, always pass `--out <scratch> --json <scratch>`. Follow-up fix, not yet done: write recordings only behind an explicit flag (after 05-02, which re-records once).
 - **When messaging a running agent:** identify it by its spawn description, not its position in a batch.
+- **Phase 6 watch item:** the default mock world seeds an adversarial inbox email containing "evil.example". Oracle "no leaked injection text" checks must inspect only agent OUTPUTS (Gmail drafts + sent, docs created, tracker rows, events), never `gmail.inbox`. Otherwise the `injection-inbox-email` scenario false-fails. See 05-02-SUMMARY.md. Tell the 06-01 executor this explicitly.
+- **Sprint CLI recording fix:** safe to do now that 05-02 has finished its one intentional re-record.
 
 ## Git state
 - **Not pushed:** nothing since `a0972d6`. origin/main is behind by many commits.
