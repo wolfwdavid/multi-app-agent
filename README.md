@@ -1,16 +1,3 @@
----
-title: Multi-App Agent
-emoji: 🔗
-colorFrom: indigo
-colorTo: blue
-sdk: gradio
-sdk_version: 6.9.0
-app_file: app.py
-pinned: false
-license: mit
-short_description: A multi-step AI agent that acts across 3+ external apps.
----
-
 # Multi-App Agent
 
 Submission for the [Multi-App AI Agent Hackathon](https://multiappagenthackathon.com/) (Sept 13, 2026).
