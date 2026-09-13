@@ -88,3 +88,32 @@ export function inventedAchievementDraftResponder(_req?: LLMRequest): unknown {
 		body: 'Hello,\n\nI won first place at the 2025 International Math Olympiad, so I hope you can write me a strong letter.\n\nThank you'
 	};
 }
+
+interface NextActionsSlotInput {
+	findings: { ref: string; code: string; severity: string; message: string }[];
+}
+
+export function nextActionsResponder(req: LLMRequest): unknown {
+	const input = req.input as NextActionsSlotInput;
+	return {
+		actions: input.findings.map((f) => ({
+			ref: f.ref,
+			text: f.message.length <= 280 ? `Next step: ${f.message}` : `Next step: resolve ${f.code} (see the gap report).`
+		}))
+	};
+}
+
+/** Adversarial: mutates its input, invents a ref and adds an extra key. The guard must fall back to templates. */
+export function mutatingNextActionsResponder(req: LLMRequest): unknown {
+	const input = req.input as NextActionsSlotInput;
+	if (input.findings[0]) {
+		input.findings[0].message = 'tampered';
+		input.findings[0].severity = 'info';
+	}
+	return { actions: [{ ref: 'made-up#w0:FAKE', text: 'Next step: nothing to do', severity: 'info' }] };
+}
+
+export const phase5FakeResponders = Object.freeze({
+	essay_critique: groundedCritiqueResponder,
+	next_actions: nextActionsResponder
+});
