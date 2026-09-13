@@ -64,6 +64,7 @@ Plan: 3 of 3
 | Phase 04 P02 | 8min | 3 tasks | 7 files |
 | Phase 10 P02 | 10min | 2 tasks | 4 files |
 | Phase 08 P01 | 6min | 2 tasks | 6 files |
+| Phase 10 P03 | 11min | 3 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -105,6 +106,9 @@ Recent decisions affecting current work:
 - [Phase 08]: 08-01: Backends return malformed model output (string or wrong-shape value) and throw LLMError only on transport/protocol failure; zod validation and the single repair stay solely in callSlot
 - [Phase 08]: 08-01: Ollama uses native /api/chat (format = zod JSON schema minus $schema, think:false, temperature 0, seed 42, num_ctx 8192, keep_alive 10m, 180 s timeout); localhost pinned to 127.0.0.1
 - [Phase 08]: 08-01: Hosted backend lazy-imports openai; strict json_schema downgrades per instance to json_object after one HTTP 400; 401/403 omit provider text, other messages are key-redacted
+- [Phase 10]: Google Calendar event id = base32hex(sha256(key)); mock twin keeps key.replace('-',''); ids are internal, callers use keys
+- [Phase 10]: Real Gmail is drafts-only on gmail.compose; real searchInbox rejects not_configured (no gmail.readonly), inbox content is mock-only
+- [Phase 10]: createRealGoogle/probeGoogle take deps.implemented to override GOOGLE_IMPLEMENTED per app (test seam); all three Google flags are true
 
 ### Pending Todos
 
