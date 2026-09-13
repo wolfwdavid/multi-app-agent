@@ -281,7 +281,7 @@ Phases execute in numeric order, with parallel waves: 1 → (2 ‖ 3) → 4 → 
 | 2. Stateful Mock App Twins | 0/2 | Complete    | 2026-09-13 |
 | 3. Deterministic Gap Analysis | 0/1 | Complete    | 2026-09-13 |
 | 4. Sprint Pipeline on Mocks | 0/3 | Not started | - |
-| 5. Essay Critique, Evidence Grounding & Injection Guard | 0/2 | Not started | - |
+| 5. Essay Critique, Evidence Grounding & Injection Guard | 1/2 | In Progress | - |
 | 6. Eval Harness & Real Pass Rates | 0/3 | Not started | - |
 | 7. Sprint UI, Eval Dashboard & Static Showcase | 0/3 | Not started | - |
 | 8. Real LLM Slots | 0/1 | Not started | - |

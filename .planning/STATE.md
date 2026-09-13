@@ -66,6 +66,7 @@ Plan: 3 of 3
 | Phase 08 P01 | 6min | 2 tasks | 6 files |
 | Phase 10 P03 | 11min | 3 tasks | 11 files |
 | Phase 04 P03 | 15min | 3 tasks | 11 files |
+| Phase 05 P01 | 13min | 3 tasks | 14 files |
 | Phase 08 P02 | 11min | 2 tasks | 4 files |
 
 ## Accumulated Context
@@ -114,6 +115,10 @@ Recent decisions affecting current work:
 - [Phase 04]: 04-03: planSprint (no writes, signed) + executeSprint (authorize, execute, read-back verify, report) are the single sprint entry for CLI, evals, REST and MCP; PolicyError is thrown before any write
 - [Phase 04]: 04-03: Exports redact student name/email/GPA at the boundary (strings and gpa-named keys only; numbers untouched so zod contracts parse); contact recipients stay visible
 - [Phase 04]: 04-03: hero-run.json is produced only via buildHeroRunFile (redact + HeroRunFile.parse); the recorder is scripts/sprint.ts via npm run record, not scripts/record.ts
+- [Phase 05]: 05-01: send_command counts as an injection signal only when its target email is not allowlisted; a lone foreign email is a signal but never a flag
+- [Phase 05]: 05-01: wrapUntrusted escapes &(amp;)*lt; by one level before escaping the tag, so unwrapUntrusted is exact for any input and smuggled closing tags cannot end the block
+- [Phase 05]: 05-01: AI policy is applied after the LLM (grammar_only/unknown keep only word_count+mechanics, deterministic POLICY_NOTES); grounding violations are zod superRefine issues prefixed with the violation code so callSlot repair and groundingFlagFromSlotError share one format
+- [Phase 05]: 05-01: phraseNextActions sends a structuredClone of findings, copies code/severity/ids from analyzeGaps, and throws if canonicalJson(reports) changes
 - [Phase 08]: 08-02: resolveLlmConfig(env) auto-detects Ollama when LLM_BASE_URL is unset or on port 11434, else hosted; LLM_PROVIDER or --llm overrides; hosted requires LLM_BASE_URL + LLM_API_KEY + LLM_MODEL
 - [Phase 08]: 08-02: Ollama routes critique/claims/evidence/grounding slots to qwen2.5-coder:7b and all other slots to qwen3.5:4b (think:false); hosted uses LLM_MODEL for every slot
 - [Phase 08]: 08-02: Live hero sprint on real Ollama (qwen3.5:4b+qwen2.5-coder:7b): 23 actions, 7 slot calls, 0 repairs, report ok 23/23 verified, 0 think tags in artifacts, 156 s
