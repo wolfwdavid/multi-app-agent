@@ -4,12 +4,12 @@ milestone: v1.0
 milestone_name: milestone
 status: unknown
 stopped_at: Completed 03-01-PLAN.md
-last_updated: "2026-09-13T17:44:05.656Z"
+last_updated: "2026-09-13T17:45:58.645Z"
 progress:
   total_phases: 12
-  completed_phases: 2
-  total_plans: 6
-  completed_plans: 5
+  completed_phases: 3
+  total_plans: 7
+  completed_plans: 6
 ---
 
 # Project State
@@ -58,6 +58,7 @@ Plan: Not started
 | Phase 01 P03 | 4min | 2 tasks | 9 files |
 | Phase 02 P01 | 4min | 2 tasks | 10 files |
 | Phase 03 P01 | 7min | 3 tasks | 12 files |
+| Phase 02 P02 | 7min | 3 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -83,6 +84,8 @@ Recent decisions affecting current work:
 - [Phase 03]: GPA status evaluates competitive_gpa even when min_gpa is null (Cornell fallback); below_minimum takes precedence
 - [Phase 03]: Prereqs are met only via explicit satisfies mappings; same-subject unmapped courses yield unknown-equivalency
 - [Phase 03]: WarningCode values are stable and emitted in enum order; NO_TRANSFER_PROGRAM short-circuits other warnings
+- [Phase 02]: 02-02: withFaults decorator is seed-deterministic (per-wrapper mulberry32, probability evaluated last); lying_success needs the World as rollback, which createConnectors passes automatically
+- [Phase 02]: 02-02: createConnectors({ mode }) is the single connector entry; real mode stubs reject not_configured until Phase 10; core never reads env (resolveConnectorMode(env) at entry points)
 
 ### Pending Todos
 

@@ -36,7 +36,7 @@
 - [ ] **APPS-01**: Agent upserts one Notion tracker row per school+program (deadline, required docs, recs, essay status, gap count, status) — re-runs never create duplicates
 - [ ] **APPS-02**: Agent creates Google Calendar events for deadlines and reminders (T-30/T-14/T-3, rec-request date), skipping past dates and deduping by deterministic key
 - [ ] **APPS-03**: Agent creates Gmail **drafts** (admissions rep question, professor rec request, CC advisor prereq check) — no send capability exists; drafts dedupe by tagged subject
-- [ ] **APPS-04**: Every connector has a stateful mock and a real implementation behind one interface, switchable by config; mock mode fully works without credentials
+- [x] **APPS-04**: Every connector has a stateful mock and a real implementation behind one interface, switchable by config; mock mode fully works without credentials
 - [ ] **APPS-05**: Real mode works for Notion and at least one Google app when credentials are provided in env
 - [ ] **APPS-06**: Connector calls retry with backoff on 429/5xx and surface integration failures instead of silently continuing
 
@@ -120,7 +120,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | APPS-01 | Phase 4 | Pending |
 | APPS-02 | Phase 4 | Pending |
 | APPS-03 | Phase 4 | Pending |
-| APPS-04 | Phase 2 | Pending |
+| APPS-04 | Phase 2 | Complete |
 | APPS-05 | Phase 10 | Pending |
 | APPS-06 | Phase 4 | Pending |
 | AGENT-01 | Phase 4 | Pending |
