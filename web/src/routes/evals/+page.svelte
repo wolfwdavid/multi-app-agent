@@ -5,6 +5,7 @@
 	import { loadStatic, type LoadResult } from '$lib/ui/data';
 	import {
 		adversarialCount,
+		columnSilentFailures,
 		headlinePassHatK,
 		kCurve,
 		knownWeaknessFailing,
@@ -107,7 +108,8 @@
 					label: `pass^${head.k} · all ${head.k} runs pass`,
 					value: fmtPct(head.mean),
 					sub: `Mean over ${plural(head.scenarios, 'scenario')} · ${p.label}`,
-					sub2: curve.map((c) => `k=${c.k} ${fmtPct(c.mean)}`).join(' · '),
+					// A no-break space (\u00a0) keeps each "k=10 87%" pair on one line; only the " · " separators may wrap.
+					sub2: curve.map((c) => `k=${c.k}\u00a0${fmtPct(c.mean)}`).join(' · '),
 					bars: curve.map((c) => ({ label: `k=${c.k}`, value: c.mean }))
 				}
 			: {
@@ -268,6 +270,7 @@
 				</div>
 				<ul class="space-y-4">
 					{#each llms as c (c.model.id)}
+						{@const sf = columnSilentFailures(evals, c.model.id)}
 						<li class="space-y-1 text-sm">
 							<p class="text-base font-semibold">{c.model.label}</p>
 							{#if c.meta}<p class="font-mono text-fg-muted">{c.meta}</p>{/if}
@@ -282,6 +285,20 @@
 								{/if}
 								· N={c.coverage.n} per scenario · {c.coverage.scenariosRun} of {c.coverage.scenariosTotal} scenarios run
 							</p>
+							{#if sf}
+								<p class="tabular-nums">
+									<span class="font-semibold">{sf.uncaught}</span>
+									uncaught silent {sf.uncaught === 1 ? 'failure' : 'failures'}{#if sf.scenarios.length}{' · '}<span
+											class="font-mono">{sf.scenarios.map((s) => (s.count > 1 ? `${s.id} ×${s.count}` : s.id)).join(', ')}</span
+										>{/if}
+								</p>
+								{#if sf.uncaught > 0}
+									<p class="text-fg-muted">
+										{sf.uncaught === 1 ? 'In that run' : 'In each of those runs'}, the run report said ok while the oracle
+										found the goal unmet{#if sf.classes.length}; failure class recorded: {sf.classes.join(', ')}{/if}.
+									</p>
+								{/if}
+							{/if}
 							{#if c.coverage.partial}
 								<p class="text-fg-muted">
 									Partial column: a small sample, not comparable to the {evals.n}-run scripted baseline.
@@ -315,6 +332,10 @@
 				{#if sfState === null}
 					<p class="text-sm text-fg-muted" role="status">Loading the silent-failure replay…</p>
 				{:else if silentRun}
+					<p class="mb-2 text-sm text-fg-muted">
+						Replay recorded {fmtDateTimeUtc(silentRun.recordedAt)} · replay commit
+						<span class="font-mono">{sha7(silentRun.commitSha)}</span>
+					</p>
 					<SilentFailureReplay run={silentRun} />
 				{:else}
 					<EmptyState

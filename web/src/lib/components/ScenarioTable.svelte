@@ -54,12 +54,15 @@
 	{#if isKnownWeakness(s)}
 		<details class="mt-1">
 			<summary
-				class="min-h-11 inline-flex cursor-pointer list-none items-center gap-2 [&::-webkit-details-marker]:hidden"
+				class="min-h-11 inline-flex cursor-pointer list-none flex-wrap items-center gap-x-2 gap-y-1 [&::-webkit-details-marker]:hidden"
 			>
-				<StatusChip chip={{ tone: 'warn', glyph: '!', label: 'Known weakness · fails by design' }} />
+				<span class="whitespace-nowrap"
+					><StatusChip chip={{ tone: 'warn', glyph: '!', label: 'Known weakness' }} /></span
+				>
 				<span class="text-sm underline underline-offset-2">Why</span>
 			</summary>
 			<div class="space-y-1 pt-1">
+				<p class="text-sm font-semibold">Fails by design: a documented weakness this scenario keeps visible.</p>
 				<p class="text-sm text-fg-muted">{s.description}</p>
 				<a
 					href={WEAKNESS_URL}
@@ -156,7 +159,7 @@
 			<caption class="sr-only">Pass rate and pass^k per scenario and model</caption>
 			<thead class="bg-surface">
 				<tr class="text-left align-bottom">
-					<th scope="col" class="p-2 font-semibold">Scenario</th>
+					<th scope="col" class="p-2 font-semibold min-w-52">Scenario</th>
 					{#each evals.models as m (m.id)}
 						<th scope="col" class="p-2 font-semibold"
 							>Pass rate · {m.label}<span class="block font-normal text-fg-muted">{coverageTag(evals, m)}</span></th

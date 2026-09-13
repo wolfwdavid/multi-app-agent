@@ -24,7 +24,7 @@
 >
 <AppHeader mode={appState.mode} />
 {#if appState.mode === 'replay'}
-	<ModeBanner hero={appState.hero} />
+	<ModeBanner hero={appState.hero} scope={page.route.id?.startsWith('/evals') ? 'evals' : 'sprint'} />
 {/if}
 <main id="main" tabindex="-1" class="mx-auto w-full max-w-6xl px-4 sm:px-6 pb-16">
 	{@render children()}

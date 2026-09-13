@@ -200,6 +200,33 @@ export function silentFailureStats(evals: EvalsFile): SilentFailureStats | null 
 	};
 }
 
+export interface ColumnSilentFailures {
+	/** Runs where the report said ok while the oracle found the goal unmet (from totals, else summed per scenario). */
+	uncaught: number;
+	/** Scenarios with at least one silent failure, in file order. */
+	scenarios: { id: string; name: string; count: number }[];
+	/** Failure-class labels recorded for those scenarios in this column, in enum order. */
+	classes: string[];
+}
+
+/** Uncaught silent failures for one column (e.g. a real LLM); null when the file carries no silentFailures for it. */
+export function columnSilentFailures(evals: EvalsFile, modelId: string): ColumnSilentFailures | null {
+	const perScenario = evals.scenarios
+		.map((s) => ({ s, count: numField(s.results[modelId], 'silentFailures') }))
+		.filter((x): x is { s: EvalScenario; count: number } => x.count !== null);
+	const total = numField(evals.totals[modelId], 'silentFailures');
+	if (total === null && perScenario.length === 0) return null;
+	const hit = perScenario.filter((x) => x.count > 0);
+	const classes = FailureClass.options
+		.filter((cls) => hit.some((x) => (x.s.results[modelId]?.failures[cls] ?? 0) > 0))
+		.map((cls) => FAILURE_LABELS[cls].label);
+	return {
+		uncaught: total ?? hit.reduce((a, x) => a + x.count, 0),
+		scenarios: hit.map((x) => ({ id: x.s.id, name: x.s.name, count: x.count })),
+		classes
+	};
+}
+
 export function silentFailurePath(evals: EvalsFile): string {
 	return evals.silentFailure?.file ?? DATA_PATHS.silentFailure;
 }

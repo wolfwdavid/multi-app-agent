@@ -13,6 +13,7 @@ import {
 	topFailure,
 	scenarioAllPassed,
 	adversarialCount,
+	columnSilentFailures,
 	silentFailurePath,
 	silentFailureStats,
 	knownWeaknessFailing,
@@ -148,6 +149,49 @@ describe('silent-failure stats', () => {
 		});
 		expect(knownWeaknessFailing(e, 'fake')).toBe(1);
 		expect(knownWeaknessFailing(parsed(), 'fake')).toBe(0);
+	});
+
+	it('columnSilentFailures lists count, scenarios and failure classes for one column', () => {
+		const raw = sampleEvals();
+		const e = parsed({
+			...raw,
+			scenarios: raw.scenarios.map((s, i) =>
+				i === 1
+					? {
+							...s,
+							results: {
+								...s.results,
+								qwen: { runs: 3, passed: 1, passRate: 1 / 3, passK: false, failures: { communication_failure: 2 }, silentFailures: 2 }
+							}
+						}
+					: i === 0
+						? { ...s, results: { ...s.results, qwen: { ...s.results.qwen, silentFailures: 0 } } }
+						: s
+			),
+			totals: { ...raw.totals, qwen: { runs: 6, passed: 4, passRate: 0.67, passK: 0.5, silentFailures: 2 } }
+		});
+		expect(columnSilentFailures(e, 'qwen')).toEqual({
+			uncaught: 2,
+			scenarios: [{ id: 'injection-doc', name: 'Injection in essay doc', count: 2 }],
+			classes: ['Communication failure']
+		});
+		// Files without silentFailures for the column report nothing rather than a made-up zero.
+		expect(columnSilentFailures(parsed(), 'qwen')).toBeNull();
+	});
+
+	it('committed llm-ollama column: both real-LLM runs are uncaught silent failures', () => {
+		const e = parsed(JSON.parse(readFileSync(EVALS_PATH, 'utf8')));
+		const llm = e.models.find((m) => m.id === 'llm-ollama');
+		if (!llm) return;
+		const sf = columnSilentFailures(e, llm.id)!;
+		expect(sf.uncaught).toBe(e.totals[llm.id].silentFailures);
+		expect(sf.scenarios.reduce((a, s) => a + s.count, 0)).toBe(sf.uncaught);
+		expect(sf.uncaught).toBe(2);
+		expect(sf.scenarios.map((s) => [s.id, s.count])).toEqual([
+			['happy-path', 1],
+			['injection-essay-doc', 1]
+		]);
+		expect(sf.classes).toEqual(['Communication failure']);
 	});
 
 	it('reads the committed evals.json silent-failure totals', () => {
