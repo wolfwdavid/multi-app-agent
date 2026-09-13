@@ -70,7 +70,7 @@ Planned work ends by 6:00-6:15 PM depending on how the parallel waves go. That l
 
 Plans:
 - [ ] 01-01-PLAN.md — Wave 1: runtime contracts (schemas.ts, connectors/types.ts, tools/registry, tracer) + adapter switch + /api/health + dual build smoke + core boundary test
-- [ ] 01-02-PLAN.md — Wave 1 (parallel): schemas/school.ts + build-schools.ts transform of verified seed → schools.json with per-field provenance + negative provenance tests
+- [x] 01-02-PLAN.md — Wave 1 (parallel): schemas/school.ts + build-schools.ts transform of verified seed → schools.json with per-field provenance + negative provenance tests
 - [ ] 01-03-PLAN.md — Wave 2: profile/fixture schemas + demo & quarter profiles + injection fixtures + full phase gate (test, check, both builds)
 
 Parallel human tasks to start now (not blocking this phase): get a hosted OpenAI-compatible LLM key (needed by Phase 8/9), create a Notion integration and share a tracker database with it, add the demo Google account as an OAuth test user (needed by Phase 10).

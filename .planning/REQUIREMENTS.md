@@ -7,8 +7,8 @@
 
 ### Data (seed dataset + profile)
 
-- [ ] **DATA-01**: Requirements dataset covers 4 real schools + 1 clearly-labeled fictional adversarial school, keyed by school **and** program (min/competitive GPA, units + semester/quarter system, required courses, GE pattern, essay prompts + word limits, recs, deadlines by term, has_transfer_program, ai_policy)
-- [ ] **DATA-02**: Every requirement field carries `source_url`, `retrieved_at`, and `confidence`, and the UI shows a "verify on official page" link next to it
+- [x] **DATA-01**: Requirements dataset covers 4 real schools + 1 clearly-labeled fictional adversarial school, keyed by school **and** program (min/competitive GPA, units + semester/quarter system, required courses, GE pattern, essay prompts + word limits, recs, deadlines by term, has_transfer_program, ai_policy)
+- [x] **DATA-02**: Every requirement field carries `source_url`, `retrieved_at`, and `confidence`, and the UI shows a "verify on official page" link next to it
 - [ ] **DATA-03**: User can load a seeded demo student profile or edit a profile form (current school, major, GPA, units + system, courses, activities, goals, target school+program list), validated by schema
 
 ### Gap Analysis
@@ -103,8 +103,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DATA-01 | Phase 1 | Pending |
-| DATA-02 | Phase 1 | Pending |
+| DATA-01 | Phase 1 | Complete |
+| DATA-02 | Phase 1 | Complete |
 | DATA-03 | Phase 7 | Pending |
 | GAP-01 | Phase 3 | Pending |
 | GAP-02 | Phase 3 | Pending |
