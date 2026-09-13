@@ -9,7 +9,10 @@ Submission: repo · 2-min demo video · system & reliability brief.
 - [x] Scaffold repo (README, Gradio app stub, landing page, brief template)
 - [x] Push to GitHub + enable Pages (`/docs`) — verified 200
 - [x] Create HF Space — static (Gradio/Docker Spaces need HF PRO); verified running
-- [ ] Pick idea
+- [x] Pick idea — TransferPilot: college transfer applicant agent (gap analysis, essay coaching, Notion tracker, Calendar, Gmail drafts; GitHub/HF/Obsidian evidence; MCP server)
+- [x] SvelteKit scaffold in `web/` + Actions deploy to Pages (verified live)
+- [x] GSD init: PROJECT.md, config, research (stack/features/architecture/pitfalls), REQUIREMENTS.md (38 v1)
+- [ ] GSD roadmap → phase plans → execution (tracked in `.planning/ROADMAP.md` / `STATE.md` from here on)
 
 ## Build
 - [ ] Agent loop + tool layer

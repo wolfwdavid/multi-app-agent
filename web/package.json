@@ -15,6 +15,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.10",
+		"@sveltejs/adapter-vercel": "^6.3.4",
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@tailwindcss/forms": "^0.5.11",
@@ -24,8 +25,21 @@
 		"svelte": "^5.56.1",
 		"svelte-check": "^4.6.0",
 		"tailwindcss": "^4.3.0",
+		"tsx": "^4.23.13",
 		"typescript": "^6.0.3",
 		"vite": "^8.0.16",
 		"vitest": "^4.1.8"
+	},
+	"dependencies": {
+		"@googleapis/calendar": "^19.0.0",
+		"@googleapis/docs": "^13.0.0",
+		"@googleapis/drive": "^25.0.0",
+		"@googleapis/gmail": "^21.0.0",
+		"@modelcontextprotocol/server": "^2.0.0",
+		"@notionhq/client": "^5.26.0",
+		"google-auth-library": "^11.0.2",
+		"gray-matter": "^4.0.3",
+		"openai": "^7.15.0",
+		"zod": "^4.6.4"
 	}
 }
