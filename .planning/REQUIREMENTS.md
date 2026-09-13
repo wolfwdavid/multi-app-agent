@@ -33,18 +33,18 @@
 
 ### App Actions
 
-- [ ] **APPS-01**: Agent upserts one Notion tracker row per school+program (deadline, required docs, recs, essay status, gap count, status) — re-runs never create duplicates
-- [ ] **APPS-02**: Agent creates Google Calendar events for deadlines and reminders (T-30/T-14/T-3, rec-request date), skipping past dates and deduping by deterministic key
-- [ ] **APPS-03**: Agent creates Gmail **drafts** (admissions rep question, professor rec request, CC advisor prereq check) — no send capability exists; drafts dedupe by tagged subject
+- [x] **APPS-01**: Agent upserts one Notion tracker row per school+program (deadline, required docs, recs, essay status, gap count, status) — re-runs never create duplicates
+- [x] **APPS-02**: Agent creates Google Calendar events for deadlines and reminders (T-30/T-14/T-3, rec-request date), skipping past dates and deduping by deterministic key
+- [x] **APPS-03**: Agent creates Gmail **drafts** (admissions rep question, professor rec request, CC advisor prereq check) — no send capability exists; drafts dedupe by tagged subject
 - [x] **APPS-04**: Every connector has a stateful mock and a real implementation behind one interface, switchable by config; mock mode fully works without credentials
 - [ ] **APPS-05**: Real mode works for Notion and at least one Google app when credentials are provided in env
 - [ ] **APPS-06**: Connector calls retry with backoff on 429/5xx and surface integration failures instead of silently continuing
 
 ### Agent Core & Safety
 
-- [ ] **AGENT-01**: Agent runs a multi-step loop (plan → approved actions → execute → verify) with schema-validated tool calls, argument repair retries, and a hard step cap
+- [x] **AGENT-01**: Agent runs a multi-step loop (plan → approved actions → execute → verify) with schema-validated tool calls, argument repair retries, and a hard step cap
 - [ ] **AGENT-02**: Agent works with an OpenAI-compatible LLM: local Ollama (qwen3.5:4b, think off) and a hosted fallback configured by env
-- [ ] **AGENT-03**: User sees a dry-run plan (app, operation, payload) and approves all or individual actions before any external write
+- [x] **AGENT-03**: User sees a dry-run plan (app, operation, payload) and approves all or individual actions before any external write
 - [ ] **AGENT-04**: Content from docs/emails is treated as data; instructions embedded in it (prompt injection) cause no out-of-plan tool calls and are flagged
 - [ ] **AGENT-05**: After execution, agent reads back each target app and marks each artifact verified/failed based on actual final state
 - [ ] **AGENT-06**: Every run emits a structured step trace (tool, args, result, latency, verification) with PII redacted in exported artifacts
@@ -117,15 +117,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PORT-02 | Phase 10 | Pending |
 | PORT-03 | Phase 10 | Pending |
 | PORT-04 | Phase 5 | Pending |
-| APPS-01 | Phase 4 | Pending |
-| APPS-02 | Phase 4 | Pending |
-| APPS-03 | Phase 4 | Pending |
+| APPS-01 | Phase 4 | Complete |
+| APPS-02 | Phase 4 | Complete |
+| APPS-03 | Phase 4 | Complete |
 | APPS-04 | Phase 2 | Complete |
 | APPS-05 | Phase 10 | Pending |
 | APPS-06 | Phase 4 | Pending |
-| AGENT-01 | Phase 4 | Pending |
+| AGENT-01 | Phase 4 | Complete |
 | AGENT-02 | Phase 8 | Pending |
-| AGENT-03 | Phase 4 | Pending |
+| AGENT-03 | Phase 4 | Complete |
 | AGENT-04 | Phase 5 | Pending |
 | AGENT-05 | Phase 4 | Pending |
 | AGENT-06 | Phase 4 | Pending |

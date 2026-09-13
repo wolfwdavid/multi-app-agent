@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 03-01-PLAN.md
-last_updated: "2026-09-13T17:49:50.550Z"
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-09-13T18:16:04.193Z"
 progress:
   total_phases: 12
   completed_phases: 3
-  total_plans: 8
-  completed_plans: 6
+  total_plans: 13
+  completed_plans: 7
 ---
 
 # Project State
@@ -23,8 +23,8 @@ See: .planning/PROJECT.md (updated 2026-09-13)
 
 ## Current Position
 
-Phase: 04
-Plan: Planning (Phases 1, 2, 3 complete and verified; Phase 7 UI-SPEC approved; Phase 10 planning in parallel)
+Phase: 4 (Sprint Pipeline on Mocks) — EXECUTING
+Plan: 2 of 3
 
 ## Time Checkpoints (ET, hard deadline 7:00 PM)
 
@@ -59,6 +59,7 @@ Plan: Planning (Phases 1, 2, 3 complete and verified; Phase 7 UI-SPEC approved; 
 | Phase 02 P01 | 4min | 2 tasks | 10 files |
 | Phase 03 P01 | 7min | 3 tasks | 12 files |
 | Phase 02 P02 | 7min | 3 tasks | 9 files |
+| Phase 04 P01 | 12min | 3 tasks | 13 files |
 
 ## Accumulated Context
 
@@ -86,6 +87,8 @@ Recent decisions affecting current work:
 - [Phase 03]: WarningCode values are stable and emitted in enum order; NO_TRANSFER_PROGRAM short-circuits other warnings
 - [Phase 02]: 02-02: withFaults decorator is seed-deterministic (per-wrapper mulberry32, probability evaluated last); lying_success needs the World as rollback, which createConnectors passes automatically
 - [Phase 02]: 02-02: createConnectors({ mode }) is the single connector entry; real mode stubs reject not_configured until Phase 10; core never reads env (resolveConnectorMode(env) at entry points)
+- [Phase 04]: 04-01: Idempotency naturalKey is the term (plus contact id for drafts), never a date; keys stable across run days
+- [Phase 04]: 04-01: Plan token = HMAC-SHA256 over canonical JSON of {v:1, plan, recipientAllowlist}; authorizeExecution verifies the raw plan before any write
 
 ### Pending Todos
 
@@ -102,6 +105,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-09-13T17:40:25.697Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-09-13T18:16:04.186Z
+Stopped at: Completed 04-01-PLAN.md
 Resume file: None
