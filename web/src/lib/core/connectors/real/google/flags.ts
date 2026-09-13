@@ -7,7 +7,7 @@ export type GoogleApp = 'gmail' | 'calendar' | 'docs';
 
 export const GOOGLE_IMPLEMENTED: Readonly<Record<GoogleApp, boolean>> = {
 	gmail: false,
-	calendar: false,
+	calendar: true,
 	docs: false
 };
 

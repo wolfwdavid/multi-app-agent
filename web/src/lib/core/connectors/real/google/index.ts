@@ -9,6 +9,7 @@ import { gmail } from '@googleapis/gmail';
 import type { CalendarPort, DocsPort, GmailPort } from '../../types.ts';
 import { missingEnv, notConfiguredPort, type Env, type ProbeResult, type RealDeps } from '../shared.ts';
 import { createGoogleAuth, mapGoogleError, probeGoogleAuth, type AuthLike } from './auth.ts';
+import { createRealCalendar, type CalendarApi } from './calendar.ts';
 import { GOOGLE_ENV, GOOGLE_IMPLEMENTED, GOOGLE_METHODS, type GoogleApp } from './flags.ts';
 
 export interface GooglePorts {
@@ -59,15 +60,12 @@ function lazyPort<T>(methods: readonly string[], build: () => T): T {
 	return out as unknown as T;
 }
 
-function builders(env: Env, getApis: () => GoogleApis): { [A in GoogleApp]: () => GooglePorts[A] } {
-	const notImplemented = (app: GoogleApp) => () =>
-		notConfiguredPort<never>(app, GOOGLE_METHODS[app], `credentials present; Google ${app} connector not implemented in this build`);
-	void getApis;
-	void env;
+const calendarIdOf = (env: Env) => env.GOOGLE_CALENDAR_ID?.trim() || 'primary';
+
+/** Real port builders per app; only called for implemented apps. */
+function builders(env: Env, getApis: () => GoogleApis): Partial<{ [A in GoogleApp]: () => GooglePorts[A] }> {
 	return {
-		calendar: notImplemented('calendar'),
-		gmail: notImplemented('gmail'),
-		docs: notImplemented('docs')
+		calendar: () => createRealCalendar(getApis().calendar as CalendarApi, { calendarId: calendarIdOf(env), env })
 	};
 }
 
@@ -86,22 +84,31 @@ export function createRealGoogle(env: Env, deps: GoogleDeps = {}): GooglePorts {
 	const build = builders(env, getApis);
 	const port = <A extends GoogleApp>(app: A): GooglePorts[A] => {
 		const implemented = deps.implemented?.[app] ?? GOOGLE_IMPLEMENTED[app];
-		if (!implemented) {
+		const real = build[app] as (() => GooglePorts[A]) | undefined;
+		if (!implemented || !real) {
 			return notConfiguredPort<GooglePorts[A]>(
 				app,
 				GOOGLE_METHODS[app],
 				`credentials present; Google ${app} connector not implemented in this build`
 			);
 		}
-		return lazyPort<GooglePorts[A]>(GOOGLE_METHODS[app], build[app]);
+		return lazyPort<GooglePorts[A]>(GOOGLE_METHODS[app], real);
 	};
 	return { gmail: port('gmail'), calendar: port('calendar'), docs: port('docs') };
 }
 
-/** One cheap read per implemented app (Tasks 2/3 fill these in). Resolves to a detail string. */
+/** One cheap, TransferPilot-scoped read per implemented app. Resolves to a detail string. */
 function appReads(env: Env): Partial<Record<GoogleApp, (apis: GoogleApis) => Promise<string>>> {
-	void env;
-	return {};
+	return {
+		calendar: async (apis) => {
+			await (apis.calendar as CalendarApi).events.list({
+				calendarId: calendarIdOf(env),
+				maxResults: 1,
+				privateExtendedProperty: ['tpApp=transferpilot']
+			});
+			return 'calendar reachable';
+		}
+	};
 }
 
 /** Results in order calendar, gmail, docs. Never throws. */
