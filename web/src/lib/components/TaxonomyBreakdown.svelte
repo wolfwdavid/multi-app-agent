@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { primaryModel, taxonomy, type EvalsFile } from '$lib/ui/evals';
+	import { coverageTag, modelCoverage, primaryModel, taxonomy, type EvalsFile } from '$lib/ui/evals';
 
 	let { evals }: { evals: EvalsFile } = $props();
 
@@ -7,6 +7,8 @@
 	const modelId = $derived(
 		picked !== null && evals.models.some((m) => m.id === picked) ? picked : primaryModel(evals).id
 	);
+	const model = $derived(evals.models.find((m) => m.id === modelId) ?? primaryModel(evals));
+	const coverage = $derived(modelCoverage(evals, model));
 	const t = $derived(taxonomy(evals, modelId));
 </script>
 
@@ -20,10 +22,15 @@
 			Model
 			<select class="min-h-11 rounded-md text-sm" onchange={(e) => (picked = e.currentTarget.value)}>
 				{#each evals.models as m (m.id)}
-					<option value={m.id} selected={m.id === modelId}>{m.label}</option>
+					<option value={m.id} selected={m.id === modelId}>{m.label} ({coverageTag(evals, m)})</option>
 				{/each}
 			</select>
 		</label>
+	{/if}
+	{#if coverage.partial}
+		<p class="text-sm text-fg-muted">
+			Partial column: counts cover only {coverage.runs} runs in {coverage.scenariosRun} of {coverage.scenariosTotal} scenarios.
+		</p>
 	{/if}
 	<ul class="space-y-4">
 		{#each t.entries as e (e.cls)}

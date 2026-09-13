@@ -9,18 +9,35 @@ import { fromSchema, type Parser } from './data.ts';
 const FailureCounts = z.partialRecord(FailureClass, z.number().nonnegative());
 
 // Loose objects: Phase 6 adds fields (passHatK, silentFailures, config, llm metadata) the UI may ignore.
+const PassHatK = z.array(z.object({ k: z.number().int().positive(), value: z.number().min(0).max(1) }));
+
 const ScenarioResult = z.looseObject({
 	runs: z.number().int().nonnegative(),
 	passed: z.number().int().nonnegative(),
 	passRate: z.number().min(0).max(1),
 	passK: z.union([z.boolean(), z.number().min(0).max(1)]),
+	/** tau-bench unbiased pass^k estimates C(c,k)/C(n,k), one entry per reported k. */
+	passHatK: PassHatK.optional(),
 	failures: FailureCounts
 });
 
 const EvalModel = z.looseObject({
 	id: z.string().min(1),
 	label: z.string().min(1),
-	kind: z.enum(['scripted', 'llm'])
+	kind: z.enum(['scripted', 'llm']),
+	model: z.string().optional(),
+	config: z.string().optional(),
+	n: z.number().int().nonnegative().optional(),
+	generatedAt: z.string().optional(),
+	commitSha: z.string().optional(),
+	llm: z
+		.looseObject({
+			provider: z.string().optional(),
+			seed: z.number().nullable().optional(),
+			temperature: z.number().nullable().optional(),
+			numCtx: z.number().nullable().optional()
+		})
+		.optional()
 });
 
 const EvalScenario = z.looseObject({
@@ -185,4 +202,150 @@ export function silentFailureStats(evals: EvalsFile): SilentFailureStats | null 
 
 export function silentFailurePath(evals: EvalsFile): string {
 	return evals.silentFailure?.file ?? DATA_PATHS.silentFailure;
+}
+
+export const isKnownWeakness = (s: EvalScenario): boolean => (s.tags ?? []).includes(KNOWN_WEAKNESS);
+
+/** Runs per scenario a model was configured for (per-model n, else the file n). */
+export const modelN = (evals: EvalsFile, m: EvalModel): number => m.n ?? evals.n;
+
+/** Real pass^k entries for one result, sorted by k; null when the file predates passHatK. */
+export function passHatK(r: ScenarioResult): { k: number; value: number }[] | null {
+	if (!r.passHatK?.length) return null;
+	return [...r.passHatK].sort((a, b) => a.k - b.k);
+}
+
+export interface KPoint {
+	k: number;
+	/** Mean pass^k over the scenarios that report this k. */
+	mean: number;
+	scenarios: number;
+}
+
+/** Mean pass^k per k across a model's scenarios (the k-curve); null without passHatK data. */
+export function kCurve(evals: EvalsFile, modelId: string): KPoint[] | null {
+	const byK = new Map<number, number[]>();
+	for (const s of evals.scenarios) {
+		const r = s.results[modelId];
+		for (const e of r ? (passHatK(r) ?? []) : []) {
+			const list = byK.get(e.k) ?? [];
+			list.push(e.value);
+			byK.set(e.k, list);
+		}
+	}
+	if (byK.size === 0) return null;
+	return [...byK.entries()]
+		.sort((a, b) => a[0] - b[0])
+		.map(([k, v]) => ({ k, mean: v.reduce((a, b) => a + b, 0) / v.length, scenarios: v.length }));
+}
+
+/** The pass^k point at k = N for a model (falls back to the largest reported k). */
+export function headlinePassHatK(evals: EvalsFile, m: EvalModel): KPoint | null {
+	const curve = kCurve(evals, m.id);
+	if (!curve) return null;
+	return curve.find((p) => p.k === modelN(evals, m)) ?? curve[curve.length - 1];
+}
+
+/** Most frequent failure class for one model's result, only when that result is below 100%. */
+export function topFailureFor(r: ScenarioResult | undefined): FailureClass | null {
+	if (!r || r.passRate >= 1) return null;
+	let best: FailureClass | null = null;
+	let bestCount = 0;
+	for (const cls of FailureClass.options) {
+		const count = r.failures[cls] ?? 0;
+		if (count > bestCount) {
+			best = cls;
+			bestCount = count;
+		}
+	}
+	return best;
+}
+
+export interface ModelCoverage {
+	n: number;
+	scenariosRun: number;
+	scenariosTotal: number;
+	runs: number;
+	passed: number;
+	passRate: number | null;
+	/** Some scenarios have no result for this model. */
+	partial: boolean;
+}
+
+/** Computed from per-scenario results, so a partial column is never padded with other models' numbers. */
+export function modelCoverage(evals: EvalsFile, m: EvalModel): ModelCoverage {
+	const rs = evals.scenarios.map((s) => s.results[m.id]).filter((r): r is ScenarioResult => r !== undefined);
+	const runs = rs.reduce((a, r) => a + r.runs, 0);
+	const passed = rs.reduce((a, r) => a + r.passed, 0);
+	return {
+		n: modelN(evals, m),
+		scenariosRun: rs.length,
+		scenariosTotal: evals.scenarios.length,
+		runs,
+		passed,
+		passRate: runs > 0 ? passed / runs : null,
+		partial: rs.length < evals.scenarios.length
+	};
+}
+
+/** Short coverage tag for headers and selects: "N=1 · 2 of 23 scenarios" (scenario count only when partial). */
+export function coverageTag(evals: EvalsFile, m: EvalModel): string {
+	const c = modelCoverage(evals, m);
+	return c.partial ? `N=${c.n} · ${c.scenariosRun} of ${c.scenariosTotal} scenarios` : `N=${c.n}`;
+}
+
+export interface LlmColumn {
+	model: EvalModel;
+	coverage: ModelCoverage;
+	/** "ollama · qwen3.5:4b · temperature 0 · seed 7 · num_ctx 8192" (only fields present). */
+	meta: string;
+}
+
+/** LLM columns, reported apart from the scripted baseline headline numbers. */
+export function llmColumns(evals: EvalsFile): LlmColumn[] {
+	return evals.models
+		.filter((m) => m.kind === 'llm')
+		.map((m) => {
+			const parts: string[] = [];
+			if (m.llm?.provider) parts.push(m.llm.provider);
+			if (m.model) parts.push(m.model);
+			if (typeof m.llm?.temperature === 'number') parts.push(`temperature ${m.llm.temperature}`);
+			if (typeof m.llm?.seed === 'number') parts.push(`seed ${m.llm.seed}`);
+			if (typeof m.llm?.numCtx === 'number') parts.push(`num_ctx ${m.llm.numCtx}`);
+			return { model: m, coverage: modelCoverage(evals, m), meta: parts.join(' · ') };
+		});
+}
+
+export interface ConfigTotals {
+	label: string;
+	runs: number;
+	passed: number;
+	passRate: number;
+	silentFailures: number | null;
+	passHatN: KPoint | null;
+}
+
+/** Verifier-on (primary) vs verifier-off scripted totals, straight from evals.json totals; null if either is absent. */
+export function verifierComparison(evals: EvalsFile): { on: ConfigTotals; off: ConfigTotals } | null {
+	const on = primaryModel(evals);
+	if (on.kind !== 'scripted') return null;
+	const off =
+		evals.models.find((m) => m.kind === 'scripted' && m.config === 'verifier-off') ??
+		evals.models.find((m) => m.kind === 'scripted' && m.id !== on.id && m.config === undefined);
+	if (!off || off.id === on.id) return null;
+	const pick = (m: EvalModel): ConfigTotals | null => {
+		const t = evals.totals[m.id];
+		if (!t) return null;
+		return {
+			label: m.label,
+			runs: t.runs,
+			passed: t.passed,
+			passRate: t.passRate,
+			silentFailures: numField(t, 'silentFailures'),
+			passHatN: headlinePassHatK(evals, m)
+		};
+	};
+	const a = pick(on);
+	const b = pick(off);
+	return a && b ? { on: a, off: b } : null;
 }

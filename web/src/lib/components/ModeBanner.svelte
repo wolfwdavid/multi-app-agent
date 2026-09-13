@@ -12,7 +12,7 @@
 	<p class="mx-auto max-w-6xl px-4 sm:px-6 py-2 text-sm">
 		<strong class="font-semibold">Recorded run.</strong>
 		{#if recording}
-			This static site replays a mock-mode run recorded on {fmtDate(recording.recordedAt.slice(0, 10))} (commit
+			This static site replays a mock-mode run recorded on {fmtDate(recording.recordedAt.slice(0, 10))} (recording commit
 			<code class="font-mono">{sha7(recording.commitSha)}</code>).
 		{:else}
 			This static site replays a recorded mock-mode run.

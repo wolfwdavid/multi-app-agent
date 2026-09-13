@@ -68,6 +68,9 @@
 		<h2 class="text-xl font-semibold">Caught silent failure</h2>
 		<p class="text-base text-fg-muted">{run.description || FALLBACK}</p>
 		<p class="text-sm text-fg-muted">Step with the buttons, or with the Left and Right arrow keys while this panel has focus.</p>
+		<p class="text-sm text-fg-muted">
+			This is an eval run: step times come from the harness's simulated clock (sim.), not measured latency.
+		</p>
 	</div>
 
 	<ReplayControls
@@ -113,5 +116,5 @@
 		{/if}
 	{/if}
 
-	<TraceTimeline rows={rows.slice(0, i)} total={rows.length} currentIndex={i - 1} announce={false} />
+	<TraceTimeline rows={rows.slice(0, i)} total={rows.length} currentIndex={i - 1} announce={false} simulatedClock />
 </section>

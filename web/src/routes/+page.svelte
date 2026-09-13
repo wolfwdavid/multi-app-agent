@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onDestroy, tick } from 'svelte';
+	import { base } from '$app/paths';
 	import { SvelteSet } from 'svelte/reactivity';
 	import type { Plan, Profile, RunReport, TraceEvent } from '$lib/core/schemas';
 	import { analyzeGaps } from '$lib/core/gap';
@@ -216,6 +217,30 @@
 			{/each}
 		</ol>
 	</nav>
+	<!-- First-screen CTA: jumps straight to step 3 without scrolling past the profile and gap cards. -->
+	<div class="flex flex-wrap items-center gap-2 pt-2">
+		{#if plan}
+			<a href="#plan" class="{SECONDARY} inline-flex items-center">Jump to 3. Plan &amp; approve</a>
+		{:else}
+			<button
+				type="button"
+				class="bg-accent text-accent-fg hover:bg-accent-hover rounded-md px-4 min-h-11 font-semibold disabled:cursor-not-allowed disabled:opacity-50"
+				disabled={!!buildBlocked || building}
+				aria-describedby={buildBlocked ? 'hero-help' : 'hero-note'}
+				onclick={buildPlan}>{appState.mode === 'live' ? 'Build a plan for this profile' : 'Replay the recorded sprint'}</button
+			>
+		{/if}
+		<a href="{base}/evals/" class="{SECONDARY} inline-flex items-center">See eval results</a>
+	</div>
+	{#if !plan}
+		{#if buildBlocked}
+			<p id="hero-help" class="text-sm text-fg-muted">{buildBlocked}</p>
+		{:else}
+			<p id="hero-note" class="text-sm text-fg-muted">
+				Builds the plan for the demo profile and jumps to step 3. Nothing runs until you approve it.
+			</p>
+		{/if}
+	{/if}
 </div>
 
 <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6">

@@ -29,6 +29,11 @@ export function fmtDateTime(iso: string, timeZone?: string): string {
 		.replace(/[\u202f\u00a0]/g, ' ');
 }
 
+/** ISO timestamp → 'Sep 13, 2026, 8:02 PM UTC' (explicit zone, same for every visitor). */
+export function fmtDateTimeUtc(iso: string): string {
+	return Number.isNaN(new Date(iso).getTime()) ? iso : `${fmtDateTime(iso, 'UTC')} UTC`;
+}
+
 export const fmtPct = (x: number): string => Math.round(x * 100) + '%';
 export const fmtMs = (ms: number): string => Math.round(ms) + ' ms';
 export const sha7 = (sha: string): string => sha.slice(0, 7);

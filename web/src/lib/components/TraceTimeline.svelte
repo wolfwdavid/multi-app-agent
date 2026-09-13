@@ -9,9 +9,17 @@
 		total,
 		currentIndex = -1,
 		announce = true,
-		finalMessage = ''
-	}: { rows: TraceRow[]; total: number; currentIndex?: number; announce?: boolean; finalMessage?: string } =
-		$props();
+		finalMessage = '',
+		simulatedClock = false
+	}: {
+		rows: TraceRow[];
+		total: number;
+		currentIndex?: number;
+		announce?: boolean;
+		finalMessage?: string;
+		/** Durations come from the eval harness's simulated clock, not wall time: label them so. */
+		simulatedClock?: boolean;
+	} = $props();
 
 	const isTerminal = (r: TraceRow) => r.status !== 'running' && r.status !== 'queued';
 	const done = $derived(rows.filter(isTerminal).length);
@@ -63,7 +71,7 @@
 			class="hidden sm:grid grid-cols-[3rem_8rem_1fr_5rem_5rem_8rem] gap-2 text-sm font-semibold text-fg-muted pl-2"
 			aria-hidden="true"
 		>
-			<span>Step</span><span>App</span><span>Operation</span><span>Attempt</span><span>Latency</span><span>Status</span>
+			<span>Step</span><span>App</span><span>Operation</span><span>Attempt</span><span>{simulatedClock ? 'Sim. clock' : 'Latency'}</span><span>Status</span>
 		</div>
 	{/if}
 
@@ -96,7 +104,9 @@
 						>
 						<StatusChip chip={chipFor(row)} />
 					</div>
-					<p class="text-fg-muted tabular-nums">{appLabel(row.app)} · {attemptText(row)} · {latency(row)}</p>
+					<p class="text-fg-muted tabular-nums">{appLabel(row.app)} · {attemptText(row)} · {simulatedClock && row.durationMs !== undefined
+								? `sim. ${latency(row)}`
+								: latency(row)}</p>
 				</div>
 				{#if row.attemptLines.length > 0}
 					<ul class="pl-12 text-sm text-fg-muted">

@@ -332,7 +332,7 @@ Parse all three with zod `safeParse` in `web/src/lib/ui/data.ts` (`loadStatic<T>
 
 `bg-info-bg text-info-fg border-b border-info-border`, text-sm, one paragraph that wraps:
 
-> **Recorded run.** This static site replays a mock-mode run recorded on {Sep 13, 2026} (commit `{abc1234}`). Gap analysis runs live in your browser; the plan, trace and results come from the recording. Personal details in the recording are redacted.
+> **Recorded run.** This static site replays a mock-mode run recorded on {Sep 13, 2026} (recording commit `{abc1234}`). Gap analysis runs live in your browser; the plan, trace and results come from the recording. Personal details in the recording are redacted.
 
 - If `LIVE_URL` (constant in `web/src/lib/ui/config.ts`, empty until Phase 9) is non-empty, append the link "Open the live version ↗".
 - Header pill: replay → info chip "Recorded run". Live → ok chip "Live · mock apps".
@@ -344,7 +344,8 @@ Parse all three with zod `safeParse` in `web/src/lib/ui/data.ts` (`loadStatic<T>
 Header block:
 - H1 "Application sprint" (Display).
 - Subtitle (Body, muted): "Profile → gap report → plan → approve → run → verify. Nothing is written to any app until you approve it."
-- **Focal point:** before a plan exists, the H1 is the primary visual anchor. Once a plan exists, the sticky "Run {n} approved actions" button is the primary anchor (it is the only accent-filled element on the page).
+- **Focal point:** before a plan exists, the H1 and the hero CTA below the step index are the primary visual anchor. Once a plan exists, the sticky "Run {n} approved actions" button is the primary anchor (it is the only accent-filled element on the page).
+- **Hero CTA row** (below the step index, visible on the first screen at every width): before a plan exists, an accent button **"Replay the recorded sprint"** (live mode: "Build a plan for this profile") runs the same `buildPlan` as the step-3 "Build plan" button and moves focus to the "3. Plan & approve" h2; helper text "Builds the plan for the demo profile and jumps to step 3. Nothing runs until you approve it." (or the same blocked reason as "Build plan"). Once a plan exists it becomes a secondary link "Jump to 3. Plan & approve" (`#plan`). A secondary link "See eval results" (`{base}/evals/`) sits beside it. Step order and step-3 semantics are unchanged.
 - Step index `<nav aria-label="Sprint steps">` with hash links `#profile #gaps #plan #trace #results`, labeled "1 Profile · 2 Gaps · 3 Plan · 4 Run · 5 Verified" (text-sm). A step whose data exists shows `✓` before its label.
 
 #### Step 1: Profile panel (`ProfilePanel.svelte`, `id="profile"`)
@@ -379,6 +380,7 @@ Layout, top to bottom:
 - Disclaimer line (text-sm muted) = `schools.json` `disclaimer` verbatim.
 - `reports = $derived(parsed.ok ? analyzeGaps(parsed.profile, dataset, { today }) : lastValidReports)`.
 - One `GapReportCard` per report.
+- **Condensed by default:** each card always shows the header row, the met/missing/unknown/blocker count chips and any blocker-severity warnings. Everything else (other warnings, the field rows, required courses, all deadlines) sits in a collapsed `<details>` with summary "Full gap report: {n} warnings, GPA, units, courses, essays, deadlines" (warning count omitted when zero). Content stays in the DOM (prerendered).
 
 `GapReportCard.svelte` (`<article class="rounded-lg border border-border bg-surface p-4 sm:p-6 space-y-4">`):
 1. **Header row** (`flex flex-wrap items-start justify-between gap-2`):
@@ -453,7 +455,7 @@ Layout, top to bottom:
   - App label
   - Operation: `font-mono {tool}` + summary truncated (`truncate`, full text in `title`)
   - Attempt "try {attempt}/{maxAttempts}" or "try {attempt}"
-  - Latency "{durationMs} ms" (tabular-nums)
+  - Latency "{durationMs} ms" (tabular-nums). When the trace comes from the eval harness (`simulatedClock`, used by the silent-failure replay) the column header reads "Sim. clock" and the mobile line prefixes "sim.", because those durations are the harness's simulated clock, not measured latency.
   - StatusChip
 - **Retried/failed rows** expand a nested `<ul class="pl-12 text-sm text-fg-muted">` with one line per attempt: "try 1 · 429 rate limited · waited {retryAfterMs} ms", "try 2 · 500 server error (write committed) · re-checked key: found". Use `attrs['error.kind']`, `attrs['error.status']`, `attrs.retryAfterMs`, `attrs.foundByKey` when present.
 - Replay current row: `border-l-2 border-accent bg-surface`. With `prefers-reduced-motion`, no transitions; rows simply appear (`motion-safe:transition-colors` only).
@@ -487,7 +489,7 @@ Header block:
 - H1 "Eval results".
 - Subtitle (Body muted): "Each scenario runs N times against stateful mock apps. A run passes only when an independent oracle finds the expected final app state, not when the agent says it succeeded."
 - **Focal point:** the row of four stat cards is the primary visual anchor; the per-scenario table and the caught-silent-failure replay are secondary.
-- Meta line (text-sm muted, mono for the SHA): "Commit `{sha7}` · Generated {Sep 13, 2026, 4:02 PM} · {n} runs per scenario".
+- Meta line (text-sm muted, mono for the SHA): "Eval commit `{sha7}` · Generated {Sep 13, 2026, 8:02 PM UTC} · {n} runs per scenario (scripted baseline)". Times on the dashboard are always formatted in UTC with an explicit "UTC" suffix. The replay banner labels its SHA "recording commit", so the two commits are never ambiguous.
 - Link "Read the reliability brief (BRIEF.md) ↗" → `https://github.com/wolfwdavid/multi-app-agent/blob/main/BRIEF.md` (`target="_blank" rel="noopener noreferrer"`).
 
 **Data contract** (`web/src/lib/ui/evals.ts`, zod `safeParse`). Phase 6 owns the real file. If the field names differ, adapt only this module.
@@ -499,20 +501,26 @@ EvalsFile = {
   scenarios: { id: string; name: string; description: string;
     results: Record<modelId, { runs: number; passed: number; passRate: number /*0..1*/; passK: boolean | number;
       failures: Partial<Record<FailureClass, number>> }> }[];
+  // results[modelId] also carries passHatK?: { k: number; value: number }[] (tau-bench C(c,k)/C(n,k), k in {1,3,5,N}) and silentFailures;
+  // models[] may carry model, config ('verifier-on' | 'verifier-off'), n, generatedAt, commitSha and llm { provider, seed, temperature, numCtx }.
   totals: Record<modelId, { runs: number; passed: number; passRate: number; passK: number /*share of scenarios all-pass, 0..1*/ }>;
   silentFailure?: { file: string /* 'data/silent-failure-run.json' */; scenarioId: string };
 }
 ```
 
 Sections:
-1. **Stat cards** (`StatCard.svelte`, `rounded-lg border border-border bg-surface p-4`). Label (text-sm muted) / value (Display, tabular-nums) / sub (text-sm muted). The primary model is the first `kind === 'scripted'` model. If a real LLM model exists, cards 1–2 show a second sub line "{label}: {rate}%".
+1. **Stat cards** (`StatCard.svelte`, `rounded-lg border border-border bg-surface p-4`). Label (text-sm muted) / value (Display, tabular-nums) / sub (text-sm muted). The primary model is the first `kind === 'scripted'` model. Cards use the scripted baseline only: LLM columns are never mixed into card values or sub lines (see "Real LLM columns" below).
    - "Pass rate" / "96%" / "77 of 80 runs · {model label}" (value colored by the rate token only through a chip beside it; the number stays `text-fg`)
-   - "pass^k" / "88%" / "Scenarios where all {n} runs passed"
+   - "pass^{N} · all {N} runs pass" / "{mean pass^N}%" / "Mean over {count} scenarios · {model label}", second sub line with the k-curve "k=1 {x}% · k=3 {x}% · k=5 {x}% · k={N} {x}%" and a small `aria-hidden` bar curve of the same numbers. Values are the mean of `passHatK` at each k across scenarios (methodology: "pass^k is the tau-bench unbiased estimate C(c,k)/C(n,k) of k consecutive runs all passing"). Only files without `passHatK` fall back to "pass^k" / `totals.passK` / "Share of scenarios where all {n} runs passed".
    - "Scenarios" / "{count}" / "Including {adversarialCount} adversarial". If the adversarial count isn't derivable, the sub is "Seeded, adversarial suite".
    - "Silent failures caught" / "{caught ? 1 : 0}" / "Lying-API run caught by read-back"
 2. **Per-scenario table** (`ScenarioTable.svelte`): `<table class="w-full text-sm">` + `<caption class="sr-only">Pass rate per scenario and model</caption>`, headers `<th scope="col">`.
-   - Columns: **Scenario** (name, `font-mono text-fg-muted` id below) · **Runs** · then per model: **Pass rate · {label}** (rate text + `h-2` bar in the rate token, bar `aria-hidden`) and **pass^k · {label}** (`✓ All passed` ok chip / `✕ Not all` fail chip) · **Top failure** (most frequent FailureClass across models as an idle chip with the human label, or "—").
+   - **Verifier on vs verifier off** panel directly under the stat cards (when a `config: 'verifier-off'` scripted model exists): a 3-column table Metric · {verifier-on label} · {verifier-off label} with rows Pass rate ("87% · 200/230 runs"), pass^{N} (mean), Uncaught silent failures, all from `totals` / `passHatK`.
+   - **Real LLM columns** section (when any `kind === 'llm'` model exists): per LLM model its label, mono metadata line "{provider} · {model} · temperature {t} · seed {s} · num_ctx {c}" (fields present only), "{rate}% pass rate · {passed}/{runs} runs · N={n} per scenario · {run} of {total} scenarios run" computed from that model's own per-scenario results, a "Partial column" note when some scenarios have no result, and "Eval commit · Generated {UTC}". Copy: "Reported on their own. The headline cards above use the scripted baseline only, and scenarios an LLM column did not run show "Not run" in the table."
+   - Intro line above the table: "pass^k is the chance that k runs in a row all pass (tau-bench estimate C(c,k)/C(n,k)); pass^N at k = N means every run passed. A failure class shows only in a column below 100%."
+   - Columns: **Scenario** (name, `font-mono text-fg-muted` id below; scenarios tagged `known-weakness` add a `<details>` whose summary is a warn chip "! Known weakness · fails by design" + "Why", expanding to the scenario description and a link to the committed eval tables' W1-W3 list) · then per model: **Pass rate · {label}** with a muted coverage line "N={n}" (partial columns: "N={n} · {run} of {total} scenarios") — rate text "{rate}% · {passed}/{runs} runs" + `h-2` bar in the rate token (bar `aria-hidden`) + that column's most frequent FailureClass as an idle chip, shown only when that column's pass rate is below 100% — and **pass^k · {label}** (muted sub "k = N, then smaller k"): "pass^{N} {value}%" colored by the rate token, then muted "k=1 {x}% · k=3 {x}% · k=5 {x}%". Without `passHatK` the cell falls back to `✓ All {n} passed` / `✕ Not all` chips. The separate Runs and cross-model Top failure columns are removed.
    - A model with no result for a scenario shows "Not run" (muted).
+   - At ≥640px the table scrolls inside `overflow-x-auto`; when it is wider than its container a muted hint "Scroll the table sideways to see every model column →" shows above it. Below 640px the table is replaced by one stacked card per scenario (scenario head, then one row per model with the same rate, failure and pass^k content).
    - Rows are in file order; there is no sorting control.
 3. **Failure taxonomy** (`TaxonomyBreakdown.svelte`): h2 "Failure taxonomy". Lists **all 7 classes in `FailureClass` enum order** even at zero. Each row: human label (text-sm semibold) · count (tabular-nums) · `h-2` bar proportional to the max count (fail token; zero → no bar, count muted) · a one-line definition (text-sm muted). A model `<select>` appears when more than one model exists.
 
@@ -530,7 +538,7 @@ Sections:
    - h2 "Caught silent failure" + body: "{description}". Fallback copy: "In this scenario the Calendar app is set to report success without saving anything (a lying API). Step through the run to watch read-back catch it."
    - Controls (`ReplayControls` in manual mode): "Previous step", **"Next step"** (accent fill), "Play"/"Pause" (`aria-pressed`), "Restart", and a counter "Step {i} of {total}" (`aria-live="polite"`).
    - The region wrapper is `role="group" aria-label="Silent failure replay" tabindex="0"`; ArrowLeft/ArrowRight step while it has focus.
-   - Body: `TraceTimeline` with `rows.slice(0, i)` and the current row highlighted.
+   - Body: `TraceTimeline` with `rows.slice(0, i)`, the current row highlighted, and `simulatedClock` set. Intro note: "This is an eval run: step times come from the harness's simulated clock (sim.), not measured latency."
    - When `i` reaches the row whose `spanId === oracle.stepSpanId`, a two-column comparison appears (`grid sm:grid-cols-2 gap-4`):
      - "What the tool returned": ok chip "OK" + `expected` text
      - "What read-back found": fail chip "≠ Not found" + `found` text
@@ -591,6 +599,7 @@ Routes: `web/src/routes/+layout.svelte` (shell), `+layout.ts` (+ `trailingSlash`
 | Element | Copy |
 |---------|------|
 | Primary CTA | **Run {n} approved actions** (while running: "Running…"; n = 0: disabled with "Select at least one action to run.") |
+| Hero CTAs (sprint first screen) | "Replay the recorded sprint" (accent, before a plan exists; live: "Build a plan for this profile") · "Jump to 3. Plan & approve" · "See eval results" |
 | Secondary CTAs | "Build plan" · "Approve all ({n})" · "Clear selection" · "Run again" · "Play" / "Pause" · "Step" · "Previous step" / "Next step" · "Restart" · "Preview payload" |
 | Sprint H1 / subtitle | "Application sprint" / "Profile → gap report → plan → approve → run → verify. Nothing is written to any app until you approve it." |
 | Section headings | "1. Profile" · "2. Gap report" · "3. Plan & approve" · "4. Run trace" · "5. Verified results" |
@@ -607,7 +616,7 @@ Routes: `web/src/routes/+layout.svelte` (shell), `+layout.ts` (+ `trailingSlash`
 | Evals empty | Heading "No eval results yet" · Body "Run npx tsx scripts/eval.ts --n 10 in web/, then rebuild the site." |
 | Evals error | Heading "Couldn't load eval results" · Body "data/evals.json returned {status or 'an invalid format'}. The numbers are also in BRIEF.md." + link "Read BRIEF.md ↗" |
 | Silent-failure file missing | Heading "Replay not available" · Body "The recorded silent-failure trace is missing from this build." |
-| Replay banner | "Recorded run. This static site replays a mock-mode run recorded on {date} (commit {sha7}). Gap analysis runs live in your browser; the plan, trace and results come from the recording. Personal details in the recording are redacted." |
+| Replay banner | "Recorded run. This static site replays a mock-mode run recorded on {date} (recording commit {sha7}). Gap analysis runs live in your browser; the plan, trace and results come from the recording. Personal details in the recording are redacted." |
 | Injection flag | "Ignored instruction found in {source}" + "Treated as data. It cannot add or change actions." |
 | Gmail safety line | "Draft to {to} · never sent" |
 | Verified definition | "Verified means the item was read back from the app after the run, not taken from the agent's own report." |
