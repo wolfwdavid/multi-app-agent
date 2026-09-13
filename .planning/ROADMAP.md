@@ -234,9 +234,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 10-01: real GitHub + HF read connectors (public APIs, cached for evals) + Obsidian vault reader
-- [ ] 10-02: real Notion connector (data_source_id, TP Key filter upsert, serialized queue) + contract smoke test (parallel with 10-01)
-- [ ] 10-03: real Google connector for one app via local refresh-token script (Calendar preferred) + health check (timeboxed 15 min; parallel)
+- [ ] 10-01-PLAN.md — Wave 1: live GitHub + HF read ports (fetch, timeout, typed errors) + real/index.ts rewire with Notion/Google contract stubs + /api/health status/probes + smoke-real.ts + Obsidian vault reader (first cut)
+- [ ] 10-02-PLAN.md — Wave 2: real Notion on 2025-09-03 data sources (TP Key upsert, 350ms pacing, error mapping, schema probe) + notion-setup.ts (--apply, --roundtrip) (parallel with 10-03)
+- [ ] 10-03-PLAN.md — Wave 2: Google refresh-token auth + google-auth.ts loopback consent + real Calendar (base32hex ids) first, then Gmail drafts + Docs (cut if past time box) + google-smoke.ts
 
 ### Phase 11: MCP Server
 **Goal**: A VS Code user can call the agent's tools through a custom MCP stdio server generated from the same tool registry the agent and evals use.
