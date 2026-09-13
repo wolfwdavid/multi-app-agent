@@ -6,9 +6,9 @@
 export type GoogleApp = 'gmail' | 'calendar' | 'docs';
 
 export const GOOGLE_IMPLEMENTED: Readonly<Record<GoogleApp, boolean>> = {
-	gmail: false,
+	gmail: true,
 	calendar: true,
-	docs: false
+	docs: true
 };
 
 export const GOOGLE_ENV = ['GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'GOOGLE_REFRESH_TOKEN'] as const;

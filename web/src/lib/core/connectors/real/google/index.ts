@@ -10,6 +10,8 @@ import type { CalendarPort, DocsPort, GmailPort } from '../../types.ts';
 import { missingEnv, notConfiguredPort, type Env, type ProbeResult, type RealDeps } from '../shared.ts';
 import { createGoogleAuth, mapGoogleError, probeGoogleAuth, type AuthLike } from './auth.ts';
 import { createRealCalendar, type CalendarApi } from './calendar.ts';
+import { createRealDocs, type DocsApi, type DriveApi } from './docs.ts';
+import { createRealGmail, type GmailApi } from './gmail.ts';
 import { GOOGLE_ENV, GOOGLE_IMPLEMENTED, GOOGLE_METHODS, type GoogleApp } from './flags.ts';
 
 export interface GooglePorts {
@@ -65,7 +67,9 @@ const calendarIdOf = (env: Env) => env.GOOGLE_CALENDAR_ID?.trim() || 'primary';
 /** Real port builders per app; only called for implemented apps. */
 function builders(env: Env, getApis: () => GoogleApis): Partial<{ [A in GoogleApp]: () => GooglePorts[A] }> {
 	return {
-		calendar: () => createRealCalendar(getApis().calendar as CalendarApi, { calendarId: calendarIdOf(env), env })
+		calendar: () => createRealCalendar(getApis().calendar as CalendarApi, { calendarId: calendarIdOf(env), env }),
+		gmail: () => createRealGmail(getApis().gmail as GmailApi, { env }),
+		docs: () => createRealDocs({ docs: getApis().docs as DocsApi, drive: getApis().drive as DriveApi }, { env })
 	};
 }
 
@@ -107,6 +111,18 @@ function appReads(env: Env): Partial<Record<GoogleApp, (apis: GoogleApis) => Pro
 				privateExtendedProperty: ['tpApp=transferpilot']
 			});
 			return 'calendar reachable';
+		},
+		gmail: async (apis) => {
+			await (apis.gmail as GmailApi).users.drafts.list({ userId: 'me', maxResults: 1 });
+			return 'gmail drafts reachable';
+		},
+		docs: async (apis) => {
+			await (apis.drive as DriveApi).files.list({
+				pageSize: 1,
+				q: "appProperties has { key='tpApp' and value='transferpilot' }",
+				fields: 'files(id)'
+			});
+			return 'drive/docs reachable';
 		}
 	};
 }

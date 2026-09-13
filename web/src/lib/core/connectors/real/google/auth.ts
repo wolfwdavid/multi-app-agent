@@ -8,7 +8,7 @@ import type { ConnectorErrorKind } from '../../../schemas.ts';
 import { redactSecrets, type Env } from '../shared.ts';
 
 /**
- * Least privilege: drafts only (gmail.compose, never gmail.send or full mail access), events only,
+ * Least privilege: drafts only (gmail.compose; no send or full-mailbox scope), events only,
  * and Drive files this app created. Docs needs `documents` to read the essay the user shares.
  */
 export const GOOGLE_SCOPES = [

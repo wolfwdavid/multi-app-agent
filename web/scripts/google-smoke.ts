@@ -73,4 +73,51 @@ if (GOOGLE_IMPLEMENTED.calendar) {
 	}
 }
 
+if (GOOGLE_IMPLEMENTED.gmail) {
+	// Drafts only, addressed to the demo account itself: never a third party, and nothing is sent.
+	const to = env.GOOGLE_SMOKE_TO?.trim();
+	if (!to) {
+		console.log('[skip] gmail  GOOGLE_SMOKE_TO not set (use the demo account\'s own address)');
+	} else {
+		const key = smokeKey('gmail');
+		try {
+			const existing = await ports.gmail.findByKey(key);
+			const draft =
+				existing ??
+				(await ports.gmail.createDraft({ to: [to], subject: 'TransferPilot smoke test (safe to delete)', body: 'smoke', key }));
+			const again = await ports.gmail.findByKey(key);
+			if (!again || again.id !== draft.id) {
+				fail('gmail', `read-back mismatch (created ${draft.id}, read ${again?.id ?? 'null'})`);
+			} else {
+				console.log(`[ok] gmail draft ${existing ? 'deduped (already present)' : 'created'} → read-back by marker (${draft.id})`);
+			}
+			if (!keep) {
+				const gm = apis.gmail as { users: { drafts: { delete(p: object): Promise<unknown> } } };
+				await gm.users.drafts.delete({ userId: 'me', id: draft.id });
+			}
+		} catch (e) {
+			fail('gmail', describe(e));
+		}
+	}
+}
+
+if (GOOGLE_IMPLEMENTED.docs) {
+	const key = smokeKey('docs');
+	try {
+		const existing = await ports.docs.findByKey(key);
+		const doc = existing ?? (await ports.docs.createDoc({ title: 'TransferPilot smoke test (safe to delete)', body: 'smoke', key }));
+		const again = await ports.docs.findByKey(key);
+		const { text } = await ports.docs.readDoc(doc.id);
+		if (!again || again.id !== doc.id) fail('docs', `read-back mismatch (created ${doc.id}, read ${again?.id ?? 'null'})`);
+		else if (!text.includes('smoke')) fail('docs', `doc ${doc.id} text does not contain the smoke body`);
+		else console.log(`[ok] docs ${existing ? 'deduped (already present)' : 'created'} → findByKey → readDoc (${doc.url ?? doc.id})`);
+		if (!keep) {
+			const dr = apis.drive as { files: { delete(p: object): Promise<unknown> } };
+			await dr.files.delete({ fileId: doc.id });
+		}
+	} catch (e) {
+		fail('docs', describe(e));
+	}
+}
+
 if (failed) process.exitCode = 1;
