@@ -203,8 +203,14 @@
 <div class="pt-8 space-y-2">
 	<h1 class="text-2xl font-semibold">Application sprint</h1>
 	<p class="text-base text-fg-muted">
-		Profile → gap report → plan → approve → run → verify. Nothing is written to any app until you approve it.
+		Plans a college transfer application: finds requirement gaps and critiques the essay, then writes to your apps
+		only after you approve.
 	</p>
+	<ul aria-label="Apps it writes to" class="flex flex-wrap gap-2 text-sm">
+		{#each ['Google Docs', 'Notion', 'Google Calendar', 'Gmail'] as app (app)}
+			<li class="rounded-full border border-border bg-surface px-2 py-0.5">{app}</li>
+		{/each}
+	</ul>
 	<nav aria-label="Sprint steps" class="text-sm">
 		<ol class="flex flex-wrap items-center gap-2">
 			{#each steps as step, i (step.href)}

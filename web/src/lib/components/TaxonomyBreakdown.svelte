@@ -18,9 +18,10 @@
 		<p class="text-sm text-fg-muted">Failed runs by primary failure class, summed across scenarios.</p>
 	</div>
 	{#if evals.models.length > 1}
-		<label class="flex flex-col gap-1 text-sm">
+		<label class="flex flex-col gap-1 text-sm min-w-0">
 			Model
-			<select class="min-h-11 rounded-md text-sm" onchange={(e) => (picked = e.currentTarget.value)}>
+			<!-- w-full/max-w-full/min-w-0: long option labels must not widen the page on mobile. -->
+			<select class="min-h-11 w-full max-w-full min-w-0 truncate rounded-md text-sm" onchange={(e) => (picked = e.currentTarget.value)}>
 				{#each evals.models as m (m.id)}
 					<option value={m.id} selected={m.id === modelId}>{m.label} ({coverageTag(evals, m)})</option>
 				{/each}

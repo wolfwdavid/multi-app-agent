@@ -307,11 +307,11 @@
 			<ScenarioTable {evals} />
 		</section>
 
-		<div class="grid lg:grid-cols-12 gap-6">
-			<div class="lg:col-span-4">
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+			<div class="min-w-0 lg:col-span-4">
 				<TaxonomyBreakdown {evals} />
 			</div>
-			<div class="lg:col-span-8">
+			<div class="min-w-0 lg:col-span-8">
 				{#if sfState === null}
 					<p class="text-sm text-fg-muted" role="status">Loading the silent-failure replay…</p>
 				{:else if silentRun}
