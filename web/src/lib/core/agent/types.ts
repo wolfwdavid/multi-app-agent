@@ -1,6 +1,7 @@
 // Agent runtime contracts shared by the planner, policy gate, executor, verifier, orchestrator, evals and UI adapter.
 import type { Action, AppName, ArtifactRef, ConnectorErrorInfo, Plan } from '../schemas.ts';
 import type { GapReport } from '../gap/index.ts';
+import type { NextAction } from '../grounding/next-actions.ts';
 
 export const ACTION_KINDS = [
 	'critique_doc',
@@ -139,6 +140,8 @@ export interface PlanResult {
 	plan: Plan;
 	planToken: string;
 	reports: GapReport[];
+	/** Phase 5 GAP-03: LLM-phrased next steps; findings stay deterministic. */
+	nextActions?: NextAction[];
 }
 
 export interface SprintLimits {

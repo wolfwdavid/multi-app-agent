@@ -187,9 +187,9 @@ describe('Phase 5 sprint: essay critique, grounding and injection containment', 
 
 		await exec(x, inj);
 		const s = x.world.state;
-		expect(JSON.stringify({ n: s.notion, c: s.calendar, d: s.gmail, docs: s.docs.docs.filter((d) => d.key) })).not.toContain(
-			'evil.example'
-		);
+		// The seeded inbox (read-only input) holds the adversarial email; only written collections are checked.
+		const written = { n: s.notion, c: s.calendar, d: s.gmail.drafts, sent: s.gmail.sent, docs: s.docs.docs.filter((d) => d.key) };
+		expect(JSON.stringify(written)).not.toContain('evil.example');
 		expect(s.gmail.drafts).toHaveLength(0);
 		expect(named(x.sink, 'grounding.rejected').length).toBeGreaterThan(0);
 	});

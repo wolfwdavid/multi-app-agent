@@ -2,7 +2,11 @@
 // The skeleton (which actions, dates, recipients, keys) is pure code; the LLM only fills critique and draft text slots.
 import { z } from 'zod';
 import { Plan } from '../schemas.ts';
-import type { Action, AppName, Blocker, Profile, SchoolsDataset } from '../schemas.ts';
+import type { Action, AppName, Blocker, ContentFlag, Profile, SchoolsDataset } from '../schemas.ts';
+import type { PlanningContext } from '../critique/context.ts';
+import { buildCritiqueDoc } from '../critique/build.ts';
+import { GUARD_TRACE } from '../critique/types.ts';
+import { groundedDraftSchema, groundingFlagFromSlotError } from '../grounding/claims.ts';
 import type { GapReport } from '../gap/index.ts';
 import { assertIsoDate } from '../gap/index.ts';
 import { LLMSlotError, callSlot } from '../llm/types.ts';
@@ -53,6 +57,8 @@ export interface BuildPlanInput {
 	createdAt: string;
 	llm: LLM;
 	tracer?: Tracer;
+	/** Phase 5: essay text, evidence catalog, allowlist and injection flags gathered by planSprint. Absent = Phase 4 placeholder critique (unit tests only). */
+	context?: PlanningContext;
 }
 
 type Contact = Profile['contacts'][number];
@@ -73,6 +79,15 @@ export async function buildPlan(input: BuildPlanInput): Promise<Plan> {
 	const profileId = profile.profile_id;
 	const actions: Action[] = [];
 	const blockers: Blocker[] = [];
+	const flags: ContentFlag[] = [];
+	// Recipients still come only from profile.contacts; grounding only rejects foreign emails and invented achievements.
+	const draftSchema: z.ZodType<DraftSlotOutput> = input.context
+		? groundedDraftSchema(DraftSlotOutput, {
+				catalog: input.context.catalog,
+				essayText: null,
+				allowedEmails: input.context.allowedEmails
+			})
+		: DraftSlotOutput;
 
 	for (const report of reports) {
 		const { schoolId, programId, schoolName, programName } = report;
@@ -92,6 +107,24 @@ export async function buildPlan(input: BuildPlanInput): Promise<Plan> {
 			return id;
 		};
 
+		const slotFailed = (err: LLMSlotError, slotName: string, kind: ActionKind) => {
+			blockers.push({
+				code: 'LLM_SLOT_FAILED',
+				message: `${slotName} output for ${kind} failed validation after repair`,
+				schoolId,
+				programId
+			});
+			const flag = groundingFlagFromSlotError(err, `llm:${err.slot}:${programId}`);
+			if (flag) {
+				flags.push(flag);
+				tracer?.event(
+					GUARD_TRACE.groundingRejected,
+					{ slot: err.slot, programId, actionKind: kind, issues: err.issues.slice(0, 300) },
+					'error'
+				);
+			}
+		};
+
 		const slot = async <S extends z.ZodType>(
 			schema: S,
 			slotName: string,
@@ -103,12 +136,7 @@ export async function buildPlan(input: BuildPlanInput): Promise<Plan> {
 				return await callSlot(llm, schema, { slot: slotName, system, input: slotInput }, { tracer });
 			} catch (err) {
 				if (!(err instanceof LLMSlotError)) throw err;
-				blockers.push({
-					code: 'LLM_SLOT_FAILED',
-					message: `${slotName} output for ${kind} failed validation after repair`,
-					schoolId,
-					programId
-				});
+				slotFailed(err, slotName, kind);
 				return null;
 			}
 		};
@@ -135,30 +163,62 @@ export async function buildPlan(input: BuildPlanInput): Promise<Plan> {
 		// b. Critique doc.
 		let critiqueId: string | null = null;
 		if (report.essays.requiredCount > 0) {
-			const out = await slot(
-				CritiqueSlotOutput,
-				'critique',
-				'critique_doc',
-				'You write question-style essay feedback. Never rewrite prose.',
-				{
-					schoolName,
-					programName,
-					term,
-					aiPolicyMode: report.aiPolicy.mode,
-					essays: report.essays.required.map((e) => ({ essayId: e.essayId, prompt: e.prompt, wordLimit: e.wordLimit }))
+			const context = input.context;
+			if (context) {
+				const essay = context.essay;
+				if (essay.status !== 'ok') {
+					blockers.push({
+						code:
+							essay.status === 'missing'
+								? 'ESSAY_DOC_MISSING'
+								: essay.status === 'empty'
+									? 'ESSAY_DOC_EMPTY'
+									: 'ESSAY_DOC_UNREADABLE',
+						message: `Essay draft ${essay.docId} is ${essay.status}; no critique was generated for ${report.schoolName}.`,
+						schoolId,
+						programId
+					});
+				} else {
+					try {
+						const doc = await buildCritiqueDoc({ report, schools: input.schools, context, llm, tracer });
+						critiqueId = await add(
+							'critique_doc',
+							'docs.createDoc',
+							{ title: doc.title, body: doc.body },
+							`Create critique doc for ${schoolName}`,
+							term
+						);
+					} catch (err) {
+						if (!(err instanceof LLMSlotError)) throw err;
+						slotFailed(err, err.slot, 'critique_doc');
+					}
 				}
-			);
-			if (out) {
-				const body =
-					`${out.policyNote}\n\n` +
-					out.sections.map((s) => `## ${s.heading}\n` + s.comments.map((c) => `- ${c}`).join('\n')).join('\n\n');
-				critiqueId = await add(
+			} else {
+				const out = await slot(
+					CritiqueSlotOutput,
+					'critique',
 					'critique_doc',
-					'docs.createDoc',
-					{ title: `Essay critique: ${schoolName} ${programName} (${term})`, body },
-					`Create critique doc for ${schoolName}`,
-					term
+					'You write question-style essay feedback. Never rewrite prose.',
+					{
+						schoolName,
+						programName,
+						term,
+						aiPolicyMode: report.aiPolicy.mode,
+						essays: report.essays.required.map((e) => ({ essayId: e.essayId, prompt: e.prompt, wordLimit: e.wordLimit }))
+					}
 				);
+				if (out) {
+					const body =
+						`${out.policyNote}\n\n` +
+						out.sections.map((s) => `## ${s.heading}\n` + s.comments.map((c) => `- ${c}`).join('\n')).join('\n\n');
+					critiqueId = await add(
+						'critique_doc',
+						'docs.createDoc',
+						{ title: `Essay critique: ${schoolName} ${programName} (${term})`, body },
+						`Create critique doc for ${schoolName}`,
+						term
+					);
+				}
 			}
 		}
 
@@ -180,7 +240,7 @@ export async function buildPlan(input: BuildPlanInput): Promise<Plan> {
 					...(report.recs.required > 0 ? [`Recommendation letters: ${report.recs.required}`] : [])
 				],
 				recsRequired: report.recs.required,
-				essayStatus: 'draft',
+				essayStatus: input.context && input.context.essay.status !== 'ok' ? 'not_started' : 'draft',
 				gapCount: report.summary.missing + report.summary.unknownEquivalency,
 				status: hasBlocker ? 'blocked' : 'planning',
 				...(notes ? { notes } : {})
@@ -223,7 +283,7 @@ export async function buildPlan(input: BuildPlanInput): Promise<Plan> {
 
 		// e. Drafts. Recipients come ONLY from profile.contacts.
 		const draft = async (kind: ActionKind, contact: Contact, items: string[], summary: string) => {
-			const out = await slot(DraftSlotOutput, 'draft', kind, 'Write a short, polite email body. Output JSON only.', {
+			const out = await slot(draftSchema, 'draft', kind, 'Write a short, polite email body. Output JSON only.', {
 				kind,
 				schoolName,
 				programName,
@@ -280,5 +340,5 @@ export async function buildPlan(input: BuildPlanInput): Promise<Plan> {
 		'plan-' +
 		(await sha256Hex(canonicalJson({ profileId, today, keys: actions.map((a) => a.idempotencyKey) }))).slice(0, 12);
 	tracer?.event('plan.built', { planId, actions: actions.length, blockers: blockers.map((b) => b.code) });
-	return Plan.parse({ planId, profileId, createdAt, actions, blockers, flags: [] });
+	return Plan.parse({ planId, profileId, createdAt, actions, blockers, flags: [...(input.context?.flags ?? []), ...flags] });
 }

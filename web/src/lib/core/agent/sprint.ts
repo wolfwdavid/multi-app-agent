@@ -8,7 +8,12 @@
 // (Phase 9: /api/plan -> planSprint, /api/execute -> executeSprint with a CallbackSink streaming
 // SSE) and the MCP server (Phase 11). The core never logs and never reads env; entry points
 // inject the secret, clock and tracer sinks.
+//
+// Phase 5: untrusted reads (essay Doc by profile id, inbox scan, portfolio) happen in planSprint but only fill
+// the wrapped critique slot and the flag list; they never add actions or recipients.
 import { Plan } from '../schemas.ts';
+import { gatherPlanningContext } from '../critique/context.ts';
+import { phraseNextActions } from '../grounding/next-actions.ts';
 import type { Profile, RunReport, SchoolsDataset } from '../schemas.ts';
 import type { Connectors } from '../connectors/types.ts';
 import type { LLM } from '../llm/types.ts';
@@ -39,7 +44,7 @@ export function allActionIds(plan: Plan): string[] {
 	return plan.actions.map((a) => a.id);
 }
 
-/** Gap analysis + plan + signature. Makes no connector calls. */
+/** Gap analysis + scoped read-only planning context + plan + signature. Makes no connector writes. */
 export async function planSprint(
 	rt: SprintRuntime,
 	input: { profile: Profile; schools: SchoolsDataset; createdAt: string }
@@ -47,13 +52,20 @@ export async function planSprint(
 	const { profile, schools, createdAt } = input;
 	return rt.tracer.span(TRACE.planSpan, { profileId: profile.profile_id, targets: profile.targets.length }, async () => {
 		const reports = analyzeGaps(profile, schools, { today: rt.today });
-		const plan = await buildPlan({ profile, schools, reports, today: rt.today, createdAt, llm: rt.llm, tracer: rt.tracer });
+		const context = await gatherPlanningContext(rt.connectors, profile, { tracer: rt.tracer });
+		const plan = await buildPlan({ profile, schools, reports, today: rt.today, createdAt, llm: rt.llm, tracer: rt.tracer, context });
 		const planToken = await signPlan(plan, rt.planSecret, recipientAllowlistFromProfile(profile));
 		rt.tracer.event(TRACE.planDryRun, {
 			planId: plan.planId,
 			actions: plan.actions.map((a) => ({ id: a.id, app: a.app, tool: a.tool, key: a.idempotencyKey, summary: a.summary }))
 		});
-		return { plan, planToken, reports };
+		const { nextActions } = await phraseNextActions({
+			reports,
+			llm: rt.llm,
+			tracer: rt.tracer,
+			allowedEmails: context.allowedEmails
+		});
+		return { plan, planToken, reports, nextActions };
 	});
 }
 
