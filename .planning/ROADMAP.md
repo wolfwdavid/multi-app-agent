@@ -130,7 +130,7 @@ Plans:
 Plans:
 - [x] 04-01-PLAN.md — Wave 1: agent contracts + UI trace vocabulary, tracer SpanControl, idempotency keys, 4 write tools registry, FakeLLM slot + repair, deterministic planner (23 actions for demo), policy gate (HMAC token bound to recipient allowlist, approved ids, no-send)
 - [x] 04-02-PLAN.md — Wave 2: withRetry (retry-after/backoff/caps) + step budget + loop guard, executor (topo order, findByKey before write and retry, ghost-write recovery, action.execute spans), verifier read-back (verify.readback, lying success = mismatch) + RunReport
-- [ ] 04-03-PLAN.md — Wave 3: PII redaction + JSONL, planSprint/executeSprint + HeroRunFile recording contract, e2e reliability scenarios, scripts/sprint.ts CLI (npm run record) writing static/traces/demo-sprint.jsonl + static/data/hero-run.json
+- [x] 04-03-PLAN.md — Wave 3: PII redaction + JSONL, planSprint/executeSprint + HeroRunFile recording contract, e2e reliability scenarios, scripts/sprint.ts CLI (npm run record) writing static/traces/demo-sprint.jsonl + static/data/hero-run.json
 
 ### Phase 5: Essay Critique, Evidence Grounding & Injection Guard
 **Goal**: The sprint reads only the specified essay Doc and writes a critique Doc that is grounded in evidence and follows the school's AI policy. Instructions injected into docs or emails are flagged and cannot change the plan.
